@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Unit I comprehensive academic study guide to cloud computing: definitions, evolution, parallel and distributed computing, Flynn's taxonomy, Amdahl's law, CAP theorem, NIST characteristics, elasticity, and on-demand provisioning with real-world examples.">
+  <title>Unit I — Foundations of Cloud Computing | Cloud Computing Study Guide</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="reading-progress-bar" id="reading-progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Cloud Computing study guide overview">
+        <span class="brand-kicker">ACADEMIC STUDY GUIDE / UNITS 01—03</span>
+        <span class="brand-name">Cloud Computing</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="unit1.html" aria-current="page">Unit I</a>
+        <a href="unit2.html">Unit II</a>
+        <a href="unit3.html">Unit III</a>
+        <a href="theory.html">Short theory</a>
+        <a href="pyqs.html">Past papers</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="container">
+        <p class="eyebrow">Unit 01 / Foundations</p>
+        <h1 id="page-title">Foundations of cloud computing</h1>
+        <p class="lead">From core definitions and real-world analogies to historical evolution, parallel and distributed systems, Flynn's taxonomy, speedup laws, the CAP theorem, and resource economics.</p>
+        <div class="hero-meta" aria-label="Guide scope">
+          <span>8 comprehensive sections</span>
+          <span>Core concepts · Real-world enterprise examples · Visual diagrams · Exam-ready answers</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container reading-layout">
+      <aside class="page-sidebar" aria-label="On this page">
+        <nav aria-label="Unit I chapters">
+          <p>On this page</p>
+          <ol>
+            <li><a href="#definition">What is cloud computing?</a></li>
+            <li><a href="#evolution">How the cloud evolved</a></li>
+            <li><a href="#parallel-distributed">Parallel and distributed computing</a></li>
+            <li><a href="#characteristics">The five NIST characteristics</a></li>
+            <li><a href="#elasticity">Elasticity, scalability, and cost</a></li>
+            <li><a href="#provisioning">On-demand provisioning</a></li>
+            <li><a href="#exam-preparation">Exam preparation</a></li>
+            <li><a href="#references">References</a></li>
+          </ol>
+        </nav>
+      </aside>
+
+      <article class="prose" aria-label="Unit I guide">
+        <!-- 01: WHAT IS CLOUD COMPUTING -->
+        <section class="chapter" id="definition" aria-labelledby="definition-title">
+          <p class="section-label">01 / Core definition</p>
+          <h2 id="definition-title">What is cloud computing?</h2>
+          
+          <div class="callout">
+            <h3>Core Concept &amp; The Electricity Analogy</h3>
+            <p>To run a refrigerator, an individual does not build a personal hydroelectric dam or buy a diesel generator. Instead, the appliance simply plugs into a wall socket. The power utility generates electricity at massive central stations, routes it through a shared grid, and bills the customer at the end of the month based on the exact kilowatt-hours consumed.</p>
+            <p><strong>Cloud computing delivers computing power through the exact same utility model.</strong> Instead of an organization purchasing expensive physical server racks, configuring switches, and paying air conditioning bills in a private server room, they connect to cloud data centers over the internet. With a few clicks, they rent virtual servers from providers such as Amazon Web Services (AWS), Google Cloud Platform (GCP), or Microsoft Azure, run them for as long as needed, and pay only for the seconds or gigabytes used.</p>
+          </div>
+
+          <h3>The Formal Academic Definition (NIST SP 800-145)</h3>
+          <p>In university examinations, cite the official standard formulated by the <strong>National Institute of Standards and Technology (NIST)</strong>:</p>
+          <blockquote>
+            “Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction.” <a href="#ref-nist">[1]</a>
+          </blockquote>
+
+          <h3>Deconstructing the NIST Definition</h3>
+          <p>This definition rests on five technical pillars:</p>
+          <ul>
+            <li><strong>Ubiquitous &amp; Convenient:</strong> Accessible from any location globally, across any device (laptop, smartphone, tablet, workstation) via standard web protocols.</li>
+            <li><strong>On-demand Network Access:</strong> Resources are delivered over the network immediately upon request, without waiting days or weeks for manual intervention.</li>
+            <li><strong>Shared Pool of Configurable Resources:</strong> High-density servers and storage arrays in enterprise data centers are pooled together and dynamically sliced among multiple clients.</li>
+            <li><strong>Rapidly Provisioned &amp; Released:</strong> Compute capacity can spin up in under 60 seconds, run an intensive batch job for several hours, and terminate immediately to stop billing.</li>
+            <li><strong>Minimal Management Effort:</strong> Users do not need to call a technician or negotiate separate hardware contracts; resource operations are managed through automated web consoles or APIs.</li>
+          </ul>
+
+          <h3>Real-World Enterprise Examples</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>How modern enterprises leverage cloud computing in daily operations</caption>
+              <thead>
+                <tr><th scope="col">Company</th><th scope="col">Operational Scenario</th><th scope="col">Cloud Architecture Value</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><strong>Netflix</strong></th>
+                  <td>Streams billions of hours of high-definition video to over 260 million global subscribers.</td>
+                  <td>Netflix migrated entirely off physical data centers to AWS. On Friday evenings, when traffic explodes during new show premieres, AWS auto-scaling spins up thousands of extra virtual servers. Late at night, these servers are terminated, eliminating massive idle electricity and hardware maintenance costs.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Uber / Ola</strong></th>
+                  <td>Processes real-time ride requests, matches drivers, and computes dynamic route pricing across hundreds of cities.</td>
+                  <td>Ride demand fluctuates dramatically during rainstorms or rush hours. Cloud services (AWS and Google Cloud) scale database nodes and geospatial microservices dynamically without system downtime.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Spotify</strong></th>
+                  <td>Stores and streams over 100 million tracks while computing personalized playlists for 600 million users.</td>
+                  <td>Spotify leverages Google Cloud's distributed BigQuery data engine to analyze billions of song streams overnight and generate personalized "Discover Weekly" recommendations.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>IRCTC (Indian Railways)</strong></th>
+                  <td>Handles massive concurrent surges during morning Tatkal booking windows (10:00 AM – 11:30 AM).</td>
+                  <td>Instead of purchasing physical servers that sit idle for the remaining 22 hours of the day, an elastic cloud architecture scales compute out during booking rushes and scales in afterward.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Cloud vs Traditional Dedicated Hosting</h3>
+          <ul>
+            <li><strong>Traditional Dedicated Hosting:</strong> An organization emails a hosting provider, signs an annual contract, and a technician manually racks a physical server. Upgrading CPU or RAM requires physical hardware replacement and downtime. <em>This is remote hosting, not cloud computing.</em></li>
+            <li><strong>True Cloud Computing:</strong> An engineer issues an automated API request, and an isolated instance launches in 45 seconds. When workload decreases, automated rules terminate the instance, billing down to the millisecond. <em>This satisfies the 5 NIST essential characteristics.</em></li>
+          </ul>
+        </section>
+
+        <!-- 02: HOW THE CLOUD EVOLVED -->
+        <section class="chapter" id="evolution" aria-labelledby="evolution-title">
+          <p class="section-label">02 / Historical foundations</p>
+          <h2 id="evolution-title">How the cloud evolved</h2>
+          <p>Cloud computing was not invented in isolation. It represents the cumulative synthesis of decades of computing paradigms that gradually resolved the challenges of resource sharing, networking, scaling, and automation.</p>
+
+          <!-- SOLID COLORFUL DIAGRAM: EVOLUTION -->
+          <div class="solid-diagram">
+            <div class="solid-diagram-title">
+              <span>Evolutionary Pathway to Cloud Computing</span>
+              <span class="badge">Historical Milestones</span>
+            </div>
+            <div class="solid-flow">
+              <div class="solid-node blue">
+                <span class="node-step">Phase 1 · 1960s</span>
+                <span class="node-title">Mainframes &amp; Time-Sharing</span>
+                <p class="node-desc">IBM System/360; central computers shared by dumb terminals using CPU time-slicing.</p>
+              </div>
+              <div class="solid-node purple">
+                <span class="node-step">Phase 2 · 1980s</span>
+                <span class="node-title">Client-Server Model</span>
+                <p class="node-desc">Desktop PCs (clients) querying centralized database and application servers over LANs.</p>
+              </div>
+              <div class="solid-node accent">
+                <span class="node-step">Phase 3 · 1990s</span>
+                <span class="node-title">Cluster &amp; Grid Computing</span>
+                <p class="node-desc">Beowulf commodity clusters and federated research grids (SETI@home) sharing batch computing cycles.</p>
+              </div>
+              <div class="solid-node green">
+                <span class="node-step">Phase 4 · 2000s</span>
+                <span class="node-title">Hardware Virtualization</span>
+                <p class="node-desc">VMware and Xen hypervisors decoupling OS from silicon, turning 1 server into 20 isolated VMs.</p>
+              </div>
+              <div class="solid-node">
+                <span class="node-step">Phase 5 · Present</span>
+                <span class="node-title">Utility &amp; Cloud Platforms</span>
+                <p class="node-desc">AWS (EC2/S3), Azure, and GCP offering on-demand, metered, API-driven global infrastructure.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <caption>Evolutionary stages, technical concepts, and operational trade-offs</caption>
+              <thead>
+                <tr><th scope="col">Evolutionary Era</th><th scope="col">Core Technical Mechanism</th><th scope="col">Real-World Analogy</th><th scope="col">Cloud Contribution &amp; Limitation</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1. Mainframes &amp; Time-Sharing (1960s–70s)</th>
+                  <td>High-cost central computers (IBM System/360) accessed through dumb terminals. Operating systems used CPU time-slicing to share expensive compute cycles.</td>
+                  <td>A communal hostel kitchen with one industrial stove where residents take scheduled 15-minute cooking slots.</td>
+                  <td><strong>Contribution:</strong> Introduced resource sharing and multi-user operating systems.<br><strong>Limitation:</strong> Centralized, rigid, and lacked global self-service access.</td>
+                </tr>
+                <tr>
+                  <th scope="row">2. Client-Server Model (1980s)</th>
+                  <td>Workstations (clients) handled the user interface while centralized servers managed shared relational databases over local networks.</td>
+                  <td>A restaurant counter: customers (clients) place orders, and the kitchen staff (server) prepares the food and returns the dish.</td>
+                  <td><strong>Contribution:</strong> Established the client/server network separation foundational to web applications.<br><strong>Limitation:</strong> Organizations had to buy and maintain their own physical server racks.</td>
+                </tr>
+                <tr>
+                  <th scope="row">3. Cluster &amp; Grid Computing (1990s)</th>
+                  <td><strong>Cluster Computing:</strong> Grouping commodity PCs with high-speed local networking to act as a single supercomputer.<br><strong>Grid Computing:</strong> Connecting geographically dispersed systems across institutions to solve massive scientific batch tasks (e.g., SETI@home, Folding@home).</td>
+                  <td><strong>Cluster:</strong> A team in one room assembling a 1,000-piece puzzle together.<br><strong>Grid:</strong> 10,000 global volunteers analyzing images on home PCs overnight.</td>
+                  <td><strong>Contribution:</strong> Proved that distributed commodity hardware can replace proprietary supercomputers.<br><strong>Limitation:</strong> Grids were designed for batch research, lacking billing transparency, multi-tenant isolation, or instant elasticity.</td>
+                </tr>
+                <tr>
+                  <th scope="row">4. Hardware Virtualization (2000s)</th>
+                  <td>Hypervisors (VMware, Xen, KVM) decouple the operating system from physical silicon, enabling multiple isolated Virtual Machines (VMs) to run on one physical host.</td>
+                  <td>Converting a single-family house into an apartment building: tenants share the foundation and plumbing while living in secure, private apartments.</td>
+                  <td><strong>Contribution:</strong> The architectural core of cloud computing, enabling multi-tenancy, rapid VM provisioning, and hardware consolidation.</td>
+                </tr>
+                <tr>
+                  <th scope="row">5. Utility Computing</th>
+                  <td>Economic model treating computing capacity as a metered municipal utility (like electricity, water, or telephony).</td>
+                  <td>A municipal water tap: opening the tap consumes water, closing it stops consumption, and the meter records exact usage.</td>
+                  <td><strong>Contribution:</strong> Transitioned IT spending from high capital expenditure (CapEx) to flexible operational expenditure (OpEx).</td>
+                </tr>
+                <tr>
+                  <th scope="row">6. Modern Cloud Platforms (2006–Present)</th>
+                  <td>Amazon launched S3 (Simple Storage Service) and EC2 (Elastic Compute Cloud) in 2006, uniting virtualization, utility billing, internet scale, and automated APIs.</td>
+                  <td>Modern ride-hailing: hail a vehicle with an app, use it for the trip, pay automatically, and release it for the next passenger.</td>
+                  <td><strong>Contribution:</strong> Instant self-service, virtually unlimited perceived capacity, global reach, and pay-per-second billing.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 03: PARALLEL AND DISTRIBUTED COMPUTING -->
+        <section class="chapter" id="parallel-distributed" aria-labelledby="parallel-title">
+          <p class="section-label">03 / Computational foundations</p>
+          <h2 id="parallel-title">Parallel and distributed computing</h2>
+          
+          <div class="callout">
+            <h3>The Fundamental Distinction</h3>
+            <p><strong>Parallel Computing</strong> executes parts of a single computation simultaneously using multiple processing units (CPU cores or GPU threads) that typically reside in the <strong>same physical machine and share memory</strong>. The focus is raw execution speed and throughput.</p>
+            <p><strong>Distributed Computing</strong> coordinates independent physical computers located across different physical racks, data centers, or geographies that <strong>do not share memory</strong> and communicate strictly by passing messages over a network. The focus is scalability, geographic distribution, and fault tolerance.</p>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <caption>Parallel vs Distributed Computing Comparison</caption>
+              <thead>
+                <tr><th scope="col">Dimension</th><th scope="col">Parallel Computing</th><th scope="col">Distributed Computing</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Primary Objective</th><td>Maximize computation speed and throughput for a specific workload.</td><td>Resource sharing, high availability, and geographic fault tolerance.</td></tr>
+                <tr><th scope="row">Memory Model</th><td>Shared memory: processors read and write across a common physical memory bus.</td><td>Shared-nothing: each node maintains private RAM and local disk storage.</td></tr>
+                <tr><th scope="row">Communication</th><td>High-speed internal bus, shared registers, or cache coherency protocols.</td><td>Network packets (TCP/IP, HTTP REST, gRPC) over Ethernet or optical links.</td></tr>
+                <tr><th scope="row">Failure Domain</th><td>Single failure domain: a motherboard or power fault halts the entire system.</td><td>Independent failure domains: a failure of 5 nodes out of 100 leaves 95 operational.</td></tr>
+                <tr><th scope="row">Real-World Cloud Example</th><td>A deep learning model training a neural network across 8 GPUs on an AWS `p4d` instance.</td><td>Google Search distributing queries across thousands of indexing servers globally.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Task Parallelism vs Data Parallelism</h3>
+          <ul>
+            <li><strong>Task Parallelism:</strong> Multiple workers simultaneously execute <em>different operations</em> concurrently.
+              <br><em>Enterprise example:</em> During checkout on an e-commerce platform, one thread verifies credit card authorization, a second updates warehouse inventory, and a third triggers an order confirmation notification.
+            </li>
+            <li><strong>Data Parallelism:</strong> The exact same operation is applied simultaneously across <em>different partitions of a massive dataset</em>.
+              <br><em>Enterprise example:</em> Transcoding a 4K movie into 1080p. The movie is split into 120 one-minute chunks, and 120 cloud worker nodes execute the exact same transcoding algorithm in parallel.
+            </li>
+          </ul>
+
+          <h3 id="flynns-taxonomy">Architectural Models of Parallelism: Flynn's Taxonomy</h3>
+          <p>In 1966, Michael J. Flynn classified computer architectures based on the multiplicity of <strong>Instruction Streams</strong> and <strong>Data Streams</strong>:</p>
+
+          <!-- SOLID COLORFUL DIAGRAM: FLYNN'S TAXONOMY 2X2 MATRIX -->
+          <div class="solid-diagram">
+            <div class="solid-diagram-title">
+              <span>Flynn's Classification Matrix</span>
+              <span class="badge">Architecture Taxonomy</span>
+            </div>
+            <div class="matrix-2x2">
+              <div class="matrix-quadrant sisd">
+                <span class="matrix-tag">1 Instruction · 1 Data</span>
+                <h4>SISD (Single Instruction, Single Data)</h4>
+                <p>Pure sequential execution. A single processor executes one instruction at a time on a single data stream.</p>
+                <div class="app-example"><strong>Example:</strong> Traditional single-core CPUs executing sequential scripts and cron routines.</div>
+              </div>
+              <div class="matrix-quadrant simd">
+                <span class="matrix-tag">1 Instruction · Multiple Data</span>
+                <h4>SIMD (Single Instruction, Multiple Data)</h4>
+                <p>A single control unit broadcasts the same instruction to thousands of processing units operating on distinct data elements.</p>
+                <div class="app-example"><strong>Example:</strong> Modern GPUs (Nvidia A100) running matrix multiplication for AI (ChatGPT) and 3D graphics.</div>
+              </div>
+              <div class="matrix-quadrant misd">
+                <span class="matrix-tag">Multiple Instructions · 1 Data</span>
+                <h4>MISD (Multiple Instruction, Single Data)</h4>
+                <p>Multiple independent processing units execute different instructions on the exact same input stream concurrently.</p>
+                <div class="app-example"><strong>Example:</strong> Specialized aerospace fault-tolerant systems (e.g., Space Shuttle redundant flight controllers).</div>
+              </div>
+              <div class="matrix-quadrant mimd">
+                <span class="matrix-tag">Multiple Instructions · Multiple Data</span>
+                <h4>MIMD (Multiple Instruction, Multiple Data)</h4>
+                <p>Multiple autonomous processors concurrently execute different instruction sets on different data streams.</p>
+                <div class="app-example"><strong>Example:</strong> Cloud data center clusters, Kubernetes pods, and distributed microservices.</div>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="scaling-laws">Understanding Speedup: Amdahl's Law vs Gustafson's Law</h3>
+          <p>The speedup obtained by adding processors is governed by two fundamental laws:</p>
+
+          <div class="callout">
+            <h3>Amdahl's Law (Fixed Workload / Strong Scaling)</h3>
+            <p>Formulated by Gene Amdahl in 1967: Every program contains an inherently serial portion that cannot be parallelized. This serial bottleneck imposes a strict upper limit on speedup, regardless of the number of processors added.</p>
+          </div>
+
+          <div class="formula" role="group" aria-label="Amdahl's law formula and worked numerical example">
+            <p><strong>Amdahl's Speedup Formula:</strong></p>
+            <p style="font-size: 1.2rem; font-weight: bold; text-align: center; margin: 0.8rem 0; color: var(--deep);">
+              <var>S</var>(<var>N</var>) = 1 / [ (1 − <var>p</var>) + (<var>p</var> / <var>N</var>) ]
+            </p>
+            <p>Where:
+              <br>• <var>p</var> = fraction of code that can be parallelized (0 ≤ <var>p</var> ≤ 1).
+              <br>• (1 − <var>p</var>) = strictly serial portion of the code.
+              <br>• <var>N</var> = number of parallel processors / cores.
+            </p>
+            <p><strong>Worked Examination Problem:</strong>
+              <br><em>Question:</em> A program executes in 100 seconds on a single CPU. 80% of the program is parallelizable, and 20% is strictly sequential. Calculate the speedup and total execution time on 4 processors. What is the theoretical maximum speedup with unlimited processors?
+            </p>
+            <p><em>Step-by-Step Solution:</em>
+              <br>1. Given: <var>p</var> = 0.80, (1 − <var>p</var>) = 0.20, <var>N</var> = 4.
+              <br>2. Substitute into Amdahl's formula:
+              <br>&nbsp;&nbsp;&nbsp;&nbsp;<var>S</var>(4) = 1 / [ 0.20 + (0.80 / 4) ] = 1 / [ 0.20 + 0.20 ] = 1 / 0.40 = <strong>2.5× Speedup</strong>.
+              <br>3. Execution time on 4 cores = 100 s / 2.5 = <strong>40 seconds</strong> (20 s serial + 20 s parallel).
+              <br>4. As <var>N</var> approaches infinity (∞), the term (<var>p</var> / <var>N</var>) tends to 0:
+              <br>&nbsp;&nbsp;&nbsp;&nbsp;Max Speedup = 1 / (1 − <var>p</var>) = 1 / 0.20 = <strong>5.0× Maximum Theoretical Speedup</strong>.
+              <br><em>Conclusion:</em> Even with 1,000,000 cloud cores, this program can never finish faster than 20 seconds.
+            </p>
+          </div>
+
+          <div class="callout">
+            <h3>Gustafson's Law (Scaled Speedup / Weak Scaling)</h3>
+            <p>John Gustafson demonstrated that in cloud computing, problem sizes are rarely fixed: as computing capacity increases, engineers expand the dataset size to produce higher precision outputs.</p>
+            <p><em>Example:</em> When meteorologists gain access to 10,000 cloud cores, they do not simply compute tomorrow's coarse weather forecast faster; they refine the spatial simulation grid from 100 kilometers down to 1 kilometer to detect localized storms.</p>
+            <p><strong>Gustafson's Formula:</strong> <var>S</var>(<var>N</var>) = <var>N</var> + (1 − <var>N</var>)(1 − <var>p</var>) = <var>s</var> + <var>p</var> · <var>N</var>. Speedup scales linearly when the problem size expands proportionally with cluster capacity.</p>
+          </div>
+
+          <h3 id="cap-theorem">Distributed Systems Realities &amp; The CAP Theorem</h3>
+          <p>Because physical routers, switches, and fiber cables fail, distributed systems operate under the <strong>8 Fallacies of Distributed Computing</strong> (the network is reliable, latency is zero, bandwidth is infinite, topology is static, etc.).</p>
+
+          <p>Eric Brewer formulated the <strong>CAP Theorem</strong> for distributed data stores:</p>
+
+          <!-- SOLID COLORFUL DIAGRAM: CAP THEOREM 3-PILLARS -->
+          <div class="solid-diagram">
+            <div class="solid-diagram-title">
+              <span>The CAP Theorem Trilemma</span>
+              <span class="badge">Brewer's Theorem</span>
+            </div>
+            <div class="cap-pillars">
+              <div class="cap-pillar c">
+                <div class="cap-letter">C</div>
+                <div class="cap-name">Consistency</div>
+                <div class="cap-desc">Every read receives the most recent write or returns an error. All nodes see identical data simultaneously.</div>
+              </div>
+              <div class="cap-pillar a">
+                <div class="cap-letter">A</div>
+                <div class="cap-name">Availability</div>
+                <div class="cap-desc">Every non-failing node returns a successful response without guaranteed data freshness. The system never drops requests.</div>
+              </div>
+              <div class="cap-pillar p">
+                <div class="cap-letter">P</div>
+                <div class="cap-name">Partition Tolerance</div>
+                <div class="cap-desc">The system continues operating despite dropped or delayed network messages between server nodes.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout">
+            <h3>Trade-off Under Network Partitions: CP vs AP</h3>
+            <p>Because physical networks cannot eliminate the possibility of partitions (P), distributed architectures must choose between:</p>
+            <ul>
+              <li><strong>CP (Consistency + Partition Tolerance):</strong> Rejects requests if nodes cannot confirm the latest write, ensuring data integrity at the cost of availability.
+                <br><em>Bank ATM Example:</em> If an ATM in Bangalore loses connection to the central ledger in Mumbai, it declines transactions to prevent double-spending.
+                <br><em>Databases:</em> Google Cloud Spanner, Apache HBase, MongoDB (majority write concern).
+              </li>
+              <li><strong>AP (Availability + Partition Tolerance):</strong> Continues accepting reads and writes on all available nodes, allowing replicas to converge asynchronously over time (Eventual Consistency).
+                <br><em>Social Media Example:</em> Users can continue posting comments and liking photos even if transatlantic sync links are delayed.
+                <br><em>Databases:</em> Amazon DynamoDB, Apache Cassandra, Couchbase.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 04: THE FIVE NIST CHARACTERISTICS -->
+        <section class="chapter" id="characteristics" aria-labelledby="characteristics-title">
+          <p class="section-label">04 / NIST cloud model</p>
+          <h2 id="characteristics-title">The five essential characteristics</h2>
+          <p>Under NIST SP 800-145, a service <strong>must exhibit all five</strong> characteristics to qualify as cloud computing:</p>
+
+          <div class="table-wrap">
+            <table>
+              <caption>The 5 NIST Essential Characteristics</caption>
+              <thead>
+                <tr><th scope="col">Characteristic</th><th scope="col">NIST Standard Definition</th><th scope="col">Operational Mechanism</th><th scope="col">Enterprise Cloud Example</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><strong>1. On-Demand Self-Service</strong></th>
+                  <td>A consumer can unilaterally provision computing capabilities, such as server time and network storage, automatically as needed, without human interaction with each service provider.</td>
+                  <td>Users provision resources via automated web portals, CLIs, or APIs without manual approval tickets or phone calls.</td>
+                  <td>Launching an Ubuntu Linux virtual machine in 30 seconds via the AWS EC2 Management Console at 2:00 AM.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>2. Broad Network Access</strong></th>
+                  <td>Capabilities are available over the network and accessed through standard mechanisms that promote use by heterogeneous thin or thick client platforms.</td>
+                  <td>Services are accessible over standard internet protocols from any device form factor.</td>
+                  <td>Editing documents in Google Docs or Microsoft 365 from an iPhone, an Android tablet, a Mac, or a Linux workstation.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>3. Resource Pooling</strong></th>
+                  <td>The provider's computing resources are pooled to serve multiple consumers using a multi-tenant model, with different physical and virtual resources dynamically assigned and reassigned according to demand.</td>
+                  <td>A single high-density server hosts multiple isolated virtual machines belonging to different organizations, sharing hardware securely.</td>
+                  <td>An AWS physical host with 128 cores running isolated VMs for an airline, a bank, and an e-commerce retailer simultaneously.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>4. Rapid Elasticity</strong></th>
+                  <td>Capabilities can be elastically provisioned and released, in some cases automatically, to scale rapidly outward and inward commensurate with demand.</td>
+                  <td>Infrastructure scales up during traffic surges and contracts when demand subsides to prevent idle billing.</td>
+                  <td>Amazon Prime Day adding 500 extra web application instances for peak traffic and terminating them at midnight.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>5. Measured Service</strong></th>
+                  <td>Cloud systems automatically control and optimize resource use by leveraging a metering capability at some level of abstraction appropriate to the type of service.</td>
+                  <td>Transparent logging and itemized billing based on exact metrics consumed (gigabyte-months, vCPU seconds, network egress).</td>
+                  <td>AWS CloudWatch logging exact Lambda function invocation milliseconds and S3 storage volume consumed each month.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 05: ELASTICITY, SCALABILITY, AND COST -->
+        <section class="chapter" id="elasticity" aria-labelledby="elasticity-title">
+          <p class="section-label">05 / Capacity and economics</p>
+          <h2 id="elasticity-title">Elasticity, scalability, and cost</h2>
+          
+          <div class="callout">
+            <h3>Scalability vs Elasticity</h3>
+            <ul>
+              <li><strong>Scalability</strong> is the <em>architectural capacity</em> of a system to handle increased load when resources are added (typically a planned, one-way expansion).</li>
+              <li><strong>Elasticity</strong> is the <em>automated runtime behavior</em> that adapts allocated capacity <strong>both upward and downward</strong> in real time to match fluctuating demand.</li>
+            </ul>
+          </div>
+
+          <h3>Vertical vs Horizontal Scaling</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Vertical Scaling (Scale Up) vs Horizontal Scaling (Scale Out)</caption>
+              <thead>
+                <tr><th scope="col">Dimension</th><th scope="col">Vertical Scaling (Scale Up)</th><th scope="col">Horizontal Scaling (Scale Out)</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Mechanism</th><td>Add more CPU, RAM, or faster NVMe storage to a single existing server.</td><td>Add more server instances into a distributed pool behind a load balancer.</td></tr>
+                <tr><th scope="row">Analogy</th><td>Replacing a 2-ton pickup truck with a 10-ton commercial semi-truck.</td><td>Deploying a fleet of 5 pickup trucks driving in parallel.</td></tr>
+                <tr><th scope="row">Capacity Limit</th><td>Hard hardware ceiling imposed by motherboard sockets and RAM slots.</td><td>Virtually limitless: cloud fleets can expand to thousands of nodes.</td></tr>
+                <tr><th scope="row">Downtime</th><td>Usually requires taking the server offline for hardware upgrades or VM resizing.</td><td>Zero downtime: new instances dynamically register with load balancers.</td></tr>
+                <tr><th scope="row">Fault Tolerance</th><td>Low: single point of failure if the central machine fails.</td><td>High: traffic automatically redirects if any individual node crashes.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Cloud Economics: CapEx vs OpEx</h3>
+          <ul>
+            <li><strong>CapEx (Capital Expenditure):</strong> Upfront capital invested in constructing private data centers, purchasing server hardware, and acquiring multi-year software licenses before serving a single customer.</li>
+            <li><strong>OpEx (Operational Expenditure):</strong> Pay-as-you-go operating costs. Startups launch with zero upfront capital and pay monthly bills strictly for resources consumed.</li>
+          </ul>
+
+          <div class="callout">
+            <h3>Cost Optimization Example: Why Elasticity Saves Money</h3>
+            <p>Consider an application requiring <strong>2 instances during regular hours (23 hours/day)</strong> and <strong>10 instances during a 1-hour peak window</strong>. Assuming $0.10/instance-hour:</p>
+            <ul>
+              <li><strong>Fixed Provisioning (Traditional IT):</strong> 10 instances × 24 hours × $0.10 = <strong>$24.00 per day</strong>.</li>
+              <li><strong>Elastic Auto-Scaling:</strong> (2 instances × 24 hrs × $0.10) + (8 instances × 1 hr × $0.10) = $4.80 + $0.80 = <strong>$5.60 per day</strong>.</li>
+            </ul>
+            <p><strong>Result:</strong> Elasticity delivers a <strong>76.7% cost reduction</strong> while maintaining full performance during peak load.</p>
+          </div>
+        </section>
+
+        <!-- 06: ON-DEMAND RESOURCE PROVISIONING -->
+        <section class="chapter" id="provisioning" aria-labelledby="provisioning-title">
+          <p class="section-label">06 / Operational mechanism</p>
+          <h2 id="provisioning-title">On-demand provisioning</h2>
+          <p><strong>Resource Provisioning</strong> is the automated process of selecting, allocating, and configuring physical and virtual computing resources to prepare them for workloads. <strong>Deprovisioning (Release)</strong> returns resources to the shared pool to stop billing.</p>
+
+          <!-- SOLID COLORFUL DIAGRAM: PROVISIONING LIFECYCLE -->
+          <div class="solid-diagram">
+            <div class="solid-diagram-title">
+              <span>Cloud Resource Provisioning Workflow</span>
+              <span class="badge">Operational Lifecycle</span>
+            </div>
+            <div class="solid-flow">
+              <div class="solid-node blue">
+                <span class="node-step">Step 1</span>
+                <span class="node-title">Request Submission</span>
+                <p class="node-desc">Client specifies instance type, image, region, and security group via API or console.</p>
+              </div>
+              <div class="solid-node purple">
+                <span class="node-step">Step 2</span>
+                <span class="node-title">Policy &amp; Quota Check</span>
+                <p class="node-desc">IAM verifies credentials, role permissions, and organizational account quotas.</p>
+              </div>
+              <div class="solid-node accent">
+                <span class="node-step">Step 3</span>
+                <span class="node-title">Placement Scheduling</span>
+                <p class="node-desc">Cloud scheduler identifies physical server hosts with adequate unallocated CPU and RAM.</p>
+              </div>
+              <div class="solid-node green">
+                <span class="node-step">Step 4</span>
+                <span class="node-title">Hypervisor Spin-up</span>
+                <p class="node-desc">Host creates VM, maps virtual storage, binds network interfaces, and boots OS.</p>
+              </div>
+              <div class="solid-node">
+                <span class="node-step">Step 5</span>
+                <span class="node-title">Telemetry &amp; Release</span>
+                <p class="node-desc">CloudWatch logs usage seconds; deprovisioning releases capacity back to the pool.</p>
+              </div>
+            </div>
+          </div>
+
+          <h3>Compute Provisioning Models: On-Demand, Reserved, and Spot</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Comparison of Cloud Compute Provisioning Models</caption>
+              <thead>
+                <tr><th scope="col">Model</th><th scope="col">Commitment &amp; Availability</th><th scope="col">Pricing Structure</th><th scope="col">Real-World Analogy</th><th scope="col">Target Workload</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><strong>On-Demand</strong></th>
+                  <td>Zero long-term commitment. Provisioned in seconds, terminated at will. 99.99% availability SLA.</td>
+                  <td>Highest baseline hourly rate; billed per second with zero upfront cost.</td>
+                  <td>Hailing an Uber: standard metered rate, exit whenever you choose.</td>
+                  <td>Unpredictable traffic, new product launches, prototyping, and short-term testing.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Reserved (Savings Plans)</strong></th>
+                  <td>1-year or 3-year commitment to a specific instance family, region, or hourly spend.</td>
+                  <td>Discounts between <strong>40% and 72%</strong> compared to on-demand rates.</td>
+                  <td>Annual commuter transit pass: upfront commitment in exchange for discounted per-ride rates.</td>
+                  <td>Steady-state, 24/7 baseline production workloads (core databases, ERP systems).</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Spot / Preemptible</strong></th>
+                  <td>Allocation of unused data center capacity. <strong>Subject to reclamation on 2-minute notice.</strong></td>
+                  <td>Steepest discount (<strong>70% to 90% off</strong> on-demand rates); fluctuating market pricing.</td>
+                  <td>Standby airline tickets: steep discount, but passengers are bumped if full-fare travelers arrive.</td>
+                  <td>Fault-tolerant batch jobs: Big Data MapReduce/Hadoop, video rendering, ML model training.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 07: EXAM PREPARATION -->
+        <section class="chapter" id="exam-preparation" aria-labelledby="exam-title">
+          <p class="section-label">07 / Assessment practice</p>
+          <h2 id="exam-title">Exam answer frameworks and misconceptions</h2>
+          
+          <h3>Structuring Answers by Marks Available</h3>
+          <ul>
+            <li><strong>2 Marks:</strong> Write the formal NIST definition or crisp core principle in 2–3 sentences. Add one concrete real-world example (e.g., AWS EC2 or Netflix).</li>
+            <li><strong>7 Marks:</strong> State the NIST definition, list the 5 essential characteristics with clear headings, and write two sentences explaining each with a real-world scenario. Include a diagram of on-demand provisioning or client-server architecture.</li>
+            <li><strong>10 Marks:</strong> Structure your answer into clear sections:
+              <br>1. Formal Definition &amp; Core Analogy.
+              <br>2. Historical Evolution (Mainframes $\to$ Client-Server $\to$ Clusters/Grids $\to$ Virtualization $\to$ Cloud).
+              <br>3. Parallel vs Distributed Computing, Flynn's Taxonomy, and Speedup Laws (with Amdahl formula and worked numerical example).
+              <br>4. The 5 NIST Essential Characteristics with enterprise examples.
+              <br>5. Economic Trade-offs (CapEx vs OpEx, Scalability vs Elasticity, On-Demand vs Reserved vs Spot).
+            </li>
+          </ul>
+
+          <div class="table-wrap">
+            <table>
+              <caption>Common Exam Misconceptions and Technical Corrections</caption>
+              <thead>
+                <tr><th scope="col">Student Misconception</th><th scope="col">Accurate Technical Correction</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Cloud simply means online file storage.</th><td>Storage (S3) is only one component; cloud computing encompasses on-demand compute, software-defined networking, and serverless runtimes.</td></tr>
+                <tr><th scope="row">Confusing Elasticity with Scalability.</th><td>Scalability is the capacity to expand; elasticity is the dynamic automated scaling both up and down based on real-time demand.</td></tr>
+                <tr><th scope="row">Adding 10 processors speeds up execution 10×.</th><td>Amdahl's Law demonstrates that the sequential portion of code imposes an upper ceiling on speedup regardless of processor count.</td></tr>
+                <tr><th scope="row">Cloud is always cheaper for every workload.</th><td>For steady 24/7 workloads with high constant throughput and network egress, dedicated hardware can sometimes be more cost-effective than public cloud on-demand pricing.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 08: REFERENCES -->
+        <section class="chapter" id="references" aria-labelledby="references-title">
+          <p class="section-label">08 / Further reading</p>
+          <h2 id="references-title">References</h2>
+          <ol>
+            <li id="ref-nist">Mell, P., and Grance, T. <cite>The NIST Definition of Cloud Computing</cite>. NIST Special Publication 800-145, 2011. <a href="https://doi.org/10.6028/NIST.SP.800-145">Official publication and DOI</a>. Primary standard source.</li>
+            <li>NIST. <cite>Cloud Computing Synopsis and Recommendations</cite>. NIST Special Publication 800-146, 2012. <a href="https://doi.org/10.6028/NIST.SP.800-146">Official publication and DOI</a>. Comprehensive architectural guidelines.</li>
+            <li id="ref-amdahl">Amdahl, G. M. “Validity of the Single Processor Approach to Achieving Large Scale Computing Capabilities.” <cite>AFIPS Spring Joint Computer Conference</cite>, 1967. <a href="https://doi.org/10.1145/1465482.1465560">Original paper (DOI)</a>. Speedup bounds.</li>
+            <li id="ref-berkeley">Armbrust, M., et al. <cite>Above the Clouds: A Berkeley View of Cloud Computing</cite>. UC Berkeley Technical Report UCB/EECS-2009-28, 2009. <a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2009/EECS-2009-28.html">University report</a>. Utility computing economics.</li>
+          </ol>
+        </section>
+
+        <section class="next-section" aria-label="Next unit">
+          <p>Continue the guide</p>
+          <a href="unit2.html">Next: Unit II — Cloud Enabling Technologies <span aria-hidden="true">→</span></a>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Cloud Computing · Academic study guide · Unit I</p>
+    </div>
+  </footer>
+
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+  <script src="site.js"></script>
+</body>
+</html>

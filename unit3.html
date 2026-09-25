@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Unit III comprehensive study guide to cloud architecture, the NIST reference architecture, deployment and service models, cloud storage types, and Amazon S3.">
+  <title>Unit III — Cloud Architecture &amp; Storage | Cloud Computing</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="reading-progress-bar" id="reading-progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#content">Skip to main content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Cloud Computing study guide home">
+        <span class="brand-kicker">ACADEMIC STUDY GUIDE / UNITS 01—03</span>
+        <span class="brand-name">Cloud Computing</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="unit1.html">Unit I</a>
+        <a href="unit2.html">Unit II</a>
+        <a href="unit3.html" aria-current="page">Unit III</a>
+        <a href="theory.html">Short theory</a>
+        <a href="pyqs.html">Past papers</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="container">
+        <p class="eyebrow">Unit III / Architecture &amp; storage</p>
+        <h1 id="page-title">Designing the cloud, storing the data</h1>
+        <p class="lead">From layered system designs and the official NIST reference model to public/private/hybrid deployments, IaaS/PaaS/SaaS/FaaS, storage paradigms, and a complete architectural model of Amazon S3.</p>
+        <div class="hero-meta">
+          <span>9 comprehensive chapters</span>
+          <span>Core concepts · Solid visual diagrams · Enterprise architectures · Exam-ready answers</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container reading-layout">
+      <aside class="page-sidebar">
+        <nav aria-label="Unit III chapters">
+          <p>On this page</p>
+          <ol>
+            <li><a href="#layers">Layered cloud design</a></li>
+            <li><a href="#nist">NIST reference architecture</a></li>
+            <li><a href="#deployment">Deployment models</a></li>
+            <li><a href="#service-models">Service models</a></li>
+            <li><a href="#challenges">Design challenges &amp; security</a></li>
+            <li><a href="#storage">Cloud storage paradigms</a></li>
+            <li><a href="#s3">Amazon S3 deep dive</a></li>
+            <li><a href="#worked-example">Worked design scenario</a></li>
+            <li><a href="#revision">Revision &amp; sources</a></li>
+          </ol>
+        </nav>
+      </aside>
+
+      <article class="prose">
+        <!-- 01: LAYERED CLOUD DESIGN -->
+        <section class="chapter" id="layers" aria-labelledby="layers-title">
+          <p class="section-label">01 / Conceptual model</p>
+          <h2 id="layers-title">Layered cloud architecture design</h2>
+          
+          <div class="callout">
+            <h3>Architectural Hierarchy &amp; The Hotel Analogy</h3>
+            <p>A cloud computing platform is organized as a structured 5-layer engineering hierarchy. User requests travel downward through the layers, while data, telemetry, and billing metrics flow upward.</p>
+            <p><em>The Luxury Hotel Analogy:</em></p>
+            <ul>
+              <li><strong>User &amp; Access Layer:</strong> The front reception desk where guests authenticate with passports and receive digital room keycards.</li>
+              <li><strong>Service Layer:</strong> The room packages offered to guests (e.g., standard room, executive suite, or villa).</li>
+              <li><strong>Orchestration Layer:</strong> The hotel management system scheduling housekeeping, allocating vacant rooms, and coordinating room service.</li>
+              <li><strong>Resource Abstraction Layer:</strong> Room furniture, air-conditioning, and plumbing pipes partitioned dynamically among rooms.</li>
+              <li><strong>Physical Layer:</strong> The concrete foundation, steel framing, electrical generators, and plumbing pipes of the physical building.</li>
+              <li><strong>Cross-Cutting Controls:</strong> Fire alarms, CCTV security, billing systems, and privacy policies apply across <strong>every single floor and room</strong>.</li>
+            </ul>
+          </div>
+
+          <!-- SOLID COLORFUL DIAGRAM: 5-LAYER CLOUD STACK -->
+          <div class="solid-diagram">
+            <div class="solid-diagram-title">
+              <span>Layered Cloud Architecture Stack</span>
+              <span class="badge">NIST Aligned Decomposition</span>
+            </div>
+            <div class="layered-cloud-box">
+              <div class="layers-container">
+                <div class="cloud-layer layer-1">
+                  <span class="layer-num">L1</span>
+                  <div class="layer-info">
+                    <strong>1. User and Access Layer</strong>
+                    <span>Web Consoles (AWS/Azure), REST APIs, CLI tooling, IAM Authentication</span>
+                  </div>
+                </div>
+                <div class="cloud-layer layer-2">
+                  <span class="layer-num">L2</span>
+                  <div class="layer-info">
+                    <strong>2. Cloud Service Layer</strong>
+                    <span>SaaS (Gmail, Salesforce), PaaS (App Engine), IaaS (EC2), FaaS (Lambda)</span>
+                  </div>
+                </div>
+                <div class="cloud-layer layer-3">
+                  <span class="layer-num">L3</span>
+                  <div class="layer-info">
+                    <strong>3. Orchestration &amp; Management Layer</strong>
+                    <span>Kubernetes, dynamic auto-scalers, placement schedulers, self-healing daemons</span>
+                  </div>
+                </div>
+                <div class="cloud-layer layer-4">
+                  <span class="layer-num">L4</span>
+                  <div class="layer-info">
+                    <strong>4. Resource Abstraction Layer</strong>
+                    <span>Hypervisors (KVM, ESXi), Software-Defined Networking (VPC), storage pools</span>
+                  </div>
+                </div>
+                <div class="cloud-layer layer-5">
+                  <span class="layer-num">L5</span>
+                  <div class="layer-info">
+                    <strong>5. Physical Infrastructure Layer</strong>
+                    <span>Multi-socket server racks, NVMe arrays, optical switches, UPS power, cooling</span>
+                  </div>
+                </div>
+              </div>
+              <div class="cross-cutting-sidebar">
+                <h4>Cross-Cutting Controls</h4>
+                <ul>
+                  <li>Identity &amp; Access (IAM)</li>
+                  <li>End-to-End Encryption</li>
+                  <li>Security &amp; Audit Logging</li>
+                  <li>Usage Metering &amp; Billing</li>
+                  <li>SLA Health Monitoring</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h3>Responsibilities of Each Architecture Layer</h3>
+          <ol>
+            <li><strong>User and Access Layer:</strong> The gateway into the cloud. Manages identity authentication, role-based authorization (IAM), web management consoles, command-line interfaces (CLI), and public API gateways.</li>
+            <li><strong>Service Layer:</strong> Delivers the functional capabilities rented by consumers, ranging from complete enterprise applications (SaaS) to managed developer runtimes (PaaS) and virtualized infrastructure (IaaS).</li>
+            <li><strong>Orchestration Layer:</strong> Translates high-level provisioning policies into runtime operations. Automates instance placement, horizontal auto-scaling during traffic spikes, and node self-healing.</li>
+            <li><strong>Resource Abstraction Layer:</strong> Decouples software workloads from physical hardware using hypervisors, software-defined networks (SDN), and block storage controllers.</li>
+            <li><strong>Physical Layer:</strong> Physical data center assets: high-density compute blades, multi-terabit optical network fabrics, backup generators, and cooling infrastructure.</li>
+          </ol>
+        </section>
+
+        <!-- 02: NIST REFERENCE ARCHITECTURE -->
+        <section class="chapter" id="nist" aria-labelledby="nist-title">
+          <p class="section-label">02 / Standard reference</p>
+          <h2 id="nist-title">NIST SP 500-292: actors and reference architecture</h2>
+          
+          <div class="callout">
+            <h3>Distinction Between NIST Standards</h3>
+            <ul>
+              <li><strong>NIST SP 800-145:</strong> The <em>Cloud Computing Definition</em> (5 Characteristics, 3 Service Models, 4 Deployment Models).</li>
+              <li><strong>NIST SP 500-292:</strong> The <em>Cloud Computing Reference Architecture</em> (5 Major Actors / Roles in the cloud ecosystem).</li>
+            </ul>
+          </div>
+
+          <!-- SOLID COLORFUL DIAGRAM: NIST 5 ACTORS -->
+          <div class="solid-diagram">
+            <div class="solid-diagram-title">
+              <span>NIST SP 500-292: The 5 Cloud Actors</span>
+              <span class="badge">Reference Architecture</span>
+            </div>
+            <div class="solid-flow">
+              <div class="solid-node blue">
+                <span class="node-step">Actor 1</span>
+                <span class="node-title">Cloud Consumer</span>
+                <p class="node-desc">Person or organization that maintains a business relationship with, and uses services from, providers.</p>
+              </div>
+              <div class="solid-node purple">
+                <span class="node-step">Actor 2</span>
+                <span class="node-title">Cloud Provider</span>
+                <p class="node-desc">Entity responsible for operating infrastructure and making cloud services available to consumers.</p>
+              </div>
+              <div class="solid-node accent">
+                <span class="node-step">Actor 3</span>
+                <span class="node-title">Cloud Broker</span>
+                <p class="node-desc">Intermediary managing use, performance, aggregation, and integration between consumers and providers.</p>
+              </div>
+              <div class="solid-node green">
+                <span class="node-step">Actor 4</span>
+                <span class="node-title">Cloud Auditor</span>
+                <p class="node-desc">Independent party assessing security, operations, SLA performance, and privacy compliance.</p>
+              </div>
+              <div class="solid-node">
+                <span class="node-step">Actor 5</span>
+                <span class="node-title">Cloud Carrier</span>
+                <p class="node-desc">Telecom network intermediary providing physical transport and connectivity between parties.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <caption>The 5 NIST SP 500-292 Actors: Roles and Enterprise Examples</caption>
+              <thead>
+                <tr><th scope="col">Actor</th><th scope="col">Formal NIST Definition</th><th scope="col">Operational Role</th><th scope="col">Real-World Enterprise Example</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><strong>1. Cloud Consumer</strong></th>
+                  <td>Person or organization that maintains a business relationship with, and uses service from, Cloud Providers.</td>
+                  <td>The tenant or client consuming computing services for business workloads.</td>
+                  <td><strong>Netflix, Airbnb, University:</strong> Runs video streaming or student portals on AWS/Azure infrastructure.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>2. Cloud Provider</strong></th>
+                  <td>Person, organization, or entity responsible for making a service available to interested parties.</td>
+                  <td>The owner and operator of the physical and virtual cloud infrastructure.</td>
+                  <td><strong>AWS, Microsoft Azure, Google Cloud (GCP):</strong> Operates hyper-scale data centers globally.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>3. Cloud Broker</strong></th>
+                  <td>An entity that manages the use, performance, and delivery of cloud services, negotiating relationships between providers and consumers.</td>
+                  <td>Consultancy or aggregator integrating multiple clouds for cost and performance optimization.</td>
+                  <td><strong>Accenture, Wipro, CloudHealth:</strong> Coordinates multi-cloud migrations, aggregates billing, and manages arbitrage.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>4. Cloud Auditor</strong></th>
+                  <td>A party that conducts independent assessment of cloud services, information systems, performance, and security.</td>
+                  <td>Independent inspection agency verifying standards compliance.</td>
+                  <td><strong>Deloitte, PwC, Ernst &amp; Young, KPMG:</strong> Conducts audits verifying SOC 2 Type II, ISO 27001, and HIPAA controls.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>5. Cloud Carrier</strong></th>
+                  <td>An intermediary providing connectivity and transport of cloud services from providers to consumers.</td>
+                  <td>Telecom carrier maintaining physical high-speed fiber-optic routes.</td>
+                  <td><strong>AT&amp;T, Verizon, Tata Communications, Airtel:</strong> Provides dedicated AWS DirectConnect and Azure ExpressRoute links.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>The 3 Specialized Functions of a Cloud Broker</h3>
+          <ol>
+            <li><strong>Service Intermediation:</strong> Enhances a specific service by adding capabilities, such as managing access identities, data tokenization, or encryption before transport.</li>
+            <li><strong>Service Aggregation:</strong> Combines and integrates multiple distinct cloud services into unified workflows (e.g., combining AWS EC2 compute, Twilio SMS API, and Stripe payments into an e-commerce platform).</li>
+            <li><strong>Service Arbitrage:</strong> Dynamically routes customer workloads to whichever cloud provider offers the lowest spot price or lowest network latency at that moment.</li>
+          </ol>
+        </section>
+
+        <!-- 03: DEPLOYMENT MODELS -->
+        <section class="chapter" id="deployment" aria-labelledby="deployment-title">
+          <p class="section-label">03 / Ownership and placement</p>
+          <h2 id="deployment-title">Deployment models: who uses the cloud?</h2>
+          
+          <div class="callout">
+            <h3>Deployment Paradigms &amp; Transportation Analogy</h3>
+            <p>A <strong>Cloud Deployment Model</strong> defines the ownership, accessibility, and operational boundary of cloud infrastructure:</p>
+            <ul>
+              <li><strong>Public Cloud (City Bus):</strong> Open to all ticketed passengers. Multi-tenant seats shared among the general public; highly cost-effective and elastic, operated on public routes.</li>
+              <li><strong>Private Cloud (Private Car):</strong> Exclusive use by one household. Maximum customization, dedicated control, and total privacy; owner bears all capital and maintenance costs.</li>
+              <li><strong>Hybrid Cloud (Commuter Car + Commercial Flights):</strong> Use a personal car for routine local travel (sensitive internal records), and take commercial flights for long-distance peak travel (public cloud elasticity).</li>
+              <li><strong>Community Cloud (Gated Community Shuttle):</strong> A shared transit vehicle operating exclusively for residents of three neighboring luxury societies sharing common security guidelines.</li>
+            </ul>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <caption>Comparison of the 4 Cloud Deployment Models</caption>
+              <thead>
+                <tr><th scope="col">Model</th><th scope="col">Tenancy &amp; Ownership</th><th scope="col">Key Strengths</th><th scope="col">Major Constraints</th><th scope="col">Target Workload Scenario</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><strong>Public Cloud</strong></th>
+                  <td>Owned and operated by third-party providers (AWS, Azure, GCP). Shared multi-tenant infrastructure.</td>
+                  <td>Zero upfront CapEx, rapid elasticity, global availability zones, zero hardware maintenance.</td>
+                  <td>Limited physical placement control; data sovereignty compliance requires careful architectural governance.</td>
+                  <td>Startups, e-commerce platforms (Flipkart, Amazon), streaming media (Netflix), public web applications.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Private Cloud</strong></th>
+                  <td>Exclusively provisioned for one organization. Can be hosted on-premises or by a third party.</td>
+                  <td>Complete hardware control, dedicated hardware isolation, straightforward compliance with defense or sovereign mandates.</td>
+                  <td>High capital expenditure (CapEx) to purchase and refresh hardware; finite capacity limits elasticity.</td>
+                  <td>National defense agencies, central bank settlement ledgers (e.g., Reserve Bank of India, Federal Reserve).</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Hybrid Cloud</strong></th>
+                  <td>Composition of two or more distinct clouds (private and public) bound by standardized interoperability.</td>
+                  <td>Maintains sensitive databases on private hardware while bursting web traffic into public clouds during spikes ("cloud bursting").</td>
+                  <td>High networking complexity: requires secure VPN/DirectConnect tunnels, federated IAM, and latency management.</td>
+                  <td>Commercial banks: sensitive customer ledgers remain on-premise; mobile banking frontends scale elastically on AWS.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Community Cloud</strong></th>
+                  <td>Infrastructure shared exclusively by several organizations with shared compliance or regulatory requirements.</td>
+                  <td>Costs are shared among participating organizations; customized compliance tailored to a specific industry.</td>
+                  <td>Requires collaborative governance, multi-party cost-sharing agreements, and coordinated upgrade cycles.</td>
+                  <td>Consortium of regional hospitals sharing a HIPAA-compliant medical research cloud; municipal government bodies.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 04: SERVICE MODELS -->
+        <section class="chapter" id="service-models" aria-labelledby="service-models-title">
+          <p class="section-label">04 / Responsibility boundary</p>
+          <h2 id="service-models-title">IaaS, PaaS, SaaS, and modern service models</h2>
+          
+          <div class="callout">
+            <h3>The Pizza-as-a-Service Analogy</h3>
+            <p>The division of operational responsibility across cloud service models aligns with how dining is sourced:</p>
+            <ul>
+              <li><strong>Traditional On-Premise IT (Homemade from Scratch):</strong> You buy flour, knead dough, prepare toppings, provide the gas oven, dining table, and clean up. <em>You manage every layer.</em></li>
+              <li><strong>IaaS (Take-and-Bake Pizza):</strong> The store provides the dough, crust, and sauce (raw servers, storage, networking). You provide the oven, set baking temperatures, and serve. (You manage OS, runtime, and applications).</li>
+              <li><strong>PaaS (Pizza Delivered to Your Door):</strong> The pizzeria prepares ingredients and bakes the pizza. You provide the table and drinks. <em>You focus on eating (deploying application code), not operating the oven (OS/hardware).</em></li>
+              <li><strong>SaaS (Dining at a Pizzeria):</strong> You walk in, sit at a table, eat, pay, and walk out. The restaurant manages kitchen, dining tables, electricity, and clean up. <em>You simply use the finished application.</em></li>
+            </ul>
+          </div>
+
+          <!-- SOLID COLORFUL DIAGRAM: PIZZA AS A SERVICE COMPARISON -->
+          <div class="solid-diagram">
+            <div class="solid-diagram-title">
+              <span>The Shared Responsibility Model</span>
+              <span class="badge">Scope Comparison</span>
+            </div>
+            <div class="stack-comparison">
+              <div class="stack-column">
+                <div class="stack-header onprem">On-Premise IT</div>
+                <div class="stack-layers">
+                  <div class="stack-layer-item layer-you">Applications (You Manage)</div>
+                  <div class="stack-layer-item layer-you">Data &amp; Access (You Manage)</div>
+                  <div class="stack-layer-item layer-you">Runtime &amp; OS (You Manage)</div>
+                  <div class="stack-layer-item layer-you">Virtualization (You Manage)</div>
+                  <div class="stack-layer-item layer-you">Servers &amp; Net (You Manage)</div>
+                </div>
+              </div>
+              <div class="stack-column">
+                <div class="stack-header iaas">IaaS (AWS EC2)</div>
+                <div class="stack-layers">
+                  <div class="stack-layer-item layer-you">Applications (You Manage)</div>
+                  <div class="stack-layer-item layer-you">Data &amp; Access (You Manage)</div>
+                  <div class="stack-layer-item layer-you">Runtime &amp; OS (You Manage)</div>
+                  <div class="stack-layer-item layer-cloud">Virtualization (Cloud)</div>
+                  <div class="stack-layer-item layer-cloud">Physical Silicon (Cloud)</div>
+                </div>
+              </div>
+              <div class="stack-column">
+                <div class="stack-header paas">PaaS (App Engine)</div>
+                <div class="stack-layers">
+                  <div class="stack-layer-item layer-you">Applications (You Manage)</div>
+                  <div class="stack-layer-item layer-you">Data &amp; Access (You Manage)</div>
+                  <div class="stack-layer-item layer-cloud">Runtime &amp; OS (Cloud)</div>
+                  <div class="stack-layer-item layer-cloud">Virtualization (Cloud)</div>
+                  <div class="stack-layer-item layer-cloud">Physical Silicon (Cloud)</div>
+                </div>
+              </div>
+              <div class="stack-column">
+                <div class="stack-header saas">SaaS (Google Docs)</div>
+                <div class="stack-layers">
+                  <div class="stack-layer-item layer-cloud">Applications (Cloud)</div>
+                  <div class="stack-layer-item layer-you">Data &amp; Users (You Manage)</div>
+                  <div class="stack-layer-item layer-cloud">Runtime &amp; OS (Cloud)</div>
+                  <div class="stack-layer-item layer-cloud">Virtualization (Cloud)</div>
+                  <div class="stack-layer-item layer-cloud">Physical Silicon (Cloud)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <caption>Technical Comparison: IaaS vs PaaS vs SaaS vs FaaS vs CaaS</caption>
+              <thead>
+                <tr><th scope="col">Service Model</th><th scope="col">Provider Responsibilities</th><th scope="col">Customer Responsibilities</th><th scope="col">Industry Cloud Examples</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><strong>IaaS</strong><br>(Infrastructure as a Service)</th>
+                  <td>Physical data centers, server silicon, virtualization hypervisors, block storage, and physical networking.</td>
+                  <td><strong>Guest OS (Linux/Windows), OS patches</strong>, middleware, database engines, application code, firewall rules.</td>
+                  <td><strong>Amazon EC2, Google Compute Engine, Microsoft Azure VMs, DigitalOcean Droplets.</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>PaaS</strong><br>(Platform as a Service)</th>
+                  <td>Physical hardware, virtualization, operating systems, automatic OS security patching, database engines, language runtimes.</td>
+                  <td><strong>Application source code and business logic</strong>, database schema, and application-level configuration.</td>
+                  <td><strong>AWS Elastic Beanstalk, Google App Engine (GAE), Heroku, Microsoft Azure App Service.</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>SaaS</strong><br>(Software as a Service)</th>
+                  <td>Physical infrastructure, networking, OS, database, application code, feature updates, bug fixes, backups.</td>
+                  <td>User access credentials, data governance, role permissions, and software settings.</td>
+                  <td><strong>Google Workspace (Gmail, Docs), Microsoft 365, Salesforce CRM, Dropbox, Zoom, Slack.</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>FaaS / Serverless</strong><br>(Function as a Service)</th>
+                  <td>Complete execution lifecycle: automatic cold start, scaling to zero, concurrency scaling up to 10,000 instances.</td>
+                  <td><strong>Individual code functions</strong> (e.g., Python snippet executed upon an image upload). Billed per 100 ms of execution.</td>
+                  <td><strong>AWS Lambda, Google Cloud Functions, Azure Functions.</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>CaaS</strong><br>(Communication as a Service)</th>
+                  <td>Telecom carrier interfaces, VoIP gateways, SIP trunking servers, WebRTC infrastructure, SMS routing engines.</td>
+                  <td>API integration calls into mobile/web applications to trigger automated phone calls, OTP SMS messages, or video chats.</td>
+                  <td><strong>Twilio, Sinch, Plivo, Zoom Video SDK.</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 05: DESIGN CHALLENGES & SECURITY -->
+        <section class="chapter" id="challenges" aria-labelledby="challenges-title">
+          <p class="section-label">05 / Architecture &amp; Governance</p>
+          <h2 id="challenges-title">Architectural challenges &amp; cloud security</h2>
+          
+          <h3>1. High Availability &amp; Service Level Agreements (SLAs)</h3>
+          <p>Cloud availability is measured in "Nines" of uptime:</p>
+          <div class="table-wrap">
+            <table>
+              <caption>Cloud Availability Metrics and Permissible Annual Downtime</caption>
+              <thead>
+                <tr><th scope="col">Availability Percentage</th><th scope="col">Designation</th><th scope="col">Maximum Allowed Downtime per Year</th><th scope="col">Architectural Mechanism</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">99.0%</th><td>"Two Nines"</td><td>3.65 days / year</td><td>Single server instance without automated failover.</td></tr>
+                <tr><th scope="row">99.9%</th><td>"Three Nines"</td><td>8.77 hours / year</td><td>Standard cloud VM with automated snapshot backups.</td></tr>
+                <tr><th scope="row">99.99%</th><td>"Four Nines"</td><td>52.6 minutes / year</td><td>Multi-Availability Zone (Multi-AZ) clustering behind an Elastic Load Balancer.</td></tr>
+                <tr><th scope="row">99.999%</th><td>"Five Nines"</td><td><strong>5.26 minutes / year</strong></td><td>Active-Active Multi-Region deployment with automated global DNS failover (Route 53).</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>2. Multi-Tenancy &amp; The "Noisy Neighbor" Problem</h3>
+          <p>In a multi-tenant cloud, if VM-A executes an intensive cryptographic calculation or memory-bound workload that saturates shared CPU caches and memory buses, neighboring VM-B on the same physical host may experience latency spikes. Hypervisors mitigate noisy neighbors through <strong>CPU Pinning</strong>, <strong>cgroups bandwidth throttling</strong>, and <strong>hypervisor resource reservations</strong>.</p>
+
+          <h3>3. Key Enterprise Cloud Security Standards</h3>
+          <ul>
+            <li><strong>ISO/IEC 27001 &amp; 27017:</strong> Global baseline for Information Security Management Systems (ISMS), specifying controls for cloud data protection and multi-tenant isolation.</li>
+            <li><strong>SOC 2 Type II:</strong> Independent third-party audit assessing a provider across 5 Trust Principles: Security, Availability, Processing Integrity, Confidentiality, and Privacy.</li>
+            <li><strong>PCI DSS:</strong> Mandatory technical baseline for any cloud architecture storing, processing, or transmitting payment card numbers.</li>
+            <li><strong>HIPAA:</strong> US federal legislation mandating cryptographic controls and audit trails for Protected Health Information (PHI) in cloud medical systems.</li>
+          </ul>
+
+          <h3>4. Mitigating Insider Threats: Zero Trust Architecture</h3>
+          <p>A critical cloud risk is the <strong>Malicious Insider</strong> (a compromised staff credential or rogue administrator). Modern cloud security counters this with:</p>
+          <ol>
+            <li><strong>Zero Trust Architecture (ZTA):</strong> <em>"Never Trust, Always Verify."</em> Being inside the network perimeter grants zero implicit privileges. Every API call must be authenticated, authorized, and encrypted.</li>
+            <li><strong>Principle of Least Privilege (PoLP):</strong> Users and service accounts receive only the minimal permissions necessary for their specific role.</li>
+            <li><strong>Privileged Access Management (PAM) &amp; Just-In-Time (JIT) Elevation:</strong> Engineers lack permanent root access. Emergency maintenance requires temporary, time-limited credentials approved by multiple parties.</li>
+            <li><strong>WORM Audit Logging (Write Once, Read Many):</strong> Administrative actions are committed to immutable, tamper-proof logs (e.g., AWS CloudTrail locked via S3 Object Lock) that cannot be altered even by root administrators.</li>
+          </ol>
+        </section>
+
+        <!-- 06: CLOUD STORAGE PARADIGMS -->
+        <section class="chapter" id="storage" aria-labelledby="storage-title">
+          <p class="section-label">06 / Data persistence</p>
+          <h2 id="storage-title">Cloud storage paradigms: block, file, and object</h2>
+          <p>Cloud systems provide three distinct storage abstractions optimized for different access patterns, latency constraints, and data structures:</p>
+
+          <div class="table-wrap">
+            <table>
+              <caption>Comparative Matrix: Block Storage vs File Storage vs Object Storage</caption>
+              <thead>
+                <tr><th scope="col">Dimension</th><th scope="col">Block Storage</th><th scope="col">File Storage</th><th scope="col">Object Storage</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Underlying Model</th>
+                  <td>Raw, unformatted storage sectors carved into fixed-size blocks (e.g., 512-byte or 4 KB blocks) without an inherent filesystem.</td>
+                  <td>Hierarchical directory tree structure of folders and files (e.g., <code>/home/user/docs/report.pdf</code>).</td>
+                  <td>Flat, non-hierarchical address space. Data is stored as an <strong>Object</strong> containing payload, unique Key, and extensible metadata.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Analogy</th>
+                  <td>A blank physical SSD or hard drive formatted with NTFS/ext4 to host an OS.</td>
+                  <td>A shared office filing cabinet where documents are stored in labeled folders.</td>
+                  <td>A coat-check ticket: hand over a coat, receive a claim ticket (Key), retrieve the exact item via the ticket.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Access Protocol</th>
+                  <td>Storage protocols: iSCSI, Fibre Channel, NVMe-oF.</td>
+                  <td>Network File Sharing protocols: <strong>NFS</strong> (Linux), <strong>SMB/CIFS</strong> (Windows).</td>
+                  <td>Web APIs over <strong>HTTP/HTTPS REST (GET, PUT, DELETE, POST)</strong>.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Latency &amp; Speed</th>
+                  <td><strong>Sub-millisecond latency:</strong> Highest IOPS; direct block-level access.</td>
+                  <td>Moderate latency: POSIX locking and metadata directory traversal overhead.</td>
+                  <td>Higher latency (tens of milliseconds), but <strong>virtually infinite throughput and massive parallel scalability</strong>.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Cloud Products</th>
+                  <td><strong>Amazon EBS, Azure Managed Disks, Google Persistent Disk.</strong></td>
+                  <td><strong>Amazon EFS, Azure Files, Google Cloud Filestore.</strong></td>
+                  <td><strong>Amazon S3, Google Cloud Storage (GCS), Azure Blob Storage.</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row">Best Use Case</th>
+                  <td>High-performance transactional databases (Oracle, PostgreSQL, MySQL) and VM boot drives.</td>
+                  <td>Shared enterprise user directories, legacy applications, content management media folders.</td>
+                  <td>Petabytes of unstructured multimedia: photos, videos, mobile app backups, data lake analytics (Hadoop/Spark).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 07: AMAZON S3 DEEP DIVE -->
+        <section class="chapter" id="s3" aria-labelledby="s3-title">
+          <p class="section-label">07 / Storage implementation</p>
+          <h2 id="s3-title">Amazon S3 (Simple Storage Service) deep dive</h2>
+          
+          <div class="callout">
+            <h3>Overview</h3>
+            <p>Launched in March 2006, <strong>Amazon S3</strong> was AWS's first commercially available cloud service. It provides internet-scale, highly durable object storage designed to store and retrieve arbitrary data from anywhere on the web.</p>
+          </div>
+
+          <h3>The 4 Core Architectural Concepts of Amazon S3</h3>
+          <ul>
+            <li><strong>1. Buckets:</strong> The root container for storing objects in S3. Every bucket must possess a <strong>globally unique name</strong> across all AWS accounts worldwide (e.g., <code>https://my-bucket.s3.amazonaws.com</code>). Buckets define the physical geographic region where data is persisted.</li>
+            <li><strong>2. Objects:</strong> The fundamental entity stored in S3, consisting of:
+              <br>• <strong>Data Payload:</strong> The file content (from 0 bytes up to 5 Terabytes per single object).
+              <br>• <strong>Key:</strong> The unique string identifier (the "path/filename", e.g., <code>images/2026/convocation.jpg</code>).
+              <br>• <strong>Metadata:</strong> Key-value pairs containing system attributes (Content-Type, creation date) and custom tags.
+              <br>• <strong>Version ID:</strong> Enabled via bucket versioning to safeguard against accidental overwrites or deletes.
+            </li>
+            <li><strong>3. REST API Operations:</strong> Data is manipulated purely via HTTP:
+              <br>• <code>PUT /bucket/key</code> — Upload an object.
+              <br>• <code>GET /bucket/key</code> — Download an object.
+              <br>• <code>DELETE /bucket/key</code> — Delete an object.
+            </li>
+            <li><strong>4. 11 Nines of Durability (99.999999999%):</strong> S3 synchronously replicates every object across a minimum of <strong>3 separate physical Availability Zones</strong> within the region. Storing 10,000,000 files in S3 yields an expected loss of 1 file every <strong>10,000 years</strong>.
+            </li>
+          </ul>
+
+          <!-- SOLID COLORFUL DIAGRAM: S3 OBJECT ANATOMY -->
+          <div class="solid-diagram">
+            <div class="solid-diagram-title">
+              <span>Amazon S3 Object Anatomy &amp; REST Interface</span>
+              <span class="badge">Object Storage Schema</span>
+            </div>
+            <div class="solid-flow">
+              <div class="solid-node blue">
+                <span class="node-step">Container</span>
+                <span class="node-title">S3 Bucket</span>
+                <p class="node-desc">Globally unique root namespace defining geographic storage region.</p>
+              </div>
+              <div class="solid-node purple">
+                <span class="node-step">Identifier</span>
+                <span class="node-title">Object Key</span>
+                <p class="node-desc">Unique string path (e.g., <code>photos/user123/profile.jpg</code>) within the bucket.</p>
+              </div>
+              <div class="solid-node accent">
+                <span class="node-step">Payload</span>
+                <span class="node-title">Binary Data</span>
+                <p class="node-desc">Unstructured bytes ranging from 0 bytes up to 5 TB per individual object.</p>
+              </div>
+              <div class="solid-node green">
+                <span class="node-step">Headers</span>
+                <span class="node-title">Metadata &amp; Tags</span>
+                <p class="node-desc">System attributes (Content-Type) and user tags for lifecycle routing.</p>
+              </div>
+            </div>
+          </div>
+
+          <h3>Amazon S3 Storage Tiers &amp; Lifecycle Management</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Amazon S3 Storage Classes</caption>
+              <thead>
+                <tr><th scope="col">Storage Class</th><th scope="col">Designed Access Pattern</th><th scope="col">Retrieval Latency</th><th scope="col">Relative Cost</th><th scope="col">Workload Scenario</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><strong>S3 Standard</strong></th>
+                  <td>Frequently accessed active data.</td>
+                  <td>Instantaneous (milliseconds).</td>
+                  <td>Baseline (~$0.023/GB/mo)</td>
+                  <td>Active website assets, media streaming files, current transaction ledgers.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>S3 Intelligent-Tiering</strong></th>
+                  <td>Workloads with fluctuating or unknown access patterns. Automatically shifts objects between tiers based on usage without retrieval fees.</td>
+                  <td>Instantaneous (milliseconds).</td>
+                  <td>Dynamic optimization</td>
+                  <td>New application data, research datasets with uncertain access frequency.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>S3 Standard-IA</strong><br>(Infrequent Access)</th>
+                  <td>Data accessed less than once a month, requiring millisecond availability when called.</td>
+                  <td>Instantaneous (milliseconds).</td>
+                  <td>45% cheaper than Standard</td>
+                  <td>Disaster recovery snapshots, customer billing history older than 60 days.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>S3 Glacier Flexible Retrieval</strong></th>
+                  <td>Cold archive data accessed 1–2 times per year.</td>
+                  <td>Expedited (1–5 min), Standard (3–5 hours), Bulk (5–12 hours).</td>
+                  <td>85% cheaper than Standard</td>
+                  <td>Annual financial audit records, retired software source archives.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>S3 Glacier Deep Archive</strong></th>
+                  <td>Lowest cost storage class in the cloud. Long-term digital preservation accessed rarely.</td>
+                  <td>12 to 48 hours.</td>
+                  <td><strong>~$1 per Terabyte / month</strong></td>
+                  <td>Medical imaging archives (MRIs), 10-year regulatory compliance archives.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 08: WORKED SCENARIO -->
+        <section class="chapter" id="worked-example" aria-labelledby="worked-title">
+          <p class="section-label">08 / Applied design</p>
+          <h2 id="worked-title">Worked cloud architecture scenario</h2>
+          
+          <div class="callout">
+            <h3>Enterprise Case Study: Architecture for a Global Photo App (e.g., Instagram)</h3>
+            <p><em>Examination Scenario:</em> Design a secure, highly scalable, cost-effective cloud architecture for a photo-sharing platform serving 50 million active users. Justify your selection of service models, deployment models, and storage tiers.</p>
+          </div>
+
+          <!-- SOLID COLORFUL DIAGRAM: APPLIED DESIGN PIPELINE -->
+          <div class="solid-diagram">
+            <div class="solid-diagram-title">
+              <span>Applied Cloud Architecture: Global Photo Service</span>
+              <span class="badge">End-to-End Pipeline</span>
+            </div>
+            <div class="solid-flow">
+              <div class="solid-node blue">
+                <span class="node-step">Ingress</span>
+                <span class="node-title">Mobile App</span>
+                <p class="node-desc">Clients connect through Amazon CloudFront CDN edge locations globally.</p>
+              </div>
+              <div class="solid-node purple">
+                <span class="node-step">Routing</span>
+                <span class="node-title">API Gateway</span>
+                <p class="node-desc">Throttles traffic, validates JWT authentication, and routes requests.</p>
+              </div>
+              <div class="solid-node accent">
+                <span class="node-step">Processing</span>
+                <span class="node-title">AWS Lambda (FaaS)</span>
+                <p class="node-desc">Event-driven resizing of uploaded photos into multiple resolutions.</p>
+              </div>
+              <div class="solid-node green">
+                <span class="node-step">Persistence</span>
+                <span class="node-title">S3 + DynamoDB</span>
+                <p class="node-desc">Photos in Amazon S3; image metadata in low-latency DynamoDB tables.</p>
+              </div>
+            </div>
+          </div>
+
+          <h3>Architectural Choices &amp; Justifications</h3>
+          <ol>
+            <li><strong>Deployment Model: Public Cloud (AWS).</strong> Elastic scaling absorbs viral traffic spikes without purchasing fixed data center hardware. Global CDN edge locations deliver low latency worldwide.</li>
+            <li><strong>Compute Model: Serverless FaaS (AWS Lambda) + Microservices.</strong>
+              <br>• When a user uploads a photo, an S3 event trigger automatically invokes an AWS Lambda function.
+              <br>• The function generates thumbnail and web-optimized resolutions in 400 milliseconds, saving them back to S3. Zero compute charges occur during idle hours.
+            </li>
+            <li><strong>Storage Architecture: Object Storage (Amazon S3) + Managed NoSQL (DynamoDB).</strong>
+              <br>• Photos (unstructured binary data) reside in Amazon S3.
+              <br>• Photo metadata (User ID, GPS location, tags, upload timestamp, S3 object URL) is indexed in Amazon DynamoDB for single-digit millisecond queries.
+              <br>• S3 Lifecycle policies automatically move photos older than 180 days to S3 Standard-IA, cutting storage costs by 45%.
+            </li>
+          </ol>
+        </section>
+
+        <!-- 09: REVISION & SOURCES -->
+        <section class="chapter" id="revision" aria-labelledby="revision-title">
+          <p class="section-label">09 / Review and sources</p>
+          <h2 id="revision-title">Revision checklist &amp; references</h2>
+          
+          <h3>Essential Exam Checklist for Unit III</h3>
+          <ul>
+            <li>Draw and explain the 5 layers of cloud architecture and cross-cutting controls.</li>
+            <li>Identify the 5 actors in NIST SP 500-292 (Consumer, Provider, Broker, Auditor, Carrier) and their roles.</li>
+            <li>Compare Public, Private, Hybrid, and Community clouds across ownership, cost, and security.</li>
+            <li>Explain the Pizza-as-a-Service analogy for IaaS, PaaS, SaaS, and FaaS.</li>
+            <li>Compare Block Storage (EBS), File Storage (EFS), and Object Storage (S3) across data format and protocols.</li>
+            <li>Explain Amazon S3 architecture (Buckets, Keys, Metadata) and compare its storage tiers (Standard to Glacier Deep Archive).</li>
+          </ul>
+
+          <div class="next-section" aria-label="Review theory or past papers">
+            <p>Revise or test your knowledge</p>
+            <a href="theory.html">Short Theory Revision Reference <span aria-hidden="true">→</span></a>
+            <br>
+            <a href="pyqs.html" style="margin-top: 0.5rem; display: inline-block;">Past Exam Papers &amp; Model Answers <span aria-hidden="true">→</span></a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Cloud Computing · Academic study guide · Unit III</p>
+    </div>
+  </footer>
+
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+  <script src="site.js"></script>
+</body>
+</html>
