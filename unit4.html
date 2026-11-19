@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Comprehensive, exam-ready Unit IV guide for Cloud Resource Management and Security: inter-cloud resource management, OCC, resource provisioning methods, global cloud exchange, cloud security challenges, SaaS security, firewalls, insider threats, VM security, IAM, and security standards.">
+  <title>Unit IV — Resource Management &amp; Cloud Security | Cloud Computing Study Guide</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="reading-progress-bar" id="reading-progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Cloud Computing study guide overview">
+        <span class="brand-kicker">ACADEMIC STUDY GUIDE / UNITS 01—05</span>
+        <span class="brand-name">Cloud Computing</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="unit1.html">Unit I</a>
+        <a href="unit2.html">Unit II</a>
+        <a href="unit3.html">Unit III</a>
+        <a href="unit4.html" aria-current="page">Unit IV</a>
+        <a href="unit5.html">Unit V</a>
+        <a href="short-answers.html">Short Answers</a>
+        <a href="long-answers.html">Long Answers</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="container">
+        <p class="eyebrow">Unit 04 / Resource Management &amp; Security (CO4)</p>
+        <h1 id="page-title">Resource Management &amp; Cloud Security</h1>
+        <p class="lead">Complete, diagram-rich Unit IV study notes: Inter-Cloud resource management, Open Cloud Consortium (OCC), Demand/Event/Popularity provisioning methods, Global Cloud Exchange, Cloud Security Challenges, Firewalls, Insider Threats, SaaS &amp; VM Security, IAM, and Security Standards.</p>
+        <div class="hero-meta" aria-label="Unit scope">
+          <span>8 in-depth chapters</span>
+          <span>4 SVG Architecture Diagrams · IAM Evaluation Flow · Security Standards Table</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container reading-layout">
+      <aside class="page-sidebar" aria-label="On this page">
+        <nav aria-label="Unit IV chapters">
+          <p>On this page</p>
+          <ol>
+            <li><a href="#intercloud">1. Inter-Cloud &amp; OCC</a></li>
+            <li><a href="#provisioning-methods">2. Resource Provisioning Methods</a></li>
+            <li><a href="#global-exchange">3. Global Cloud Exchange</a></li>
+            <li><a href="#security-overview">4. Security, Firewalls &amp; Insiders</a></li>
+            <li><a href="#saas-security">5. SaaS Security &amp; Protection</a></li>
+            <li><a href="#vm-security">6. Governance &amp; VM Security</a></li>
+            <li><a href="#iam">7. Identity &amp; Access Management</a></li>
+            <li><a href="#standards">8. Cloud Security Standards</a></li>
+          </ol>
+        </nav>
+      </aside>
+
+      <article class="prose" aria-label="Unit IV guide">
+
+        <!-- 01: INTER-CLOUD -->
+        <section class="chapter" id="intercloud" aria-labelledby="intercloud-title">
+          <p class="section-label">01 / Multi-Cloud &amp; Federation (Asked in 2024–25 &amp; 2025–26)</p>
+          <h2 id="intercloud-title">Inter-Cloud Resource Management &amp; OCC</h2>
+
+          <div class="callout">
+            <h3>Simple Definition</h3>
+            <p><strong>Inter-Cloud Resource Management</strong> is the coordinated sharing, scheduling, and migration of compute, storage, and network resources across <strong>multiple independent cloud providers</strong> (AWS, Azure, GCP, and private data centers) so they operate seamlessly as a unified global "cloud of clouds."</p>
+          </div>
+
+          <h3>Two Core Inter-Cloud Topologies</h3>
+          <ul>
+            <li><strong>Federated Cloud:</strong> Cloud providers formally collaborate behind the scenes to share idle capacity with each other during traffic peaks (transparent to the end customer).</li>
+            <li><strong>Multi-Cloud:</strong> The customer directly deploys and manages workloads across two or more independent cloud providers without requiring provider-to-provider agreements.</li>
+          </ul>
+
+          <h3>Five Reasons Inter-Cloud Matters (Write in 7-Mark Answers)</h3>
+          <ol>
+            <li><strong>Eliminates Vendor Lock-In:</strong> Freedom to move apps across providers if one raises prices or changes terms.</li>
+            <li><strong>Infinite Bursting &amp; Load Balancing:</strong> Small or private clouds borrow extra VMs from partner clouds during sudden spikes.</li>
+            <li><strong>High Availability &amp; Disaster Recovery:</strong> Survives even a full single-provider regional outage by failing over to another cloud.</li>
+            <li><strong>Geo-Proximity &amp; Low Latency:</strong> Runs services in whichever partner data center is physically closest to end users.</li>
+            <li><strong>Cost Arbitrage:</strong> Cloud brokers dynamically schedule batch jobs on whichever provider currently offers the cheapest compute rate.</li>
+          </ol>
+
+          <h3>Open Cloud Consortium (OCC) (Asked in 2024–25)</h3>
+          <p>The <strong>Open Cloud Consortium (OCC)</strong> is a non-profit consortium of universities and enterprises that develops <strong>open interoperability standards, performance benchmarks, and reference testbeds</strong> (such as the Open Science Data Cloud) so heterogeneous clouds can exchange huge datasets smoothly without vendor lock-in.</p>
+        </section>
+
+        <!-- 02: RESOURCE PROVISIONING METHODS -->
+        <section class="chapter" id="provisioning-methods" aria-labelledby="pm-title">
+          <p class="section-label">02 / Dynamic Allocation (Asked in 2023–24)</p>
+          <h2 id="pm-title">Resource Provisioning Methods</h2>
+          <p><strong>Resource Provisioning</strong> selects, deploys, and adjusts VMs and storage at runtime to meet Service Level Agreements (SLAs) at the lowest cost. Cloud platforms rely on three dynamic provisioning methods:</p>
+
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 4.1 — Comparing Demand-Driven, Event-Driven &amp; Popularity-Driven Provisioning</span>
+              <span class="badge">Exam Diagram</span>
+            </div>
+            <svg viewBox="0 0 760 215" role="img" aria-label="Three resource provisioning methods showing Demand-Driven reactive scaling, Event-Driven scheduled pre-allocation, and Popularity-Driven trend forecasting">
+              <!-- Card 1 -->
+              <rect x="14" y="14" width="234" height="186" rx="6" fill="#fffefa" stroke="#165f5b" stroke-width="1.6"/>
+              <rect x="14" y="14" width="234" height="30" rx="6" fill="#165f5b"/>
+              <text x="131" y="34" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11" font-weight="700">1. Demand-Driven (Reactive)</text>
+              <!-- Mini graph -->
+              <line x1="34" y1="114" x2="228" y2="114" stroke="#a0aec0"/>
+              <line x1="34" y1="58" x2="34" y2="114" stroke="#a0aec0"/>
+              <path d="M 38 106 Q 90 100 118 68 T 224 102" fill="none" stroke="#a15d32" stroke-width="2"/>
+              <polyline points="38,108 110,108 110,64 165,64 165,104 224,104" fill="none" stroke="#165f5b" stroke-width="2" stroke-dasharray="4 2"/>
+              <text x="131" y="136" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">Scales AFTER CPU &gt; 80%</text>
+              <text x="131" y="154" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Simple &amp; automatic; slight</text>
+              <text x="131" y="168" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">warmup lag on sudden bursts.</text>
+              <text x="131" y="186" text-anchor="middle" fill="#165f5b" font-family="system-ui,sans-serif" font-size="9" font-weight="700">Ex: AWS Auto Scaling Groups</text>
+
+              <!-- Card 2 -->
+              <rect x="263" y="14" width="234" height="186" rx="6" fill="#fffefa" stroke="#2b6cb0" stroke-width="1.6"/>
+              <rect x="263" y="14" width="234" height="30" rx="6" fill="#2b6cb0"/>
+              <text x="380" y="34" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11" font-weight="700">2. Event-Driven (Scheduled)</text>
+              <line x1="283" y1="114" x2="477" y2="114" stroke="#a0aec0"/>
+              <line x1="283" y1="58" x2="283" y2="114" stroke="#a0aec0"/>
+              <path d="M 287 106 L 340 106 L 360 66 L 415 66 L 435 106 L 472 106" fill="none" stroke="#a15d32" stroke-width="2"/>
+              <polyline points="287,108 330,108 330,60 442,60 442,108 472,108" fill="none" stroke="#2b6cb0" stroke-width="2" stroke-dasharray="4 2"/>
+              <text x="380" y="136" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">Pre-warms BEFORE Event</text>
+              <text x="380" y="154" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Zero warmup lag for known</text>
+              <text x="380" y="168" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">scheduled calendar events.</text>
+              <text x="380" y="186" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="9" font-weight="700">Ex: Diwali Sale · Exam Results</text>
+
+              <!-- Card 3 -->
+              <rect x="512" y="14" width="234" height="186" rx="6" fill="#fffefa" stroke="#276749" stroke-width="1.6"/>
+              <rect x="512" y="14" width="234" height="30" rx="6" fill="#276749"/>
+              <text x="629" y="34" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11" font-weight="700">3. Popularity-Driven (Trend)</text>
+              <line x1="532" y1="114" x2="726" y2="114" stroke="#a0aec0"/>
+              <line x1="532" y1="58" x2="532" y2="114" stroke="#a0aec0"/>
+              <path d="M 536 106 C 580 102, 620 80, 690 64 L 722 72" fill="none" stroke="#a15d32" stroke-width="2"/>
+              <path d="M 536 102 C 575 95, 615 72, 690 58 L 722 66" fill="none" stroke="#276749" stroke-width="2" stroke-dasharray="4 2"/>
+              <text x="629" y="136" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">ML / Trend Forecasting</text>
+              <text x="629" y="154" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Tracks search/social trends</text>
+              <text x="629" y="168" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">to allocate ahead of viral load.</text>
+              <text x="629" y="186" text-anchor="middle" fill="#276749" font-family="system-ui,sans-serif" font-size="9" font-weight="700">Ex: Viral Video / News Launch</text>
+            </svg>
+            <figcaption>Solid orange line = actual user workload; dashed line = allocated cloud capacity. Combine with <strong>Static/Reserved</strong> instances for baseline 24/7 load and <strong>On-Demand/Spot</strong> for spikes.</figcaption>
+          </figure>
+        </section>
+
+        <!-- 03: GLOBAL EXCHANGE -->
+        <section class="chapter" id="global-exchange" aria-labelledby="ge-title">
+          <p class="section-label">03 / Market-Oriented Cloud</p>
+          <h2 id="ge-title">Global Exchange of Cloud Resources (InterCloud)</h2>
+          <p>Inspired by financial stock exchanges, the <strong>Global Cloud Exchange</strong> enables cloud providers worldwide to trade idle compute/storage capacity dynamically:</p>
+
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 4.2 — Inter-Cloud &amp; Global Cloud Exchange Architecture</span>
+              <span class="badge">Exam Diagram</span>
+            </div>
+            <svg viewBox="0 0 760 200" role="img" aria-label="Global Cloud Exchange connecting Cloud Consumers through Cloud Broker to Global Exchange and Cloud Coordinators for AWS, Azure, and Private Cloud">
+              <defs>
+                <marker id="geArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#165f5b"/>
+                </marker>
+              </defs>
+              <!-- Consumer -->
+              <rect x="16" y="64" width="136" height="68" rx="6" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.8"/>
+              <text x="84" y="92" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="11.5" font-weight="800">Cloud Users</text>
+              <text x="84" y="112" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Submit SLA + Budget</text>
+
+              <line x1="152" y1="98" x2="188" y2="98" stroke="#165f5b" stroke-width="2" marker-end="url(#geArr)"/>
+
+              <!-- Broker -->
+              <rect x="192" y="54" width="144" height="88" rx="6" fill="#f5f0ff" stroke="#6b46c1" stroke-width="1.8"/>
+              <text x="264" y="80" text-anchor="middle" fill="#6b46c1" font-family="system-ui,sans-serif" font-size="11.5" font-weight="800">Cloud Broker</text>
+              <text x="264" y="100" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9">Discovers services,</text>
+              <text x="264" y="114" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9">negotiates SLAs &amp;</text>
+              <text x="264" y="128" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9">lowest prices</text>
+
+              <line x1="336" y1="98" x2="372" y2="98" stroke="#165f5b" stroke-width="2" marker-end="url(#geArr)" marker-start="url(#geArr)"/>
+
+              <!-- Global Exchange -->
+              <rect x="376" y="42" width="154" height="112" rx="8" fill="#fdf6ec" stroke="#a15d32" stroke-width="2"/>
+              <text x="453" y="68" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="11.5" font-weight="800">Global Cloud</text>
+              <text x="453" y="84" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="11.5" font-weight="800">Exchange (CEx)</text>
+              <text x="453" y="108" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Market Directory</text>
+              <text x="453" y="122" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Auctions &amp; Pricing</text>
+              <text x="453" y="136" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Banking / Billing</text>
+
+              <!-- Arrows to Coordinators -->
+              <line x1="530" y1="68" x2="574" y2="40" stroke="#165f5b" stroke-width="1.8" marker-end="url(#geArr)"/>
+              <line x1="530" y1="98" x2="574" y2="98" stroke="#165f5b" stroke-width="1.8" marker-end="url(#geArr)"/>
+              <line x1="530" y1="128" x2="574" y2="156" stroke="#165f5b" stroke-width="1.8" marker-end="url(#geArr)"/>
+
+              <!-- 3 Clouds -->
+              <rect x="578" y="16" width="166" height="44" rx="5" fill="#e9f1ee" stroke="#165f5b" stroke-width="1.5"/>
+              <text x="661" y="35" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">Cloud Coordinator A</text>
+              <text x="661" y="50" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">AWS Data Center</text>
+
+              <rect x="578" y="76" width="166" height="44" rx="5" fill="#e9f1ee" stroke="#165f5b" stroke-width="1.5"/>
+              <text x="661" y="95" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">Cloud Coordinator B</text>
+              <text x="661" y="110" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Azure Data Center</text>
+
+              <rect x="578" y="136" width="166" height="44" rx="5" fill="#e9f1ee" stroke="#165f5b" stroke-width="1.5"/>
+              <text x="661" y="155" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">Cloud Coordinator C</text>
+              <text x="661" y="170" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Private Enterprise Cloud</text>
+            </svg>
+            <figcaption>Cloud Coordinators publish spare off-peak resources to the Global Exchange and lease remote capacity during peak traffic bursts.</figcaption>
+          </figure>
+        </section>
+
+        <!-- 04: SECURITY CHALLENGES, FIREWALLS & INSIDERS -->
+        <section class="chapter" id="security-overview" aria-labelledby="sec-title">
+          <p class="section-label">04 / Core Threats &amp; Defenses (Asked in 2024–25 &amp; 2025–26)</p>
+          <h2 id="sec-title">Cloud Security Challenges, Firewalls &amp; Insider Threats</h2>
+
+          <h3>Top 5 Cloud Security Challenges</h3>
+          <ol>
+            <li><strong>Data Breaches &amp; Data Loss:</strong> Theft or accidental deletion of sensitive customer data due to weak encryption or stolen keys.</li>
+            <li><strong>Misconfiguration (#1 Real-World Cause):</strong> Accidentally leaving Amazon S3 buckets, Kubernetes dashboards, or database ports open to the public internet.</li>
+            <li><strong>Multi-Tenancy &amp; Shared Infrastructure Risks:</strong> Sharing physical CPUs/RAM across customers introduces isolation and side-channel risks.</li>
+            <li><strong>Account Hijacking &amp; Insecure APIs:</strong> Attackers exploiting leaked root credentials or unauthenticated REST endpoints.</li>
+            <li><strong>Insider Threats:</strong> Authorized employees, contractors, or rogue cloud admins abusing valid credentials to steal or sabotage data.</li>
+          </ol>
+
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 4.3 — Defense-in-Depth Cloud Security Layers</span>
+              <span class="badge">Security Blueprint</span>
+            </div>
+            <svg viewBox="0 0 760 150" role="img" aria-label="Five concentric defense-in-depth layers from Perimeter DDoS and WAF to Cloud Firewall, IAM Zero Trust, VM Isolation, and AES-256 Data Encryption">
+              <rect x="10" y="16" width="740" height="118" rx="10" fill="#e9f1ee" stroke="#133c43" stroke-width="1.6"/>
+              <text x="380" y="34" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10.5" font-weight="800">Layer 1: Perimeter Security (DDoS Protection · WAF · Edge TLS)</text>
+
+              <rect x="42" y="42" width="676" height="84" rx="8" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.5"/>
+              <text x="380" y="59" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="10.5" font-weight="800">Layer 2: Network Security (VPC · Cloud Firewalls · Security Groups · NACLs)</text>
+
+              <rect x="84" y="66" width="592" height="52" rx="6" fill="#fdf6ec" stroke="#a15d32" stroke-width="1.5"/>
+              <text x="380" y="83" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="10.5" font-weight="800">Layer 3: Identity &amp; Access Control (IAM · MFA · Least Privilege · Zero Trust)</text>
+
+              <rect x="136" y="90" width="488" height="22" rx="4" fill="#165f5b"/>
+              <text x="380" y="105" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="10" font-weight="700">Layer 4 &amp; 5: VM / Hypervisor Isolation + AES-256 Data Encryption (At Rest &amp; In Transit)</text>
+            </svg>
+            <figcaption>No single control is enough—cloud security stacks Perimeter WAF, Cloud Firewalls, IAM, VM isolation, and Encryption together.</figcaption>
+          </figure>
+
+          <h3>Role of Cloud Firewalls (Asked in 2024–25)</h3>
+          <p><strong>Cloud Firewalls</strong> (AWS Security Groups, Network ACLs, Azure Firewall, WAF) inspect and filter inbound/outbound traffic based on IP, port, protocol, and application payload. They block unauthorized SSH/database ports, stop DDoS floods, block SQL injection/XSS attacks (via WAF), and enforce micro-segmentation between public web subnets and private database subnets.</p>
+
+          <h3>Insider Threats &amp; Mitigation Controls (Asked in 2024–25)</h3>
+          <ul>
+            <li><strong>Risks:</strong> Malicious data theft using valid credentials, sabotage (deleting backups/VMs), and negligent misconfigurations.</li>
+            <li><strong>Mitigation:</strong> (1) <strong>Least Privilege IAM</strong>, (2) <strong>Zero Trust + Hardware MFA</strong>, (3) <strong>Separation of Duties</strong> (two-person approval for destructive actions), (4) <strong>Customer-Managed Encryption Keys (BYOK)</strong> so even provider admins cannot read customer files, and (5) <strong>Immutable WORM Audit Logs</strong> (AWS CloudTrail) with immediate offboarding revocation.</li>
+          </ul>
+        </section>
+
+        <!-- 05: SAAS SECURITY -->
+        <section class="chapter" id="saas-security" aria-labelledby="saas-sec-title">
+          <p class="section-label">05 / Application Layer Security (Asked in 2025–26)</p>
+          <h2 id="saas-sec-title">SaaS Security Issues &amp; Protection Mechanisms</h2>
+          <div class="table-wrap">
+            <table>
+              <caption>Key SaaS Security Risks and Countermeasures</caption>
+              <thead>
+                <tr><th scope="col">SaaS Security Issue</th><th scope="col">Threat Explanation</th><th scope="col">Protection Mechanism</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Data Breaches</th><td>Sensitive corporate data stored on vendor servers exposed to attackers.</td><td>Strong encryption at rest (<strong>AES-256</strong>) and in transit (<strong>TLS 1.3</strong>).</td></tr>
+                <tr><th scope="row">Data Segregation</th><td>Multiple tenants share one database; software bug risks cross-tenant leaks.</td><td>Strict tenant ID isolation, encrypted schemas, and regular pen-testing.</td></tr>
+                <tr><th scope="row">Web App Vulnerabilities</th><td>SQL Injection (SQLi), Cross-Site Scripting (XSS), CSRF on web portals.</td><td>Web Application Firewalls (<strong>WAF</strong>), OWASP secure coding, CI security scans.</td></tr>
+                <tr><th scope="row">Account Compromise</th><td>Stolen/weak employee credentials expose entire company workspace.</td><td>Single Sign-On (<strong>SSO</strong>), <strong>MFA</strong>, and Role-Based Access Control (<strong>RBAC</strong>).</td></tr>
+                <tr><th scope="row">Data Locality &amp; Laws</th><td>Data replicated across foreign countries may breach GDPR or local banking laws.</td><td>Region pinning, contractual SLAs, and ISO 27001 / SOC 2 certifications.</td></tr>
+                <tr><th scope="row">Availability &amp; Deletion</th><td>Outages, ransomware, or accidental deletion halt business operations.</td><td>Geo-redundant backups, DDoS mitigation, and strict 99.9%+ SLAs.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 06: GOVERNANCE & VM SECURITY -->
+        <section class="chapter" id="vm-security" aria-labelledby="vm-sec-title">
+          <p class="section-label">06 / Governance &amp; Hypervisor Defense</p>
+          <h2 id="vm-sec-title">Security Governance &amp; Virtual Machine Security</h2>
+          <ul>
+            <li><strong>Security Governance:</strong> Aligns cloud policies, Shared Responsibility matrices, risk assessments, and legal compliance audits with organizational leadership.</li>
+            <li><strong>VM Escape:</strong> Critical attack where malware inside a guest VM exploits a hypervisor vulnerability to gain host OS privileges and compromise all neighboring VMs.</li>
+            <li><strong>VM Sprawl:</strong> Uncontrolled creation of forgotten, unpatched VMs that expand the attack surface and waste cloud budget.</li>
+            <li><strong>Side-Channel Attacks:</strong> A co-located malicious VM monitors shared CPU L1/L2 cache timings to infer another tenant's cryptographic keys.</li>
+            <li><strong>VM Defenses:</strong> Patch hypervisors promptly, use hardened CIS golden images, encrypt virtual disks, isolate VMs with virtual firewalls, and enforce automated VM lifecycle cleanup.</li>
+          </ul>
+        </section>
+
+        <!-- 07: IAM -->
+        <section class="chapter" id="iam" aria-labelledby="iam-title">
+          <p class="section-label">07 / Most Tested Unit IV Topic (2023–24, 2024–25 &amp; 2025–26!)</p>
+          <h2 id="iam-title">Identity and Access Management (IAM)</h2>
+
+          <div class="memory-hook">
+            <strong>Memory Hook — I-A-A-A:</strong> <strong>I</strong>dentification (Who are you?) → <strong>A</strong>uthentication (Prove it via MFA/SSO) → <strong>A</strong>uthorization (Check RBAC/Policy) → <strong>A</strong>uditing (Log every action).
+          </div>
+
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 4.4 — Cloud IAM Request Verification &amp; Policy Evaluation Flow</span>
+              <span class="badge">Exam Diagram</span>
+            </div>
+            <svg viewBox="0 0 780 165" role="img" aria-label="IAM flow from User Request to Authentication MFA SSO, Authorization Policy Engine RBAC, Cloud Resource access, and Immutable Audit Log">
+              <defs>
+                <marker id="iamArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#165f5b"/>
+                </marker>
+              </defs>
+              <rect x="10" y="24" width="136" height="72" rx="6" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.8"/>
+              <text x="78" y="48" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="11" font-weight="800">1. Identity</text>
+              <text x="78" y="67" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">User / Role / API</text>
+              <text x="78" y="81" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">requests S3 Delete</text>
+
+              <line x1="146" y1="60" x2="176" y2="60" stroke="#165f5b" stroke-width="2" marker-end="url(#iamArr)"/>
+
+              <rect x="180" y="24" width="150" height="72" rx="6" fill="#fffefa" stroke="#165f5b" stroke-width="1.8"/>
+              <text x="255" y="48" text-anchor="middle" fill="#165f5b" font-family="system-ui,sans-serif" font-size="11" font-weight="800">2. AuthN (Verify)</text>
+              <text x="255" y="67" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Password + MFA /</text>
+              <text x="255" y="81" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">SAML SSO / OAuth</text>
+
+              <line x1="330" y1="60" x2="360" y2="60" stroke="#165f5b" stroke-width="2" marker-end="url(#iamArr)"/>
+
+              <rect x="364" y="24" width="176" height="72" rx="6" fill="#fdf6ec" stroke="#a15d32" stroke-width="1.8"/>
+              <text x="452" y="48" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="11" font-weight="800">3. AuthZ (Policy)</text>
+              <text x="452" y="67" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">RBAC / ABAC JSON</text>
+              <text x="452" y="81" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Explicit Deny &gt; Allow</text>
+
+              <line x1="540" y1="60" x2="574" y2="60" stroke="#165f5b" stroke-width="2" marker-end="url(#iamArr)"/>
+
+              <rect x="578" y="24" width="190" height="72" rx="6" fill="#e9f1ee" stroke="#276749" stroke-width="2"/>
+              <text x="673" y="48" text-anchor="middle" fill="#276749" font-family="system-ui,sans-serif" font-size="11" font-weight="800">4. Cloud Resource</text>
+              <text x="673" y="67" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9.5">Allow (200 OK) or</text>
+              <text x="673" y="81" text-anchor="middle" fill="#c53030" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">Deny (403 Forbidden)</text>
+
+              <!-- Audit bar -->
+              <rect x="180" y="116" width="588" height="34" rx="5" fill="#133c43"/>
+              <text x="474" y="137" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">5. Auditing &amp; Accounting: Immutable Log (AWS CloudTrail / Azure Monitor) records Who · What · When · Result</text>
+            </svg>
+            <figcaption>IAM follows <strong>Default Deny</strong>: every action is blocked unless explicitly allowed by an attached RBAC/ABAC policy, and an explicit Deny always overrides an Allow.</figcaption>
+          </figure>
+
+          <h3>Evaluating IAM Effectiveness (Strengths vs Limitations)</h3>
+          <ul>
+            <li><strong>Strengths:</strong> MFA stops 99%+ of credential-stuffing attacks; Least Privilege minimizes breach blast radius; IAM Roles eliminate hardcoded passwords; centralized SSO instantly revokes offboarded employee access.</li>
+            <li><strong>Limitations:</strong> Vulnerable to human misconfiguration (overly permissive wildcard rules like <code>"Action": "*"</code>), permission sprawl in large microservices, and cannot stop software vulnerabilities alone (must be paired with WAF, encryption, and patching).</li>
+          </ul>
+        </section>
+
+        <!-- 08: SECURITY STANDARDS -->
+        <section class="chapter" id="standards" aria-labelledby="standards-title">
+          <p class="section-label">08 / Compliance &amp; Frameworks (Asked in 2023–24)</p>
+          <h2 id="standards-title">Cloud Security Standards</h2>
+          <div class="table-wrap">
+            <table>
+              <caption>Major Industry Cloud Security &amp; Compliance Standards</caption>
+              <thead>
+                <tr><th scope="col">Standard</th><th scope="col">Issuing Body</th><th scope="col">Primary Scope &amp; Importance</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">ISO/IEC 27001 &amp; 27017</th><td>ISO / IEC</td><td>Global gold standard for Information Security Management Systems (ISMS); 27017 adds cloud-specific controls.</td></tr>
+                <tr><th scope="row">SOC 2 (Type I &amp; II)</th><td>AICPA</td><td>Independent audit verifying Security, Availability, Processing Integrity, Confidentiality, and Privacy over time.</td></tr>
+                <tr><th scope="row">NIST SP 800-53 / FedRAMP</th><td>NIST / U.S. Govt</td><td>Rigorous security control catalog mandatory for federal government cloud adoption.</td></tr>
+                <tr><th scope="row">CSA STAR</th><td>Cloud Security Alliance</td><td>Public transparency registry assessing providers against the Cloud Controls Matrix (CCM).</td></tr>
+                <tr><th scope="row">PCI DSS</th><td>Payment Card Industry</td><td>Mandatory security standard for any cloud system processing credit/debit card transactions.</td></tr>
+                <tr><th scope="row">GDPR / HIPAA</th><td>EU / U.S. Law</td><td>Legal privacy mandates for European personal data (GDPR) and U.S. medical health records (HIPAA).</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="next-section" aria-label="Next unit">
+          <p>Continue the guide</p>
+          <a href="unit5.html">Next: Unit V — Cloud Technologies &amp; Advancements <span aria-hidden="true">→</span></a>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Cloud Computing · Complete 8-Page Academic Study Guide · Unit IV</p>
+      <p><a href="short-answers.html">Short Answers (2M)</a> · <a href="long-answers.html">Long Answers (7/10M)</a></p>
+    </div>
+  </footer>
+
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+  <script src="site.js"></script>
+</body>
+</html>

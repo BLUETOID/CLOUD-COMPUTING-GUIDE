@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Unit II comprehensive study guide to cloud enabling technologies: SOA, REST, Systems of Systems, Pub/Sub messaging, virtualization levels, hypervisors, CPU/Memory/IO virtualization, and disaster recovery.">
-  <title>Unit II — Cloud Enabling Technologies | Cloud Computing</title>
+  <meta name="description" content="Comprehensive, exam-ready Unit II guide for Cloud Enabling Technologies: SOA, monolithic vs microservices, REST principles, SOAP vs REST, Systems of Systems, Pub/Sub, virtualization basics, Popek-Goldberg theorem, types, levels, hypervisors, CPU/memory/I/O/network virtualization, and disaster recovery.">
+  <title>Unit II — Cloud Enabling Technologies | Cloud Computing Study Guide</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="reading-progress-bar" id="reading-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#content">Skip to content</a>
+
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Cloud Computing study guide home">
-        <span class="brand-kicker">ACADEMIC STUDY GUIDE / UNITS 01—03</span>
+      <a class="brand" href="index.html" aria-label="Cloud Computing study guide overview">
+        <span class="brand-kicker">ACADEMIC STUDY GUIDE / UNITS 01—05</span>
         <span class="brand-name">Cloud Computing</span>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
@@ -21,8 +22,10 @@
         <a href="unit1.html">Unit I</a>
         <a href="unit2.html" aria-current="page">Unit II</a>
         <a href="unit3.html">Unit III</a>
-        <a href="theory.html">Short theory</a>
-        <a href="pyqs.html">Past papers</a>
+        <a href="unit4.html">Unit IV</a>
+        <a href="unit5.html">Unit V</a>
+        <a href="short-answers.html">Short Answers</a>
+        <a href="long-answers.html">Long Answers</a>
       </nav>
     </div>
   </header>
@@ -30,608 +33,505 @@
   <main id="content">
     <section class="page-hero" aria-labelledby="page-title">
       <div class="container">
-        <p class="eyebrow">Unit II / Architecture and infrastructure</p>
-        <h1 id="page-title">Cloud enabling technologies</h1>
-        <p class="lead">How independent software services communicate, how physical machines host isolated virtual machines, and how cloud infrastructure achieves high availability and rapid disaster recovery.</p>
-        <div class="hero-meta">
-          <span>10 detailed chapters</span>
-          <span>Core concepts · Solid visual diagrams · Enterprise architectures · Exam-ready solutions</span>
+        <p class="eyebrow">Unit 02 / Services &amp; Virtualization (CO2)</p>
+        <h1 id="page-title">Cloud Enabling Technologies</h1>
+        <p class="lead">A deep, crystal-clear guide to the two pillars that make cloud computing work: <strong>Service Architecture</strong> (SOA, Microservices, REST, Systems of Systems, Pub/Sub) and <strong>Virtualization</strong> (Hypervisors, Types &amp; Levels, CPU/Memory/I/O/Network Virtualization, and Disaster Recovery).</p>
+        <div class="hero-meta" aria-label="Unit scope">
+          <span>9 in-depth chapters</span>
+          <span>5 SVG Architecture Diagrams · Popek-Goldberg Theorem · Worked DR Scenario</span>
         </div>
       </div>
     </section>
 
     <div class="container reading-layout">
-      <aside class="page-sidebar">
+      <aside class="page-sidebar" aria-label="On this page">
         <nav aria-label="Unit II chapters">
           <p>On this page</p>
           <ol>
-            <li><a href="#enabling">Enabling technology stack</a></li>
-            <li><a href="#soa">Service-oriented architecture</a></li>
-            <li><a href="#rest">REST and HTTP</a></li>
-            <li><a href="#systems">Systems of systems and web services</a></li>
-            <li><a href="#pubsub">Publish/subscribe messaging</a></li>
-            <li><a href="#virtualization">Virtualization fundamentals</a></li>
-            <li><a href="#hypervisors">Types, levels, and hypervisors</a></li>
-            <li><a href="#resources">CPU, memory, and I/O</a></li>
-            <li><a href="#recovery">Virtualization and recovery</a></li>
-            <li><a href="#review">Exam checklist and references</a></li>
+            <li><a href="#soa">1. SOA &amp; Microservices</a></li>
+            <li><a href="#rest">2. REST &amp; Web Services</a></li>
+            <li><a href="#systems">3. Systems of Systems (SoS)</a></li>
+            <li><a href="#pubsub">4. Publish/Subscribe Model</a></li>
+            <li><a href="#virtualization">5. Basics of Virtualization</a></li>
+            <li><a href="#hypervisors">6. Hypervisors, Types &amp; Levels</a></li>
+            <li><a href="#resources">7. CPU, Memory, I/O &amp; Network VM</a></li>
+            <li><a href="#recovery">8. Virtualization &amp; Disaster Recovery</a></li>
+            <li><a href="#exam-preparation">9. Exam Writing Checklist</a></li>
           </ol>
         </nav>
       </aside>
 
-      <article class="prose" aria-label="Unit II study material">
-        <!-- 01: ENABLING TECHNOLOGY STACK -->
-        <section class="chapter" id="enabling" aria-labelledby="enabling-title">
-          <p class="section-label">01 / Foundation</p>
-          <h2 id="enabling-title">The enabling technology stack</h2>
-          
-          <div class="callout">
-            <h3>Technological Foundations of the Cloud</h3>
-            <p>Cloud computing is the synthesis of four foundational computing technologies:</p>
-            <ol>
-              <li><strong>Broadband Networking &amp; Web Services:</strong> High-speed optical networks and HTTP APIs allowing remote software applications to exchange data seamlessly worldwide.</li>
-              <li><strong>Service-Oriented Software Architecture (SOA &amp; Microservices):</strong> Partitioning applications into autonomous, loosely coupled software services communicating via standardized contracts.</li>
-              <li><strong>Hardware Virtualization:</strong> Hypervisors dividing one physical high-performance server into multiple isolated virtual environments, enabling secure multi-tenant resource pooling.</li>
-              <li><strong>Automation &amp; Orchestration Software:</strong> Software schedulers managing deployment, load balancing, dynamic auto-scaling, and self-healing across thousands of servers.</li>
-            </ol>
-          </div>
+      <article class="prose" aria-label="Unit II guide">
 
-          <!-- SOLID COLORFUL DIAGRAM: ENABLING STACK -->
-          <div class="solid-diagram">
-            <div class="solid-diagram-title">
-              <span>End-to-End Request Path to Silicon</span>
-              <span class="badge">Architecture Pipeline</span>
-            </div>
-            <div class="solid-flow">
-              <div class="solid-node blue">
-                <span class="node-step">Layer 1</span>
-                <span class="node-title">Client Devices</span>
-                <p class="node-desc">Mobile apps, web browsers, and enterprise IoT endpoints issuing requests.</p>
-              </div>
-              <div class="solid-node purple">
-                <span class="node-step">Layer 2</span>
-                <span class="node-title">Service Interfaces</span>
-                <p class="node-desc">REST APIs, GraphQL, and Pub/Sub event streams handling transport.</p>
-              </div>
-              <div class="solid-node accent">
-                <span class="node-step">Layer 3</span>
-                <span class="node-title">Application Services</span>
-                <p class="node-desc">Microservices executing business logic (authentication, orders, catalog).</p>
-              </div>
-              <div class="solid-node green">
-                <span class="node-step">Layer 4</span>
-                <span class="node-title">Virtualization</span>
-                <p class="node-desc">Hypervisors (KVM, ESXi) and container engines (Docker, Kubernetes).</p>
-              </div>
-              <div class="solid-node">
-                <span class="node-step">Layer 5</span>
-                <span class="node-title">Physical Hardware</span>
-                <p class="node-desc">Multi-core CPUs, ECC RAM, NVMe storage arrays, and optical switches.</p>
-              </div>
-            </div>
-          </div>
-
-          <h3>Real-World Analogy: The International Courier Network</h3>
-          <p>An international courier service illustrates this layered separation:</p>
-          <ul>
-            <li><strong>Service Contract:</strong> A standardized shipping label with sender, recipient, and declared package weight.</li>
-            <li><strong>Standard Interface:</strong> The tracking barcode allows any postal terminal, customs office, or mobile app to check package status without inspecting internal operations.</li>
-            <li><strong>Resource Pooling:</strong> Packages from thousands of customers share the same cargo flight and delivery vehicle.</li>
-            <li><strong>Automated Routing Hubs:</strong> Automated conveyor systems route parcels dynamically according to postal codes.</li>
-          </ul>
-        </section>
-
-        <!-- 02: SERVICE-ORIENTED ARCHITECTURE -->
+        <!-- 01: SOA & MICROSERVICES -->
         <section class="chapter" id="soa" aria-labelledby="soa-title">
-          <p class="section-label">02 / Service design</p>
-          <h2 id="soa-title">Service-oriented architecture (SOA)</h2>
-          
+          <p class="section-label">01 / Service Architecture (Asked in 2023–24 &amp; 2025–26)</p>
+          <h2 id="soa-title">Service-Oriented Architecture (SOA) &amp; Microservices</h2>
+
           <div class="callout">
-            <h3>Definition &amp; Restaurant Analogy</h3>
-            <p><strong>Service-Oriented Architecture (SOA)</strong> is an architectural pattern where an application is composed of discrete, loosely coupled software services, each providing a specific business function (such as billing, inventory checking, or authentication) accessible over a network through an agreed-upon <strong>contract</strong>.</p>
-            <p><em>The Restaurant Analogy:</em> A customer interacts with a Waiter (the service interface) through a printed Menu (the service contract). The customer does not enter the kitchen, handle chef knives, or care whether cooking utilizes gas or electric induction. As long as the meal delivered fulfills the contract, the customer is satisfied. The restaurant can reorganize kitchen equipment without altering the menu or retraining guests (<strong>Loose Coupling</strong>).</p>
+            <h3>Simple Definition</h3>
+            <p><strong>Service-Oriented Architecture (SOA)</strong> is a software design paradigm where large applications are built by assembling independent, self-contained, reusable <strong>services</strong> that communicate over a network through standardized API contracts (such as HTTP/REST or SOAP). Each service performs a discrete business capability (e.g., Login, Payment, Inventory).</p>
           </div>
 
-          <h3>The 4 Core Architectural Principles of SOA</h3>
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 2.1 — The Classic SOA Triangle (Publish · Find · Bind)</span>
+              <span class="badge">Exam Diagram</span>
+            </div>
+            <svg viewBox="0 0 760 230" role="img" aria-label="SOA Triangle showing Service Registry at top, Service Provider at bottom left, and Service Consumer at bottom right connected by Publish, Find, and Bind arrows">
+              <defs>
+                <marker id="soaArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#165f5b"/>
+                </marker>
+                <marker id="soaArrW" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#a15d32"/>
+                </marker>
+              </defs>
+              <!-- Registry -->
+              <rect x="275" y="16" width="210" height="58" rx="6" fill="#e9f1ee" stroke="#165f5b" stroke-width="2"/>
+              <text x="380" y="40" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="13" font-weight="800">Service Registry</text>
+              <text x="380" y="59" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="10">Directory of APIs (UDDI / Consul)</text>
+
+              <!-- Provider -->
+              <rect x="40" y="148" width="210" height="62" rx="6" fill="#fffefa" stroke="#2b6cb0" stroke-width="2"/>
+              <text x="145" y="173" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="13" font-weight="800">Service Provider</text>
+              <text x="145" y="193" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="10">Builds &amp; hosts service (e.g., Payment)</text>
+
+              <!-- Consumer -->
+              <rect x="510" y="148" width="210" height="62" rx="6" fill="#fffefa" stroke="#276749" stroke-width="2"/>
+              <text x="615" y="173" text-anchor="middle" fill="#276749" font-family="system-ui,sans-serif" font-size="13" font-weight="800">Service Consumer</text>
+              <text x="615" y="193" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="10">Client app invoking the service</text>
+
+              <!-- Arrows -->
+              <line x1="175" y1="146" x2="295" y2="76" stroke="#165f5b" stroke-width="2.2" marker-end="url(#soaArr)"/>
+              <rect x="146" y="92" width="108" height="22" rx="4" fill="#fffefa" stroke="#165f5b"/>
+              <text x="200" y="107" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">1. PUBLISH</text>
+
+              <line x1="585" y1="146" x2="465" y2="76" stroke="#165f5b" stroke-width="2.2" marker-end="url(#soaArr)"/>
+              <rect x="506" y="92" width="108" height="22" rx="4" fill="#fffefa" stroke="#165f5b"/>
+              <text x="560" y="107" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">2. FIND</text>
+
+              <line x1="506" y1="180" x2="255" y2="180" stroke="#a15d32" stroke-width="2.4" marker-end="url(#soaArrW)" marker-start="url(#soaArrW)"/>
+              <rect x="315" y="167" width="130" height="24" rx="4" fill="#fdf6ec" stroke="#a15d32"/>
+              <text x="380" y="183" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">3. BIND &amp; INVOKE</text>
+            </svg>
+            <figcaption>Memory hook <strong>P-F-B</strong>: Provider <strong>Publishes</strong> contract → Consumer <strong>Finds</strong> endpoint → Consumer <strong>Binds</strong> directly to invoke the service.</figcaption>
+          </figure>
+
+          <h3>Six Core Principles of SOA</h3>
           <ul>
-            <li><strong>1. Loose Coupling:</strong> Consumers depend exclusively on the service contract, not on internal implementation details, programming languages, or database schemas.</li>
-            <li><strong>2. Reusability:</strong> A single identity verification service handles authentication across web portals, mobile apps, and partner APIs.</li>
-            <li><strong>3. Discoverability:</strong> Services publish endpoints to registries or DNS catalogs so consumers can locate and bind to them dynamically.</li>
-            <li><strong>4. Composability:</strong> Multiple services coordinate to fulfill a complex workflow. For example, checkout orchestrates cart, payment, inventory, and notification services.</li>
+            <li><strong>Loose Coupling:</strong> Consumers depend only on the public API contract, not on the service's internal database or programming language.</li>
+            <li><strong>Reusability:</strong> A single Authentication or Notification service is shared across web apps, Android/iOS apps, and partner portals.</li>
+            <li><strong>Interoperability:</strong> A Python frontend seamlessly calls a Java or Go backend using standard HTTP + JSON/XML.</li>
+            <li><strong>Discoverability:</strong> Services publish machine-readable descriptions (OpenAPI / WSDL) so teams can discover and reuse them.</li>
+            <li><strong>Composability:</strong> Small atomic services can be orchestrated into larger workflows (e.g., Order = Auth + Inventory + Payment + Shipping).</li>
+            <li><strong>Autonomy &amp; Statelessness:</strong> Each service controls its own logic and avoids storing unnecessary client session state.</li>
           </ul>
 
-          <!-- SOLID COLORFUL DIAGRAM: ARCHITECTURE COMPARISON -->
-          <div class="solid-diagram">
-            <div class="solid-diagram-title">
-              <span>Architectural Evolution: Monolith vs SOA vs Microservices</span>
-              <span class="badge">System Design</span>
+          <h3>Monolithic vs Microservices Architecture (Asked in 2023–24)</h3>
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 2.2 — Monolithic vs Microservices Architecture</span>
+              <span class="badge">Exam Diagram</span>
             </div>
-            <div class="stack-comparison">
-              <div class="stack-column">
-                <div class="stack-header onprem">Monolithic Architecture</div>
-                <div class="stack-layers">
-                  <div class="stack-layer-item layer-neutral">User Interface Layer</div>
-                  <div class="stack-layer-item layer-neutral">Business Logic (All Modules)</div>
-                  <div class="stack-layer-item layer-neutral">Data Access Layer</div>
-                  <div class="stack-layer-item layer-you">Single Shared Database</div>
-                </div>
-              </div>
-              <div class="stack-column">
-                <div class="stack-header paas">Service-Oriented (SOA)</div>
-                <div class="stack-layers">
-                  <div class="stack-layer-item layer-neutral">Client Applications</div>
-                  <div class="stack-layer-item layer-you">Enterprise Service Bus (ESB)</div>
-                  <div class="stack-layer-item layer-neutral">Coarse Business Services</div>
-                  <div class="stack-layer-item layer-cloud">Shared Enterprise DBs</div>
-                </div>
-              </div>
-              <div class="stack-column">
-                <div class="stack-header type1">Microservices Architecture</div>
-                <div class="stack-layers">
-                  <div class="stack-layer-item layer-cloud">API Gateway (REST / gRPC)</div>
-                  <div class="stack-layer-item layer-cloud">Auth Service + DB</div>
-                  <div class="stack-layer-item layer-cloud">Order Service + DB</div>
-                  <div class="stack-layer-item layer-cloud">Payment Service + DB</div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <svg viewBox="0 0 780 225" role="img" aria-label="Comparison diagram of Monolithic single deployable unit sharing one database versus Microservices behind an API Gateway each with its own database">
+              <!-- Left: Monolith -->
+              <rect x="10" y="10" width="320" height="205" rx="6" fill="#fdf8f3" stroke="#a15d32" stroke-width="1.5"/>
+              <text x="170" y="34" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="13" font-weight="700">Monolithic Architecture</text>
+              <rect x="45" y="48" width="250" height="94" rx="5" fill="#fffefa" stroke="#a15d32" stroke-width="1.5"/>
+              <text x="170" y="66" text-anchor="middle" fill="#a15d32" font-family="system-ui,sans-serif" font-size="10" font-weight="700">SINGLE DEPLOYABLE UNIT</text>
+              <rect x="58" y="76" width="68" height="26" rx="3" fill="#f4e9dc"/><text x="92" y="93" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="9.5" font-weight="600">UI Layer</text>
+              <rect x="136" y="76" width="68" height="26" rx="3" fill="#f4e9dc"/><text x="170" y="93" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="9.5" font-weight="600">Orders</text>
+              <rect x="214" y="76" width="68" height="26" rx="3" fill="#f4e9dc"/><text x="248" y="93" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="9.5" font-weight="600">Billing</text>
+              <rect x="97" y="108" width="146" height="24" rx="3" fill="#f4e9dc"/><text x="170" y="124" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="9.5" font-weight="600">Tightly Coupled Data Layer</text>
+              <line x1="170" y1="142" x2="170" y2="162" stroke="#a15d32" stroke-width="2"/>
+              <rect x="95" y="162" width="150" height="36" rx="18" fill="#a15d32"/>
+              <text x="170" y="184" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11" font-weight="700">1 Shared Database</text>
 
-          <div class="table-wrap">
-            <table>
-              <caption>Architectural Comparison: Monolith, SOA, and Microservices</caption>
-              <thead>
-                <tr><th scope="col">Dimension</th><th scope="col">Monolithic Architecture</th><th scope="col">Service-Oriented Architecture (SOA)</th><th scope="col">Microservices Architecture</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Structure</th>
-                  <td>All software modules compiled into a <strong>single deployable binary</strong>.</td>
-                  <td>Enterprise-wide coarse-grained business services connected through a central <strong>Enterprise Service Bus (ESB)</strong>.</td>
-                  <td>Collection of small, single-purpose, independently deployable services communicating via lightweight APIs.</td>
-                </tr>
-                <tr>
-                  <th scope="row">Data Storage</th>
-                  <td><strong>Single Central Database:</strong> All modules read and write to one shared relational database.</td>
-                  <td>Shared enterprise database or databases federated via the ESB layer.</td>
-                  <td><strong>Database-per-Service:</strong> Each microservice owns its private datastore; direct database sharing is prohibited.</td>
-                </tr>
-                <tr>
-                  <th scope="row">Deployment</th>
-                  <td>Must redeploy the entire application for even a minor bug fix.</td>
-                  <td>Services can be updated individually, but often dependent on shared ESB routing rules.</td>
-                  <td><strong>Independent Deployment:</strong> Individual microservices can be updated dozens of times daily without downtime.</td>
-                </tr>
-                <tr>
-                  <th scope="row">Fault Isolation</th>
-                  <td><strong>Poor:</strong> A memory leak in a minor module crashes the entire application.</td>
-                  <td>Moderate: If the central ESB fails, communication across services halts.</td>
-                  <td><strong>High:</strong> If the recommendation service fails, cart, search, and checkout continue functioning.</td>
-                </tr>
-                <tr>
-                  <th scope="row">Industry Examples</th>
-                  <td>Early desktop and web software; 1998 Amazon.com Obidos architecture.</td>
-                  <td>Enterprise banking and telecom backends utilizing IBM WebSphere or Oracle ESB.</td>
-                  <td><strong>Netflix, Uber, Swiggy, Amazon:</strong> Netflix runs over 1,000 containerized microservices in AWS.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+              <!-- Right: Microservices -->
+              <rect x="355" y="10" width="415" height="205" rx="6" fill="#f5faf8" stroke="#165f5b" stroke-width="1.5"/>
+              <text x="562" y="34" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="13" font-weight="700">Microservices Architecture</text>
+              <rect x="432" y="46" width="260" height="28" rx="4" fill="#133c43"/>
+              <text x="562" y="64" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">API Gateway / Load Balancer</text>
+              <!-- 3 Services -->
+              <line x1="465" y1="74" x2="435" y2="96" stroke="#165f5b" stroke-width="1.8"/>
+              <line x1="562" y1="74" x2="562" y2="96" stroke="#165f5b" stroke-width="1.8"/>
+              <line x1="660" y1="74" x2="690" y2="96" stroke="#165f5b" stroke-width="1.8"/>
+
+              <rect x="378" y="96" width="112" height="44" rx="4" fill="#fffefa" stroke="#2b6cb0" stroke-width="1.5"/>
+              <text x="434" y="115" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">User Service</text>
+              <text x="434" y="131" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Node.js · Scales ×2</text>
+              <line x1="434" y1="140" x2="434" y2="162" stroke="#2b6cb0" stroke-width="1.5"/>
+              <rect x="394" y="162" width="80" height="30" rx="14" fill="#2b6cb0"/>
+              <text x="434" y="181" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">User DB</text>
+
+              <rect x="506" y="96" width="112" height="44" rx="4" fill="#fffefa" stroke="#165f5b" stroke-width="1.5"/>
+              <text x="562" y="115" text-anchor="middle" fill="#165f5b" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">Order Service</text>
+              <text x="562" y="131" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Java · Scales ×10</text>
+              <line x1="562" y1="140" x2="562" y2="162" stroke="#165f5b" stroke-width="1.5"/>
+              <rect x="522" y="162" width="80" height="30" rx="14" fill="#165f5b"/>
+              <text x="562" y="181" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">Order DB</text>
+
+              <rect x="634" y="96" width="112" height="44" rx="4" fill="#fffefa" stroke="#276749" stroke-width="1.5"/>
+              <text x="690" y="115" text-anchor="middle" fill="#276749" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">Payment Svc</text>
+              <text x="690" y="131" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Go · Scales ×5</text>
+              <line x1="690" y1="140" x2="690" y2="162" stroke="#276749" stroke-width="1.5"/>
+              <rect x="650" y="162" width="80" height="30" rx="14" fill="#276749"/>
+              <text x="690" y="181" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">Pay DB</text>
+            </svg>
+            <figcaption>Microservices isolate failures and scale busy services (like Checkout/Orders) independently without duplicating the entire application.</figcaption>
+          </figure>
         </section>
 
-        <!-- 03: REST AND HTTP -->
+        <!-- 02: REST & WEB SERVICES -->
         <section class="chapter" id="rest" aria-labelledby="rest-title">
-          <p class="section-label">03 / Communication protocols</p>
-          <h2 id="rest-title">REST and HTTP</h2>
-          
-          <div class="callout">
-            <h3>Core Mechanism &amp; Vending Machine Analogy</h3>
-            <p><strong>REST (Representational State Transfer)</strong> is an architectural style for networked distributed systems formulated by Roy Fielding in 2000. It leverages standard HTTP protocols to manipulate web resources.</p>
-            <p><em>The Vending Machine Analogy:</em> A snack vending machine is completely <strong>stateless</strong>. When a customer inserts cash and presses button B2, the machine dispenses a snack. It does not need to know the customer's identity, remember previous transactions, or keep a long-lived connection open. Every transaction contains all the information necessary to fulfill it. REST APIs operate with this exact statelessness.</p>
-          </div>
+          <p class="section-label">02 / Web Services (Asked in 2023–24 &amp; 2025–26)</p>
+          <h2 id="rest-title">REST-Based Web Services &amp; SOAP vs REST</h2>
+          <p><strong>REST (Representational State Transfer)</strong>, defined by Roy Fielding (2000), is a lightweight architectural style for networked applications built on top of HTTP. Every data entity is modeled as a <strong>resource</strong> addressed by a clean URI (e.g., <code>https://api.shop.com/orders/42</code>) and exchanged as JSON or XML representations.</p>
 
-          <h3>The 4 Essential HTTP Verbs in REST APIs</h3>
+          <h3>The 6 Architectural Principles (Constraints) of REST</h3>
+          <ol>
+            <li><strong>Client–Server Separation:</strong> User interface (client) and data storage/business logic (server) are decoupled so mobile apps, web browsers, and backend teams evolve independently.</li>
+            <li><strong>Statelessness:</strong> Every request must carry <em>all</em> authentication and context (e.g., JWT bearer token). The server stores no client session state between calls—making horizontal scaling behind a load balancer effortless.</li>
+            <li><strong>Cacheability:</strong> Responses explicitly declare caching rules (<code>Cache-Control: max-age=300</code>) so CDNs and browsers reuse responses, reducing server load and latency.</li>
+            <li><strong>Uniform Interface:</strong> Uses standard HTTP verbs and status codes uniformly across all resources:
+              <br>• <code>GET</code> (Read) · <code>POST</code> (Create) · <code>PUT</code> (Full Update) · <code>PATCH</code> (Partial Update) · <code>DELETE</code> (Remove)
+              <br>• Standard Status Codes: <code>200 OK</code>, <code>201 Created</code>, <code>400 Bad Request</code>, <code>401 Unauthorized</code>, <code>404 Not Found</code>, <code>500 Server Error</code>.
+            </li>
+            <li><strong>Layered System:</strong> Clients communicate cleanly through intermediate proxies, API gateways, firewalls, or load balancers without knowing the internal backend topology.</li>
+            <li><strong>Code on Demand (Optional):</strong> Servers can temporarily extend client functionality by sending executable scripts (e.g., JavaScript).</li>
+          </ol>
+
           <div class="table-wrap">
             <table>
-              <caption>HTTP Verbs, Actions, and API Semantics</caption>
+              <caption>SOAP vs REST Web Services</caption>
               <thead>
-                <tr><th scope="col">HTTP Method</th><th scope="col">CRUD Equivalent</th><th scope="col">Real-World API Example</th><th scope="col">Idempotent?</th><th scope="col">Safe?</th></tr>
+                <tr><th scope="col">Criteria</th><th scope="col">SOAP (Simple Object Access Protocol)</th><th scope="col">REST (Representational State Transfer)</th></tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row"><code>GET</code></th>
-                  <td><strong>Read</strong> (Retrieve data)</td>
-                  <td><code>GET /api/v1/flights?origin=DEL&amp;dest=BOM</code><br>Fetches flight list between Delhi and Mumbai.</td>
-                  <td><strong>Yes</strong> (Calling 100 times returns identical data without changing server state).</td>
-                  <td><strong>Yes</strong> (Does not modify server resources).</td>
-                </tr>
-                <tr>
-                  <th scope="row"><code>POST</code></th>
-                  <td><strong>Create</strong> (Add resource)</td>
-                  <td><code>POST /api/v1/bookings</code> with JSON payload <code>{"seat": "14B"}</code><br>Creates a new ticket reservation.</td>
-                  <td><strong>No</strong> (Calling 5 times generates 5 separate bookings and charges 5 times).</td>
-                  <td><strong>No</strong> (Modifies database).</td>
-                </tr>
-                <tr>
-                  <th scope="row"><code>PUT</code></th>
-                  <td><strong>Update / Replace</strong></td>
-                  <td><code>PUT /api/v1/users/105/profile</code> with complete updated profile JSON.<br>Replaces the entire record.</td>
-                  <td><strong>Yes</strong> (Submitting the same update 10 times yields the exact same profile state).</td>
-                  <td><strong>No</strong> (Modifies database).</td>
-                </tr>
-                <tr>
-                  <th scope="row"><code>DELETE</code></th>
-                  <td><strong>Delete</strong> (Remove resource)</td>
-                  <td><code>DELETE /api/v1/bookings/98765</code><br>Cancels reservation #98765.</td>
-                  <td><strong>Yes</strong> (Deleting once removes it; subsequent deletes confirm it is gone).</td>
-                  <td><strong>No</strong> (Modifies database).</td>
-                </tr>
+                <tr><th scope="row">Nature</th><td>Strict XML messaging <strong>protocol</strong>.</td><td>Flexible, lightweight <strong>architectural style</strong>.</td></tr>
+                <tr><th scope="row">Payload Format</th><td>XML only (heavy Envelope/Header/Body).</td><td>JSON (most common), XML, HTML, plain text.</td></tr>
+                <tr><th scope="row">Contract / Spec</th><td>Formal <strong>WSDL</strong> file.</td><td>Standard HTTP verbs + OpenAPI / Swagger.</td></tr>
+                <tr><th scope="row">Performance &amp; Cache</th><td>Slower, high bandwidth, not HTTP-cacheable.</td><td>Fast, lightweight, fully HTTP-cacheable.</td></tr>
+                <tr><th scope="row">Security</th><td>Built-in <strong>WS-Security</strong> standard.</td><td>Relies on HTTPS (TLS) + OAuth 2.0 / JWT.</td></tr>
+                <tr><th scope="row">Best Use Case</th><td>Legacy banking, enterprise ERP, strict ACID specs.</td><td>Modern cloud APIs (AWS, Stripe, GitHub, mobile).</td></tr>
               </tbody>
             </table>
           </div>
-
-          <h3>The 5 Core Architectural Constraints of REST</h3>
-          <ol>
-            <li><strong>Client-Server Separation:</strong> User interfaces (web, mobile) are decoupled from server data storage, allowing both to evolve independently.</li>
-            <li><strong>Statelessness:</strong> The server stores no client session context between requests. Every request carries authentication credentials (e.g., JWT) and full query parameters.</li>
-            <li><strong>Cacheability:</strong> Responses explicitly define whether they are cacheable (via <code>Cache-Control</code> headers) to reduce server load and latency.</li>
-            <li><strong>Uniform Interface:</strong> Resources are identified by stable URIs (e.g., <code>/products/42</code>) and manipulated using standard representations (JSON/XML).</li>
-            <li><strong>Layered System:</strong> Clients cannot determine whether they connect directly to an end server or through CDNs, load balancers, and API gateways.</li>
-          </ol>
         </section>
 
-        <!-- 04: SYSTEMS OF SYSTEMS AND WEB SERVICES -->
+        <!-- 03: SYSTEMS OF SYSTEMS -->
         <section class="chapter" id="systems" aria-labelledby="systems-title">
-          <p class="section-label">04 / Integration models</p>
-          <h2 id="systems-title">Systems of systems and web services</h2>
-          
-          <div class="callout">
-            <h3>Concept &amp; The International Airport Analogy</h3>
-            <p>A <strong>System of Systems (SoS)</strong> is a federation of large, complex, autonomous computer systems that collaborate over networks to achieve a collective mission that no single system could accomplish alone.</p>
-            <p><em>The Modern Airport:</em> An international airport requires five independent systems to operate collaboratively:</p>
-            <ol>
-              <li>Air Traffic Control Radar (managed by civil aviation regulators).</li>
-              <li>Airline Passenger Ticketing (run by independent airlines like Emirates or IndiGo).</li>
-              <li>Baggage Handling &amp; Sorting Conveyors (managed by airport logistics operators).</li>
-              <li>Biometric Passenger Check-in (e.g., DigiYatra government identity gateway).</li>
-              <li>Immigration &amp; Customs Security (managed by border enforcement agencies).</li>
-            </ol>
-            <p>Each system possesses its own budget, management, and programming stack. Yet they interoperate reliably using standardized <strong>Web Services</strong>.</p>
-          </div>
-
-          <h3>SOAP vs REST Web Services</h3>
-          <div class="table-wrap">
-            <table>
-              <caption>Technical Comparison: SOAP vs REST Web Services</caption>
-              <thead>
-                <tr><th scope="col">Feature</th><th scope="col">SOAP (Simple Object Access Protocol)</th><th scope="col">REST (Representational State Transfer)</th></tr>
-              </thead>
-              <tbody>
-                <tr><th scope="row">Type</th><td>A strict formal <strong>protocol</strong> with rigid specifications.</td><td>An <strong>architectural style</strong> utilizing standard HTTP principles.</td></tr>
-                <tr><th scope="row">Data Format</th><td>Exclusively <strong>XML</strong> (heavyweight tags and schemas).</td><td>Primarily <strong>JSON</strong> (lightweight, human-readable), supports XML/YAML.</td></tr>
-                <tr><th scope="row">Contract Definition</th><td>Formal <strong>WSDL</strong> (Web Services Description Language) defining all operations and types.</td><td>Informal or schema-based documentation (OpenAPI / Swagger specifications).</td></tr>
-                <tr><th scope="row">Transport Protocol</th><td>Can run over HTTP, SMTP, TCP, or JMS.</td><td>Operates almost exclusively over <strong>HTTP / HTTPS</strong>.</td></tr>
-                <tr><th scope="row">Security Standards</th><td>WS-Security: Message-level encryption and digital signatures.</td><td>Transport security (HTTPS/TLS) and token authentication (OAuth 2.0 / JWT).</td></tr>
-                <tr><th scope="row">Performance</th><td>Higher overhead: XML envelope serialization consumes CPU and bandwidth.</td><td>Fast &amp; Lightweight: Minimal payload size, ideal for cloud microservices.</td></tr>
-                <tr><th scope="row">Primary Use Case</th><td>Inter-bank financial networks (SWIFT), healthcare transactions, legacy enterprise integrations.</td><td>Public internet APIs, mobile applications, social media platforms, cloud backends.</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- 05: PUBLISH/SUBSCRIBE MESSAGING -->
-        <section class="chapter" id="pubsub" aria-labelledby="pubsub-title">
-          <p class="section-label">05 / Event-driven systems</p>
-          <h2 id="pubsub-title">Publish/subscribe messaging (Pub/Sub)</h2>
-          
-          <div class="callout">
-            <h3>Decoupled Messaging Architecture</h3>
-            <p>In traditional point-to-point communication, a sender connects directly to a specific receiver. If the receiver is offline, the transmission fails.</p>
-            <p><strong>Publish/Subscribe (Pub/Sub)</strong> eliminates this tight coupling via a <strong>Message Broker</strong>:</p>
-            <ul>
-              <li><strong>Publishers</strong> emit messages without knowing who will receive them.</li>
-              <li><strong>Subscribers</strong> register interest in specific <strong>Topics</strong> and receive matching messages asynchronously.</li>
-            </ul>
-            <p><em>Example:</em> A content creator uploads a video to YouTube (Publisher $\to$ Topic). YouTube's message broker pushes notifications to millions of subscribers. If a user's phone is powered off, notifications queue in the broker until the device reconnects.</p>
-          </div>
-
-          <!-- SOLID COLORFUL DIAGRAM: PUB/SUB BROKER -->
-          <div class="solid-diagram">
-            <div class="solid-diagram-title">
-              <span>Pub/Sub Event Broker Architecture</span>
-              <span class="badge">Event-Driven Flow</span>
-            </div>
-            <div class="solid-flow">
-              <div class="solid-node blue">
-                <span class="node-step">Publishers</span>
-                <span class="node-title">Event Producers</span>
-                <p class="node-desc">Payment Service, Order Service, and IoT sensor streams emitting events.</p>
-              </div>
-              <div class="solid-node accent">
-                <span class="node-step">Message Broker</span>
-                <span class="node-title">Topic Queues (Kafka / SNS)</span>
-                <p class="node-desc">Buffers messages, handles topic routing, and decouples time and space.</p>
-              </div>
-              <div class="solid-node green">
-                <span class="node-step">Subscriber A</span>
-                <span class="node-title">Analytics Warehouse</span>
-                <p class="node-desc">Ingests all orders for financial reporting and business intelligence.</p>
-              </div>
-              <div class="solid-node purple">
-                <span class="node-step">Subscriber B</span>
-                <span class="node-title">Notification Service</span>
-                <p class="node-desc">Sends SMS and WhatsApp delivery updates to the customer.</p>
-              </div>
-            </div>
-          </div>
-
-          <h3>The 3 Dimensions of Decoupling in Pub/Sub</h3>
-          <ol>
-            <li><strong>Space Decoupling (Location Independence):</strong> Publishers have no knowledge of subscriber IP addresses, ports, or hosting regions.</li>
-            <li><strong>Time Decoupling (Temporal Independence):</strong> Senders and receivers do not need to be active at the same time. The broker safely buffers messages during downstream maintenance.</li>
-            <li><strong>Synchronization Decoupling:</strong> Publishers emit events and resume processing immediately without waiting for subscriber confirmation.</li>
-          </ol>
-          <p><strong>Cloud Implementations:</strong> Apache Kafka, RabbitMQ, Amazon SNS/SQS, Google Cloud Pub/Sub, and Azure Event Hubs.</p>
-        </section>
-
-        <!-- 06: VIRTUALIZATION FUNDAMENTALS -->
-        <section class="chapter" id="virtualization" aria-labelledby="virtualization-title">
-          <p class="section-label">06 / Hardware abstraction</p>
-          <h2 id="virtualization-title">Virtualization fundamentals</h2>
-          
-          <div class="callout">
-            <h3>Definition &amp; The Server Consolidation Revolution</h3>
-            <p><strong>Virtualization</strong> is the foundational technology of cloud computing. It creates software-based representations of physical hardware—including virtual CPUs (vCPUs), virtual memory, virtual storage, and virtual network interfaces.</p>
-            <p><strong>The Crisis Virtualization Resolved:</strong> In the 1990s, corporate data centers followed the principle of <em>"one application per physical server"</em> to avoid software library conflicts. Industry studies found that the average physical corporate server operated at only <strong>5% to 15% CPU utilization</strong>, wasting 85% of power, floor space, and cooling capacity.</p>
-            <p>Virtualization introduced the <strong>Hypervisor</strong>, which consolidates 20 or more isolated operating systems and applications onto a <strong>single physical server</strong>, raising hardware utilization to 75%–85% and dramatically reducing data center operational costs.</p>
-          </div>
-
-          <h3>Advantages and Disadvantages of Virtualization</h3>
-          <div class="table-wrap">
-            <table>
-              <caption>Advantages vs Disadvantages of Virtualization</caption>
-              <thead>
-                <tr><th scope="col">Dimension</th><th scope="col">Major Advantages</th><th scope="col">Disadvantages &amp; Trade-offs</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Hardware Utilization</th>
-                  <td>Consolidates dozens of servers onto high-density hosts; cuts electricity, cooling, and real estate footprints.</td>
-                  <td>Enterprise hypervisor licensing costs (e.g., VMware vSphere Enterprise) can be significant.</td>
-                </tr>
-                <tr>
-                  <th scope="row">Provisioning Speed</th>
-                  <td>Spins up new VMs in 30 seconds from template images, eliminating 4–6 week physical server procurement cycles.</td>
-                  <td><strong>VM Sprawl:</strong> Ease of provisioning can lead to untracked, unmaintained VMs consuming storage and memory.</td>
-                </tr>
-                <tr>
-                  <th scope="row">Portability &amp; Recovery</th>
-                  <td>Entire VMs are encapsulated as single disk files (<code>.vmdk</code>, <code>.qcow2</code>), enabling rapid backup and live migration.</td>
-                  <td>Simultaneous backups of multiple active VMs on a single host can create I/O storage bottlenecks.</td>
-                </tr>
-                <tr>
-                  <th scope="row">Fault Isolation</th>
-                  <td>Crashes or security compromises inside one VM cannot affect neighboring VMs on the host.</td>
-                  <td><strong>Single Point of Failure:</strong> If the underlying host hypervisor crashes, all hosted VMs go down.</td>
-                </tr>
-                <tr>
-                  <th scope="row">Performance</th>
-                  <td>Dynamic resource hot-plugging (adding RAM or vCPUs without rebooting).</td>
-                  <td>Minor performance penalty (2% to 10%) due to hardware context switches and address translations.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- 07: TYPES, LEVELS, AND HYPERVISORS -->
-        <section class="chapter" id="hypervisors" aria-labelledby="hypervisors-title">
-          <p class="section-label">07 / Virtualization architecture</p>
-          <h2 id="hypervisors-title">Types, levels, and hypervisors</h2>
-          <p>A <strong>Hypervisor</strong> (or <strong>Virtual Machine Monitor, VMM</strong>) is the software layer that provisions, schedules, and isolates virtual machines while mediating access to physical CPU, memory, and devices.</p>
-
-          <!-- SOLID COLORFUL DIAGRAM: TYPE 1 VS TYPE 2 HYPERVISOR -->
-          <div class="solid-diagram">
-            <div class="solid-diagram-title">
-              <span>Hypervisor Architecture: Type 1 vs Type 2</span>
-              <span class="badge">Hypervisor Topologies</span>
-            </div>
-            <div class="stack-comparison">
-              <div class="stack-column">
-                <div class="stack-header type1">Type 1: Bare-Metal Hypervisor</div>
-                <div class="stack-layers">
-                  <div class="stack-layer-item layer-cloud">Guest VM 1 (Ubuntu) | Guest VM 2 (Windows)</div>
-                  <div class="stack-layer-item layer-you">Type 1 Hypervisor (ESXi / KVM / Xen)</div>
-                  <div class="stack-layer-item layer-neutral">Bare-Metal Physical Hardware</div>
-                </div>
-              </div>
-              <div class="stack-column">
-                <div class="stack-header type2">Type 2: Hosted Hypervisor</div>
-                <div class="stack-layers">
-                  <div class="stack-layer-item layer-cloud">Guest VM 1 (Linux) | Guest VM 2 (Win)</div>
-                  <div class="stack-layer-item layer-you">Type 2 Hypervisor (VirtualBox / Workstation)</div>
-                  <div class="stack-layer-item layer-neutral">Host Operating System (Win / Mac / Linux)</div>
-                  <div class="stack-layer-item layer-neutral">Physical Hardware</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="table-wrap">
-            <table>
-              <caption>Type 1 vs Type 2 Hypervisors</caption>
-              <thead>
-                <tr><th scope="col">Dimension</th><th scope="col">Type 1 Hypervisor (Bare-Metal)</th><th scope="col">Type 2 Hypervisor (Hosted)</th></tr>
-              </thead>
-              <tbody>
-                <tr><th scope="row">Installation</th><td>Installed <strong>directly on the physical bare-metal hardware</strong>; acts as its own OS kernel.</td><td>Installed as an <strong>application on top of an existing host OS</strong> (Windows, macOS, Linux).</td></tr>
-                <tr><th scope="row">Performance</th><td><strong>Near bare-metal speed:</strong> Less than 2% overhead; direct CPU register control.</td><td><strong>Lower performance:</strong> Additional overhead traversing Guest OS $\to$ Hypervisor $\to$ Host OS $\to$ Silicon.</td></tr>
-                <tr><th scope="row">Security &amp; Stability</th><td>High: Minimal attack surface without general-purpose host OS vulnerabilities.</td><td>Moderate: If the host OS crashes or reboots for an update, all running guest VMs crash.</td></tr>
-                <tr><th scope="row">Use Case</th><td><strong>Enterprise Cloud Data Centers:</strong> AWS EC2, Microsoft Azure, VMware vSphere clusters.</td><td><strong>Developer Laptops:</strong> Software testing, training, local multi-OS development.</td></tr>
-                <tr><th scope="row">Industry Examples</th><td><strong>VMware ESXi, Linux KVM, Microsoft Hyper-V Server, Citrix XenServer.</strong></td><td><strong>Oracle VM VirtualBox, VMware Workstation / Fusion, Parallels Desktop.</strong></td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h3>Levels of Virtualization Implementation</h3>
-          <ol>
-            <li><strong>Instruction Set Architecture (ISA) Level (Emulation):</strong> Emulates an entirely different CPU architecture in software (e.g., executing ARM code on an x86 processor via QEMU). Maximum flexibility at the cost of execution speed.</li>
-            <li><strong>Hardware Abstraction Layer (HAL) Level:</strong> Standard hypervisor approach (ESXi, KVM). Virtualizes motherboard chipsets, CPU, and RAM so guest operating systems run unmodified.</li>
-            <li><strong>Operating System Level (Containerization):</strong> A shared OS kernel utilizes features such as <code>cgroups</code> and <code>namespaces</code> to isolate user environments into lightweight <strong>containers</strong> (Docker, Podman). Starts in milliseconds with near-zero overhead.</li>
-            <li><strong>Application / Language Runtime Level:</strong> Translates source code into portable bytecode executing on abstract virtual machines such as the <strong>Java Virtual Machine (JVM)</strong> or .NET CLR.</li>
-          </ol>
-        </section>
-
-        <!-- 08: CPU, MEMORY, AND I/O -->
-        <section class="chapter" id="resources" aria-labelledby="resources-title">
-          <p class="section-label">08 / Hardware runtime mechanics</p>
-          <h2 id="resources-title">CPU, memory, and I/O virtualization mechanisms</h2>
-
-          <div class="callout">
-            <h3>The Popek-Goldberg Virtualization Condition</h3>
-            <p>In 1974, Gerald J. Popek and Robert P. Goldberg proved a foundational computer architecture theorem:</p>
-            <blockquote>
-              “A computer architecture is strictly virtualizable under a classic trap-and-emulate model if and only if all <strong>sensitive instructions</strong> are a strict subset of <strong>privileged instructions</strong>.”
-            </blockquote>
-            <p><strong>Core Concepts:</strong></p>
-            <ul>
-              <li><strong>Privileged Instructions:</strong> Instructions that execute exclusively in supervisor mode (Ring 0 / Kernel Mode) and trigger a hardware trap if executed in user mode (Ring 3).</li>
-              <li><strong>Sensitive Instructions:</strong> Instructions that manipulate hardware configurations (such as page tables or interrupt flags) or behave differently depending on execution privilege.</li>
-              <li><strong>The Rule:</strong> Any attempt by a guest OS to execute a sensitive instruction MUST trigger a hardware trap so the hypervisor can intercept and emulate it safely.</li>
-            </ul>
-          </div>
-
-          <h3>Resolving the x86 Virtualization Hole</h3>
-          <p>For decades, x86 processors violated the Popek-Goldberg theorem. There were <strong>17 sensitive instructions</strong> (such as <code>POPF</code>, <code>PUSHF</code>, <code>SMSW</code>) that did <strong>not trap</strong> when run in unprivileged user rings—they simply executed silently or returned incorrect results.</p>
-          <p>This challenge was solved through three architectural milestones:</p>
+          <p class="section-label">03 / Complex Integration (Asked in 2025–26)</p>
+          <h2 id="systems-title">Systems of Systems (SoS)</h2>
+          <p>A <strong>System of Systems (SoS)</strong> is a large-scale collaborative system created by integrating multiple <strong>operationally and managerially independent systems</strong> so they deliver an emergent capability that none could achieve individually.</p>
           <ul>
-            <li><strong>1. Binary Translation (VMware, 1998):</strong> The hypervisor dynamically inspects guest binary code blocks at runtime, identifies non-trapping sensitive instructions, and rewrites them into safe trap-inducing instructions before execution.</li>
-            <li><strong>2. Paravirtualization (Xen, 2003):</strong> The guest OS kernel is modified at the source code level to replace sensitive instructions with direct calls to the hypervisor called <strong>Hypercalls</strong>.</li>
-            <li><strong>3. Hardware-Assisted Virtualization (Intel VT-x &amp; AMD-V, 2005–Present):</strong> CPU manufacturers added hardware modes:
-              <br>• <strong>VMX Root Mode:</strong> Hypervisor privilege level.
-              <br>• <strong>VMX Non-Root Mode:</strong> Execution ring for Guest VMs. Sensitive operations trigger an automatic hardware transition called a <strong>VM-Exit</strong> governed by the <strong>VMCS (Virtual Machine Control Structure)</strong>.
+            <li><strong>Real-World Example:</strong> A travel aggregator (MakeMyTrip) connects independent airline reservation systems (IndiGo, Air India), hotel booking engines, UPI/Visa payment gateways, and SMS providers into one unified itinerary booking flow.</li>
+            <li><strong>Maier's 5 Characteristics of SoS:</strong>
+              <br>1. <strong>Operational Independence:</strong> Each constituent system can still run usefully on its own.
+              <br>2. <strong>Managerial Independence:</strong> Each system is owned, funded, and upgraded by a separate organization.
+              <br>3. <strong>Emergent Behavior:</strong> Combining them produces brand-new capabilities (e.g., comparing 20 airlines + hotels in 1 second).
+              <br>4. <strong>Evolutionary Development:</strong> Subsystems are added, replaced, or updated continuously without stopping the whole SoS.
+              <br>5. <strong>Geographic Distribution:</strong> Subsystems operate across different regions/clouds and exchange only messages over networks.
             </li>
           </ul>
+        </section>
 
-          <h3>Memory and I/O Virtualization Mechanics</h3>
-          <div class="table-wrap">
-            <table>
-              <caption>Memory and I/O Virtualization Mechanisms</caption>
-              <thead>
-                <tr><th scope="col">Subsystem</th><th scope="col">Non-Virtualized Baseline</th><th scope="col">Virtualization Mechanism &amp; Optimization</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row"><strong>Memory Virtualization</strong></th>
-                  <td>Two-level translation: Virtual Memory (App) $\to$ Physical RAM (OS).</td>
-                  <td><strong>Three-level address mapping:</strong> Guest Virtual Address (GVA) $\to$ Guest Physical Address (GPA) $\to$ Host Physical Address (HPA).
-                    <br>• <em>Hardware Nested Page Tables (Intel EPT / AMD RVI):</em> CPU MMU hardware walks two-dimensional page tables directly in silicon.
-                    <br>• <em>Memory Ballooning:</em> A balloon driver inside the guest inflates to reclaim unused memory when the host faces memory pressure.
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"><strong>I/O Virtualization</strong></th>
-                  <td>Device drivers communicate directly with physical PCI controller registers.</td>
-                  <td>• <em>Emulation:</em> Hypervisor intercepts register accesses to emulate legacy hardware (IDE, e1000 NIC).
-                    <br>• <em>Paravirtualized I/O (virtio):</em> Cooperative shared memory ring-buffers between guest driver and hypervisor.
-                    <br>• <em>SR-IOV (Single Root I/O Virtualization):</em> Physical network cards expose virtual functions directly into guest VMs for line-rate 100 Gbps speeds.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        <!-- 04: PUBLISH / SUBSCRIBE -->
+        <section class="chapter" id="pubsub" aria-labelledby="pubsub-title">
+          <p class="section-label">04 / Event-Driven Cloud Messaging</p>
+          <h2 id="pubsub-title">Publish/Subscribe (Pub/Sub) Model</h2>
+          <p><strong>Publish/Subscribe</strong> decouples event producers (<strong>Publishers</strong>) from consumers (<strong>Subscribers</strong>) through an intermediary <strong>Message Broker</strong> (e.g., Apache Kafka, RabbitMQ, AWS SNS, Google Pub/Sub). Publishers emit events to a named <strong>Topic</strong> without knowing who is listening; the broker fans out copies asynchronously to all subscribed services.</p>
+
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 2.3 — Asynchronous Publish / Subscribe Messaging Architecture</span>
+              <span class="badge">Event-Driven</span>
+            </div>
+            <svg viewBox="0 0 760 190" role="img" aria-label="Publish Subscribe diagram showing Order Service publishing to Topic inside Message Broker which fans out to Inventory, Email, and Billing subscribers">
+              <defs>
+                <marker id="psArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#165f5b"/>
+                </marker>
+              </defs>
+              <!-- Publisher -->
+              <rect x="20" y="62" width="165" height="66" rx="6" fill="#fffefa" stroke="#2b6cb0" stroke-width="2"/>
+              <text x="102" y="88" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="12" font-weight="800">Publisher</text>
+              <text x="102" y="108" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="10">Order Service emits</text>
+              <text x="102" y="121" text-anchor="middle" fill="#133c43" font-family="monospace" font-size="9.5">order.created</text>
+
+              <line x1="185" y1="95" x2="262" y2="95" stroke="#165f5b" stroke-width="2.2" marker-end="url(#psArr)"/>
+              <text x="223" y="86" text-anchor="middle" fill="#165f5b" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">Publish</text>
+
+              <!-- Broker -->
+              <rect x="266" y="34" width="210" height="122" rx="8" fill="#fdf6ec" stroke="#a15d32" stroke-width="2"/>
+              <text x="371" y="58" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="12" font-weight="800">Message Broker</text>
+              <text x="371" y="74" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">(Kafka · AWS SNS · RabbitMQ)</text>
+              <rect x="292" y="88" width="158" height="44" rx="5" fill="#fffefa" stroke="#a15d32"/>
+              <text x="371" y="107" text-anchor="middle" fill="#133c43" font-family="monospace" font-size="10.5" font-weight="700">Topic: order.created</text>
+              <text x="371" y="123" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Buffers &amp; fans out events</text>
+
+              <!-- Fan-out arrows -->
+              <line x1="476" y1="70" x2="554" y2="38" stroke="#165f5b" stroke-width="2" marker-end="url(#psArr)"/>
+              <line x1="476" y1="95" x2="554" y2="95" stroke="#165f5b" stroke-width="2" marker-end="url(#psArr)"/>
+              <line x1="476" y1="120" x2="554" y2="152" stroke="#165f5b" stroke-width="2" marker-end="url(#psArr)"/>
+
+              <!-- Subscribers -->
+              <rect x="558" y="16" width="182" height="44" rx="5" fill="#e9f1ee" stroke="#165f5b" stroke-width="1.5"/>
+              <text x="649" y="35" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Subscriber 1: Inventory</text>
+              <text x="649" y="50" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Reserves stock quantity</text>
+
+              <rect x="558" y="73" width="182" height="44" rx="5" fill="#e9f1ee" stroke="#165f5b" stroke-width="1.5"/>
+              <text x="649" y="92" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Subscriber 2: Billing</text>
+              <text x="649" y="107" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Generates invoice PDF</text>
+
+              <rect x="558" y="130" width="182" height="44" rx="5" fill="#e9f1ee" stroke="#165f5b" stroke-width="1.5"/>
+              <text x="649" y="149" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Subscriber 3: Email</text>
+              <text x="649" y="164" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Sends confirmation mail</text>
+            </svg>
+            <figcaption>Pub/Sub provides <strong>space, time, and synchronization decoupling</strong>—even if Email Service is temporarily down, the broker buffers the event until it recovers (requiring <em>idempotent</em> handlers for at-least-once delivery).</figcaption>
+          </figure>
+        </section>
+
+        <!-- 05: BASICS OF VIRTUALIZATION -->
+        <section class="chapter" id="virtualization" aria-labelledby="virtualization-title">
+          <p class="section-label">05 / Core Cloud Engine (Asked in 2024–25 &amp; 2025–26)</p>
+          <h2 id="virtualization-title">Basics of Virtualization &amp; How It Enables Cloud</h2>
+          <p><strong>Virtualization</strong> abstracts physical computing resources (CPU, RAM, storage, network) into logical virtual environments using a software layer called a <strong>Hypervisor</strong>. This allows a single physical server to run multiple isolated <strong>Virtual Machines (VMs)</strong> concurrently, each running its own Guest OS.</p>
+
+          <h3>Four Ways Virtualization Enables Cloud Computing</h3>
+          <ol>
+            <li><strong>Multi-Tenancy &amp; Resource Pooling:</strong> One 64-core physical server is sliced into 20 isolated VMs rented to 20 separate organizations, lifting hardware utilization from ~15% to 75%+.</li>
+            <li><strong>Rapid Provisioning &amp; Elasticity:</strong> Cloning a software VM image takes seconds—making on-demand self-service and autoscaling possible.</li>
+            <li><strong>Hardware Independence &amp; Live Migration:</strong> Because a VM is encapsulated as portable disk/config files, it can be live-migrated across physical hosts with zero downtime.</li>
+            <li><strong>Fault &amp; Security Isolation:</strong> A kernel panic or malware inside Tenant A's VM cannot crash Tenant B's VM on the same host.</li>
+          </ol>
+
+          <h3>Popek–Goldberg Virtualization Theorem (Bonus Marks!)</h3>
+          <div class="callout">
+            <h3>When Is a CPU Architecture Efficiently Virtualizable?</h3>
+            <p>A computer architecture is classically virtualizable if <strong>all sensitive instructions</strong> (instructions that read or change hardware/privilege state) are a strict subset of <strong>privileged instructions</strong> (instructions that automatically trap to the hypervisor when executed in user mode). Legacy x86 CPUs had 17 sensitive unprivileged instructions, requiring software binary translation until <strong>Intel VT-x</strong> and <strong>AMD-V</strong> added hardware virtualization support.</p>
           </div>
         </section>
 
-        <!-- 09: VIRTUALIZATION AND RECOVERY -->
-        <section class="chapter" id="recovery" aria-labelledby="recovery-title">
-          <p class="section-label">09 / High availability</p>
-          <h2 id="recovery-title">Virtualization and disaster recovery</h2>
-          
-          <div class="callout">
-            <h3>Disaster Recovery Transformation</h3>
-            <p>In traditional data centers, recovery from a motherboard failure required sourcing identical hardware models, configuring BIOS settings, and reinstalling drivers from tape backups over multiple days.</p>
-            <p>In virtualized clouds, <strong>a complete server (OS, configuration, and data) is encapsulated as a portable disk file (<code>.vmdk</code>, <code>.qcow2</code>)</strong>. If physical host A fails, the cluster restarts the exact VM file on host B in <strong>under 30 seconds</strong>.</p>
+        <!-- 06: HYPERVISORS, TYPES & LEVELS -->
+        <section class="chapter" id="hypervisors" aria-labelledby="hypervisors-title">
+          <p class="section-label">06 / Hypervisors, Types &amp; Implementation Levels</p>
+          <h2 id="hypervisors-title">Hypervisors, Virtualization Types &amp; Levels</h2>
+
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 2.4 — Type-1 (Bare-Metal) vs Type-2 (Hosted) Hypervisor &amp; Containers</span>
+              <span class="badge">Must-Draw Exam Diagram</span>
+            </div>
+            <svg viewBox="0 0 800 245" role="img" aria-label="Architecture stacks comparing Type-1 Bare-Metal Hypervisor, Type-2 Hosted Hypervisor, and OS-Level Containers">
+              <!-- Column 1: Type 1 -->
+              <rect x="12" y="10" width="244" height="225" rx="6" fill="#fffefa" stroke="#133c43" stroke-width="1.6"/>
+              <rect x="12" y="10" width="244" height="32" rx="6" fill="#133c43"/>
+              <text x="134" y="31" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11.5" font-weight="700">Type-1: Bare-Metal</text>
+              <rect x="26" y="54" width="102" height="34" rx="4" fill="#feebc8" stroke="#d69e2e"/><text x="77" y="75" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="10" font-weight="700">App 1 + Guest OS</text>
+              <rect x="140" y="54" width="102" height="34" rx="4" fill="#feebc8" stroke="#d69e2e"/><text x="191" y="75" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="10" font-weight="700">App 2 + Guest OS</text>
+              <rect x="26" y="100" width="216" height="44" rx="4" fill="#165f5b"/>
+              <text x="134" y="119" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Bare-Metal Hypervisor</text>
+              <text x="134" y="134" text-anchor="middle" fill="#cfe8df" font-family="system-ui,sans-serif" font-size="9.5">VMware ESXi · KVM · Xen · Hyper-V</text>
+              <rect x="26" y="156" width="216" height="36" rx="4" fill="#edf2f7" stroke="#a0aec0"/>
+              <text x="134" y="178" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">Physical Server Hardware</text>
+              <text x="134" y="218" text-anchor="middle" fill="#165f5b" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">Fastest · Used in Cloud Data Centers</text>
+
+              <!-- Column 2: Type 2 -->
+              <rect x="278" y="10" width="244" height="225" rx="6" fill="#fffefa" stroke="#2b6cb0" stroke-width="1.6"/>
+              <rect x="278" y="10" width="244" height="32" rx="6" fill="#2b6cb0"/>
+              <text x="400" y="31" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11.5" font-weight="700">Type-2: Hosted</text>
+              <rect x="292" y="52" width="102" height="30" rx="4" fill="#feebc8" stroke="#d69e2e"/><text x="343" y="71" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">VM 1 (Ubuntu)</text>
+              <rect x="406" y="52" width="102" height="30" rx="4" fill="#feebc8" stroke="#d69e2e"/><text x="457" y="71" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">VM 2 (Windows)</text>
+              <rect x="292" y="90" width="216" height="34" rx="4" fill="#2b6cb0"/>
+              <text x="400" y="111" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">Hosted Hypervisor (VirtualBox)</text>
+              <rect x="292" y="132" width="216" height="28" rx="4" fill="#e9f1ee" stroke="#165f5b"/>
+              <text x="400" y="150" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10" font-weight="700">Host OS (Windows / Linux / macOS)</text>
+              <rect x="292" y="168" width="216" height="28" rx="4" fill="#edf2f7" stroke="#a0aec0"/>
+              <text x="400" y="186" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="10" font-weight="700">Physical PC / Laptop Hardware</text>
+              <text x="400" y="218" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">Easy Setup · Dev, Testing &amp; Labs</text>
+
+              <!-- Column 3: Containers -->
+              <rect x="544" y="10" width="244" height="225" rx="6" fill="#fffefa" stroke="#276749" stroke-width="1.6"/>
+              <rect x="544" y="10" width="244" height="32" rx="6" fill="#276749"/>
+              <text x="666" y="31" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11.5" font-weight="700">OS-Level (Containers)</text>
+              <rect x="558" y="54" width="66" height="34" rx="4" fill="#c6f6d5" stroke="#276749"/><text x="591" y="75" text-anchor="middle" fill="#22543d" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">App A</text>
+              <rect x="633" y="54" width="66" height="34" rx="4" fill="#c6f6d5" stroke="#276749"/><text x="666" y="75" text-anchor="middle" fill="#22543d" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">App B</text>
+              <rect x="708" y="54" width="66" height="34" rx="4" fill="#c6f6d5" stroke="#276749"/><text x="741" y="75" text-anchor="middle" fill="#22543d" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">App C</text>
+              <rect x="558" y="98" width="216" height="30" rx="4" fill="#276749"/>
+              <text x="666" y="117" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">Container Engine (Docker / containerd)</text>
+              <rect x="558" y="136" width="216" height="28" rx="4" fill="#e9f1ee" stroke="#165f5b"/>
+              <text x="666" y="154" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10" font-weight="700">Shared Host OS Kernel (Linux)</text>
+              <rect x="558" y="170" width="216" height="26" rx="4" fill="#edf2f7" stroke="#a0aec0"/>
+              <text x="666" y="187" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="10" font-weight="700">Physical / Cloud Server Hardware</text>
+              <text x="666" y="218" text-anchor="middle" fill="#276749" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">Lightweight · Millisecond Startup</text>
+            </svg>
+            <figcaption>Type-1 hypervisors run directly on bare metal for cloud data centers; Type-2 runs on a host OS for desktop labs; Containers share the host kernel for ultra-fast microservice deployment.</figcaption>
+          </figure>
+
+          <h3>Full Virtualization vs Paravirtualization vs Hardware-Assisted</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Comparison of CPU Virtualization Structures</caption>
+              <thead>
+                <tr><th scope="col">Structure</th><th scope="col">Mechanism</th><th scope="col">Guest OS Modified?</th><th scope="col">Performance &amp; Examples</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Full Virtualization</th><td><strong>Binary Translation:</strong> Hypervisor intercepts and rewrites sensitive instructions at runtime.</td><td><strong>No</strong> (runs any unmodified Windows/Linux OS).</td><td>Moderate overhead; maximum OS compatibility.</td></tr>
+                <tr><th scope="row">Paravirtualization</th><td><strong>Hypercalls:</strong> Modified guest OS kernel calls the hypervisor directly instead of trapping.</td><td><strong>Yes</strong> (requires open-source/patched kernel).</td><td><strong>High efficiency</strong>, low CPU/I/O overhead (Xen PV, virtio).</td></tr>
+                <tr><th scope="row">Hardware-Assisted</th><td>CPU silicon (<strong>Intel VT-x / AMD-V</strong>) adds VMX root/non-root modes for direct hardware VM exits.</td><td><strong>No</strong> (unmodified guest OS).</td><td><strong>Near-native speed</strong>; modern cloud standard (KVM, ESXi).</td></tr>
+              </tbody>
+            </table>
           </div>
 
-          <h3>Live Migration (VMware vMotion / KVM Live Migrate)</h3>
-          <p><strong>Live Migration</strong> transfers a running virtual machine from one physical host to another across the local network with <strong>zero perceptible downtime</strong> for active users.</p>
-          <p>The hypervisor utilizes <strong>Iterative Memory Pre-Copying</strong>:</p>
-          <ol>
-            <li><strong>Baseline Memory Copy:</strong> The hypervisor copies all physical memory pages from Host A to Host B while the VM continues running and serving user traffic.</li>
-            <li><strong>Dirty Page Iterations:</strong> The VM modifies certain memory pages during transfer ("dirty pages"). The hypervisor tracks these dirty pages and transfers the delta in successive fast passes.</li>
-            <li><strong>Millisecond Handover:</strong> When the dirty page rate reaches a minimum, the hypervisor suspends the VM for 10–50 milliseconds, transfers final CPU registers and remaining pages, broadcasts a gratuitous ARP to update network switches, and resumes execution on Host B.</li>
-          </ol>
+          <h3>System VM vs Process VM vs Containers</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>System Virtual Machine vs Process Virtual Machine vs Container</caption>
+              <thead>
+                <tr><th scope="col">Feature</th><th scope="col">System VM</th><th scope="col">Process VM</th><th scope="col">OS Container</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">What It Runs</th><td>Complete Guest OS + multiple apps.</td><td>Single application program.</td><td>Isolated user-space app + libraries.</td></tr>
+                <tr><th scope="row">Kernel</th><td>Dedicated Guest OS kernel per VM.</td><td>Uses Host OS kernel via runtime.</td><td>Shares Host OS kernel (namespaces/cgroups).</td></tr>
+                <tr><th scope="row">Startup &amp; Size</th><td>Seconds–minutes · Gigabytes.</td><td>Milliseconds · Megabytes.</td><td>Milliseconds · Tens of megabytes.</td></tr>
+                <tr><th scope="row">Examples</th><td>VMware ESXi, KVM, VirtualBox.</td><td>Java Virtual Machine (JVM), .NET CLR.</td><td>Docker, Podman, Kubernetes pods.</td></tr>
+              </tbody>
+            </table>
+          </div>
 
-          <!-- SOLID COLORFUL DIAGRAM: DISASTER RECOVERY TIMELINE (RPO / RTO) -->
+          <h3>5 Implementation Levels of Virtualization</h3>
+          <ol>
+            <li><strong>ISA Level (Instruction Set Architecture):</strong> Emulates another CPU's instruction set in software (e.g., QEMU running ARM on x86). Maximum portability, slowest speed.</li>
+            <li><strong>Hardware Abstraction Level (HAL):</strong> Hypervisor virtualizes physical CPU, RAM, and I/O directly (ESXi, KVM, Xen). Standard for public IaaS clouds.</li>
+            <li><strong>Operating System Level:</strong> Multiple isolated containers share one host kernel (Docker, LXC). Highest density and fastest boot.</li>
+            <li><strong>Library Support Level:</strong> Intercepts API calls between applications and OS libraries (e.g., WINE running Windows apps on Linux).</li>
+            <li><strong>Application Level:</strong> Virtualizes a single application runtime (e.g., JVM executing Java bytecode across any OS).</li>
+          </ol>
+        </section>
+
+        <!-- 07: CPU, MEMORY, I/O & NETWORK VIRTUALIZATION -->
+        <section class="chapter" id="resources" aria-labelledby="resources-title">
+          <p class="section-label">07 / Resource Virtualization Mechanisms (Asked in 2023–24 &amp; 2024–25)</p>
+          <h2 id="resources-title">CPU, Memory, I/O &amp; Network Virtualization</h2>
+
+          <h3>1. CPU Virtualization</h3>
+          <p>Each VM is assigned one or more <strong>Virtual CPUs (vCPUs)</strong>. The hypervisor's CPU scheduler <strong>time-slices</strong> vCPUs across physical cores, storing each vCPU's register state in a hardware <strong>VMCS (Virtual Machine Control Structure)</strong>. With <strong>Intel VT-x / AMD-V</strong>, user instructions run directly on silicon while privileged instructions trigger a <em>VM Exit</em> to the hypervisor—enabling safe <strong>CPU overcommitment</strong> (e.g., 16 vCPUs on 8 physical cores).</p>
+
+          <h3>2. Memory Virtualization (Two-Stage Address Translation)</h3>
+          <p>Every guest OS expects contiguous RAM starting at address 0. Virtualization solves this with a two-level translation chain accelerated in hardware by <strong>Intel EPT (Extended Page Tables)</strong> / <strong>AMD NPT</strong>:</p>
+
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 2.5 — Two-Level Memory Virtualization (GVA → GPA → HPA)</span>
+              <span class="badge">Exam Diagram</span>
+            </div>
+            <svg viewBox="0 0 760 135" role="img" aria-label="Memory translation flow from Guest Virtual Address through Guest Page Table to Guest Physical Address then through Hypervisor EPT to Host Physical Address">
+              <defs>
+                <marker id="memArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#165f5b"/>
+                </marker>
+              </defs>
+              <rect x="14" y="34" width="160" height="62" rx="6" fill="#feebc8" stroke="#a15d32" stroke-width="1.6"/>
+              <text x="94" y="59" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="11.5" font-weight="800">GVA</text>
+              <text x="94" y="78" text-anchor="middle" fill="#4f321e" font-family="system-ui,sans-serif" font-size="9.5">Guest Virtual Address</text>
+
+              <line x1="174" y1="65" x2="294" y2="65" stroke="#165f5b" stroke-width="2.2" marker-end="url(#memArr)"/>
+              <rect x="188" y="32" width="92" height="24" rx="4" fill="#fffefa" stroke="#165f5b"/>
+              <text x="234" y="48" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="9" font-weight="700">Guest Page Table</text>
+
+              <rect x="298" y="34" width="164" height="62" rx="6" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.6"/>
+              <text x="380" y="59" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="11.5" font-weight="800">GPA</text>
+              <text x="380" y="78" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9.5">Guest Physical Address</text>
+
+              <line x1="462" y1="65" x2="582" y2="65" stroke="#165f5b" stroke-width="2.2" marker-end="url(#memArr)"/>
+              <rect x="472" y="32" width="100" height="24" rx="4" fill="#fffefa" stroke="#276749"/>
+              <text x="522" y="48" text-anchor="middle" fill="#276749" font-family="system-ui,sans-serif" font-size="9" font-weight="700">Hypervisor / EPT</text>
+
+              <rect x="586" y="34" width="160" height="62" rx="6" fill="#e9f1ee" stroke="#165f5b" stroke-width="2"/>
+              <text x="666" y="59" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11.5" font-weight="800">HPA</text>
+              <text x="666" y="78" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9.5">Real Host Physical RAM</text>
+
+              <text x="380" y="120" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Memory Optimization: <strong>Ballooning</strong> reclaims idle guest RAM · <strong>Transparent Page Sharing</strong> deduplicates identical OS pages</text>
+            </svg>
+            <figcaption>Two-level translation keeps each VM isolated in its own physical memory space while Intel EPT/AMD NPT eliminates slow software shadow page tables.</figcaption>
+          </figure>
+
+          <h3>3. I/O &amp; Network Virtualization</h3>
+          <ul>
+            <li><strong>I/O Virtualization Modes:</strong> (1) <em>Full Emulation</em> (hypervisor mimics an Intel NIC in software — universal but slow), (2) <em>Paravirtualized I/O (<code>virtio</code>)</em> (shared memory ring buffers — fast &amp; standard in KVM/AWS), and (3) <em>Direct Assignment (PCI Passthrough / SR-IOV)</em> (VM accesses physical NIC/GPU directly for near-bare-metal speed).</li>
+            <li><strong>Network Virtualization (SDN &amp; VXLAN):</strong> Virtual switches (<strong>Open vSwitch</strong>) and overlay tunnels (<strong>VXLAN / GENEVE</strong>) decouple logical tenant networks from physical cables, enabling cloud providers to spin up isolated <strong>Virtual Private Clouds (VPCs)</strong>, virtual routers, and load balancers via APIs in seconds.</li>
+          </ul>
+        </section>
+
+        <!-- 08: DISASTER RECOVERY -->
+        <section class="chapter" id="recovery" aria-labelledby="recovery-title">
+          <p class="section-label">08 / Business Continuity (Asked in 2023–24)</p>
+          <h2 id="recovery-title">Virtualization Support for Disaster Recovery</h2>
+          <p>Virtualization encapsulates an entire server (OS, libraries, apps, data) into portable software files—eliminating the need for identical physical backup hardware and slashing recovery time from days to minutes.</p>
+
           <div class="solid-diagram">
             <div class="solid-diagram-title">
-              <span>Disaster Recovery Timeline: RPO vs RTO</span>
-              <span class="badge">Business Continuity</span>
+              <span>RPO &amp; RTO Timeline During a Data Center Outage</span>
+              <span class="badge">Exam Diagram</span>
             </div>
             <div class="timeline-block">
               <div class="timeline-line">
-                <div class="timeline-point">Last Data Backup</div>
-                <div class="timeline-point disaster">⚡ HARDWARE FAILURE ⚡</div>
-                <div class="timeline-point">Service Restored</div>
+                <div class="timeline-point">Last Replicated<br>Snapshot (10:00 AM)</div>
+                <div class="timeline-point disaster">Disaster Hits!<br>(10:15 AM)</div>
+                <div class="timeline-point">VMs Restored at<br>DR Site (10:45 AM)</div>
               </div>
               <div class="timeline-spans">
                 <div class="timeline-span-card span-rpo">
-                  <strong>RPO (Recovery Point Objective)</strong>
-                  <p>Maximum tolerable data loss measured backward from the failure point to the last recoverable backup.</p>
+                  <strong>RPO (Recovery Point Objective) = 15 mins</strong><br>
+                  Maximum acceptable <em>data loss</em> measured backward from failure to last valid backup.
                 </div>
                 <div class="timeline-span-card span-rto">
-                  <strong>RTO (Recovery Time Objective)</strong>
-                  <p>Maximum tolerable clock downtime required to restore the service to operational status.</p>
+                  <strong>RTO (Recovery Time Objective) = 30 mins</strong><br>
+                  Maximum acceptable <em>downtime</em> measured forward from failure until service resumes.
                 </div>
               </div>
             </div>
           </div>
 
+          <h3>Disaster Recovery Tiers (Cost vs Speed Trade-Off)</h3>
           <div class="table-wrap">
             <table>
-              <caption>RPO vs RTO: Definitions and Business Metrics</caption>
+              <caption>Cold Standby vs Warm Standby vs Hot Standby (Active-Active)</caption>
               <thead>
-                <tr><th scope="col">Metric</th><th scope="col">Definition</th><th scope="col">Core Business Question</th><th scope="col">Enterprise Real-World Scenario</th></tr>
+                <tr><th scope="col">DR Tier</th><th scope="col">How It Works</th><th scope="col">RPO / RTO</th><th scope="col">Cost &amp; Example</th></tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row"><strong>RPO</strong></th>
-                  <td><strong>Recovery Point Objective:</strong> Maximum acceptable age of data that can be lost permanently due to a disruption.</td>
-                  <td><em>"How much data can our business afford to lose?"</em></td>
-                  <td>A core banking transaction ledger has an RPO of <strong>0 seconds</strong> (synchronous multi-region replication). An internal employee wiki may have an RPO of <strong>24 hours</strong> (daily snapshot).</td>
-                </tr>
-                <tr>
-                  <th scope="row"><strong>RTO</strong></th>
-                  <td><strong>Recovery Time Objective:</strong> Maximum acceptable duration of clock downtime before operational service is restored.</td>
-                  <td><em>"How long can our systems remain offline?"</em></td>
-                  <td>An e-commerce storefront during peak sale seasons mandates an RTO of <strong>under 5 minutes</strong>. A monthly payroll calculation server can tolerate an RTO of <strong>8 hours</strong>.</td>
-                </tr>
+                <tr><th scope="row">Cold Standby</th><td>Backups stored in remote cloud storage (S3); VMs created only after disaster.</td><td>Hours to days.</td><td><strong>Lowest cost</strong> — internal archives, dev servers.</td></tr>
+                <tr><th scope="row">Warm Standby</th><td>Scaled-down core VMs running in DR region with periodic async replication.</td><td>Minutes to 1 hour.</td><td><strong>Moderate cost</strong> — e-commerce, ERP systems.</td></tr>
+                <tr><th scope="row">Hot Standby (Active-Active)</th><td>Full duplicate capacity running live in two regions with synchronous replication.</td><td><strong>Near-zero</strong> (seconds).</td><td><strong>Highest cost</strong> — banking, UPI, stock exchanges.</td></tr>
               </tbody>
             </table>
           </div>
+          <p><strong>Key Note:</strong> Always distinguish <em>Snapshot</em> (quick point-in-time state on the same storage — not a backup!) from <em>Backup</em> (independent copy on separate storage/region) and <em>Replication</em> (live syncing of changes — also replicates accidental deletions unless combined with snapshots).</p>
         </section>
 
-        <!-- 10: EXAM CHECKLIST AND REFERENCES -->
-        <section class="chapter" id="review" aria-labelledby="review-title">
-          <p class="section-label">10 / Review and sources</p>
-          <h2 id="review-title">Exam checklist and references</h2>
-          
-          <h3>Essential Examination Checklist for Unit II</h3>
-          <ul>
-            <li>State the 4 core principles of SOA (Loose Coupling, Reusability, Discoverability, Composability).</li>
-            <li>Contrast Monolithic vs SOA vs Microservices across architecture, databases, and failure domains.</li>
-            <li>List the 4 HTTP methods in REST (GET, POST, PUT, DELETE) and explain idempotency and statelessness.</li>
-            <li>Define System of Systems (SoS) and compare SOAP (strict XML protocol) with REST (lightweight HTTP JSON).</li>
-            <li>Explain Pub/Sub messaging and its 3 forms of decoupling (Space, Time, Synchronization).</li>
-            <li>Differentiate Type 1 (bare-metal) vs Type 2 (hosted) hypervisors with clear examples (ESXi vs VirtualBox).</li>
-            <li>State the Popek-Goldberg virtualization condition and explain how the x86 hole was resolved (Binary Translation vs Hardware-Assisted VT-x VMCS).</li>
-            <li>Explain Live Migration pre-copying and define RPO (data loss window) vs RTO (downtime duration).</li>
-          </ul>
-
-          <div class="next-section" aria-label="Next unit">
-            <p>Continue the guide</p>
-            <a href="unit3.html">Next: Unit III — Cloud Architecture, Services &amp; Storage <span aria-hidden="true">→</span></a>
+        <!-- 09: EXAM PREPARATION -->
+        <section class="chapter" id="exam-preparation" aria-labelledby="exam-title">
+          <p class="section-label">09 / Exam Strategy</p>
+          <h2 id="exam-title">Unit II Exam Writing Checklist</h2>
+          <div class="callout callout-warm">
+            <h3>Most Frequently Asked Unit II Questions</h3>
+            <p>• Describe REST-based web services and explain their 6 architectural principles (7M).<br>
+            • Explain CPU virtualization and how multiple VMs run on a single physical processor (10M).<br>
+            • Compare full virtualization vs paravirtualization &amp; Type-1 vs Type-2 hypervisors (7/10M).<br>
+            • Explain how virtualization supports disaster recovery and business continuity (10M).</p>
           </div>
+          <ul>
+            <li><strong>Always draw a stack diagram:</strong> For any hypervisor/virtualization question, drawing Type-1 vs Type-2 immediately secures diagram marks.</li>
+            <li><strong>State both RPO and RTO clearly:</strong> Examiners look for the exact distinction—<em>RPO = Data Loss</em>, <em>RTO = Downtime</em>.</li>
+          </ul>
+        </section>
+
+        <section class="next-section" aria-label="Next unit">
+          <p>Continue the guide</p>
+          <a href="unit3.html">Next: Unit III — Cloud Architecture, Services &amp; Storage <span aria-hidden="true">→</span></a>
         </section>
       </article>
     </div>
@@ -639,7 +539,8 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>Cloud Computing · Academic study guide · Unit II</p>
+      <p>Cloud Computing · Complete 8-Page Academic Study Guide · Unit II</p>
+      <p><a href="short-answers.html">Short Answers (2M)</a> · <a href="long-answers.html">Long Answers (7/10M)</a></p>
     </div>
   </footer>
 

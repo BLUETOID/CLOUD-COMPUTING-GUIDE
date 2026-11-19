@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Comprehensive, exam-ready Unit V guide for Cloud Technologies and Advancements: Hadoop, HDFS, MapReduce with diagram, VirtualBox, Google App Engine and programming environment, OpenStack, Cloud Federation, AWS, VMware, and Nimbus.">
+  <title>Unit V — Cloud Technologies &amp; Advancements | Cloud Computing Study Guide</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="reading-progress-bar" id="reading-progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Cloud Computing study guide overview">
+        <span class="brand-kicker">ACADEMIC STUDY GUIDE / UNITS 01—05</span>
+        <span class="brand-name">Cloud Computing</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="unit1.html">Unit I</a>
+        <a href="unit2.html">Unit II</a>
+        <a href="unit3.html">Unit III</a>
+        <a href="unit4.html">Unit IV</a>
+        <a href="unit5.html" aria-current="page">Unit V</a>
+        <a href="short-answers.html">Short Answers</a>
+        <a href="long-answers.html">Long Answers</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="container">
+        <p class="eyebrow">Unit 05 / Platforms &amp; Advancements (CO5)</p>
+        <h1 id="page-title">Cloud Technologies &amp; Advancements</h1>
+        <p class="lead">Complete, diagram-rich Unit V study notes: Apache Hadoop, HDFS, MapReduce, Oracle VirtualBox, Google App Engine (GAE) &amp; its programming environment, OpenStack, Cloud Federation levels, plus AWS, VMware, and Nimbus.</p>
+        <div class="hero-meta" aria-label="Unit scope">
+          <span>7 in-depth chapters</span>
+          <span>5 SVG Architecture Diagrams · HDFS Worked Example · Platform Comparisons</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container reading-layout">
+      <aside class="page-sidebar" aria-label="On this page">
+        <nav aria-label="Unit V chapters">
+          <p>On this page</p>
+          <ol>
+            <li><a href="#hadoop">1. Hadoop &amp; HDFS Architecture</a></li>
+            <li><a href="#mapreduce">2. Working of MapReduce</a></li>
+            <li><a href="#virtualbox">3. VirtualBox in Cloud Dev/Test</a></li>
+            <li><a href="#gae">4. Google App Engine (GAE)</a></li>
+            <li><a href="#openstack">5. OpenStack Architecture</a></li>
+            <li><a href="#federation">6. Cloud Federation Levels</a></li>
+            <li><a href="#other-platforms">7. AWS, VMware &amp; Nimbus</a></li>
+          </ol>
+        </nav>
+      </aside>
+
+      <article class="prose" aria-label="Unit V guide">
+
+        <!-- 01: HADOOP & HDFS -->
+        <section class="chapter" id="hadoop" aria-labelledby="hadoop-title">
+          <p class="section-label">01 / Big Data Processing (Asked in 2023–24, 2024–25 &amp; 2025–26!)</p>
+          <h2 id="hadoop-title">Apache Hadoop &amp; HDFS Architecture</h2>
+
+          <div class="callout">
+            <h3>Core Design Principle</h3>
+            <p><strong>Apache Hadoop</strong> is an open-source Java framework for distributed storage and parallel processing of massive datasets across clusters of inexpensive commodity servers. Instead of moving gigabytes of data across slow networks to a compute server, Hadoop follows <strong>Data Locality ("Move Computation to Data")</strong>.</p>
+          </div>
+
+          <h3>4 Core Hadoop Ecosystem Modules</h3>
+          <ol>
+            <li><strong>HDFS (Hadoop Distributed File System):</strong> Fault-tolerant distributed storage splitting large files into <strong>128 MB blocks</strong> with 3× replication.</li>
+            <li><strong>MapReduce:</strong> Distributed parallel batch processing engine based on <code>&lt;Key, Value&gt;</code> pairs.</li>
+            <li><strong>YARN (Yet Another Resource Negotiator):</strong> Cluster scheduler (ResourceManager + NodeManagers) allocating CPU/RAM containers across nodes.</li>
+            <li><strong>Hadoop Common:</strong> Shared Java utilities, I/O libraries, and OS-level abstractions.</li>
+          </ol>
+
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 5.1 — HDFS Master–Slave Architecture with Rack-Aware 3× Replication</span>
+              <span class="badge">Must-Draw Exam Diagram</span>
+            </div>
+            <svg viewBox="0 0 780 250" role="img" aria-label="HDFS Master-Slave architecture showing Client querying NameNode for metadata and reading replicated blocks from DataNodes across Rack A and Rack B">
+              <defs>
+                <marker id="hdArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#165f5b"/>
+                </marker>
+              </defs>
+              <!-- Client -->
+              <rect x="16" y="16" width="145" height="62" rx="6" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.8"/>
+              <text x="88" y="42" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="11.5" font-weight="800">HDFS Client</text>
+              <text x="88" y="61" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Reads / Writes File</text>
+
+              <!-- NameNode -->
+              <rect x="240" y="12" width="300" height="70" rx="6" fill="#133c43" stroke="#133c43" stroke-width="2"/>
+              <text x="390" y="36" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="12.5" font-weight="800">NameNode (Master)</text>
+              <text x="390" y="54" text-anchor="middle" fill="#cfe8df" font-family="system-ui,sans-serif" font-size="9.5">Stores Metadata in RAM (File → Block Map)</text>
+              <text x="390" y="69" text-anchor="middle" fill="#b5d8cc" font-family="system-ui,sans-serif" font-size="9">Monitors Heartbeats every 3 sec</text>
+
+              <!-- Client to NameNode -->
+              <line x1="161" y1="47" x2="236" y2="47" stroke="#165f5b" stroke-width="2" marker-end="url(#hdArr)" marker-start="url(#hdArr)"/>
+              <text x="198" y="38" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="8.5" font-weight="700">Metadata</text>
+
+              <!-- Rack A -->
+              <rect x="24" y="120" width="348" height="114" rx="8" fill="#f5faf8" stroke="#165f5b" stroke-width="1.5"/>
+              <text x="198" y="140" text-anchor="middle" fill="#165f5b" font-family="system-ui,sans-serif" font-size="10.5" font-weight="800">RACK A (2 Replicas)</text>
+              <rect x="42" y="152" width="146" height="66" rx="5" fill="#fffefa" stroke="#165f5b"/>
+              <text x="115" y="172" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">DataNode 1</text>
+              <rect x="54" y="182" width="56" height="24" rx="3" fill="#2b6cb0"/><text x="82" y="198" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9" font-weight="700">Blk A</text>
+              <rect x="118" y="182" width="56" height="24" rx="3" fill="#a15d32"/><text x="146" y="198" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9" font-weight="700">Blk B</text>
+
+              <rect x="208" y="152" width="146" height="66" rx="5" fill="#fffefa" stroke="#165f5b"/>
+              <text x="281" y="172" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">DataNode 2</text>
+              <rect x="220" y="182" width="56" height="24" rx="3" fill="#2b6cb0"/><text x="248" y="198" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9" font-weight="700">Blk A</text>
+              <rect x="284" y="182" width="56" height="24" rx="3" fill="#276749"/><text x="312" y="198" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9" font-weight="700">Blk C</text>
+
+              <!-- Rack B -->
+              <rect x="408" y="120" width="348" height="114" rx="8" fill="#fdf6ec" stroke="#a15d32" stroke-width="1.5"/>
+              <text x="582" y="140" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="10.5" font-weight="800">RACK B (1 Remote Replica for Rack Fault Tolerance)</text>
+              <rect x="426" y="152" width="146" height="66" rx="5" fill="#fffefa" stroke="#a15d32"/>
+              <text x="499" y="172" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">DataNode 3</text>
+              <rect x="438" y="182" width="56" height="24" rx="3" fill="#2b6cb0"/><text x="466" y="198" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9" font-weight="700">Blk A</text>
+              <rect x="502" y="182" width="56" height="24" rx="3" fill="#a15d32"/><text x="530" y="198" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9" font-weight="700">Blk B</text>
+
+              <rect x="592" y="152" width="146" height="66" rx="5" fill="#fffefa" stroke="#a15d32"/>
+              <text x="665" y="172" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">DataNode 4</text>
+              <rect x="604" y="182" width="56" height="24" rx="3" fill="#a15d32"/><text x="632" y="198" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9" font-weight="700">Blk B</text>
+              <rect x="668" y="182" width="56" height="24" rx="3" fill="#276749"/><text x="696" y="198" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9" font-weight="700">Blk C</text>
+
+              <!-- Heartbeat / Control lines -->
+              <line x1="330" y1="82" x2="220" y2="118" stroke="#165f5b" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#hdArr)"/>
+              <line x1="450" y1="82" x2="560" y2="118" stroke="#165f5b" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#hdArr)"/>
+              <text x="390" y="108" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9" font-weight="700">Heartbeats &amp; Block Reports</text>
+            </svg>
+            <figcaption>Every 128 MB block (e.g., Blk A) is replicated 3 times: twice on Rack A and once on Rack B, surviving both single-disk crashes and full rack outages.</figcaption>
+          </figure>
+
+          <div class="worked-example">
+            <h4>Quick HDFS Numerical Example</h4>
+            <p>Suppose you upload a <strong>300 MB</strong> log file to HDFS (default block size = <strong>128 MB</strong>, replication factor = <strong>3</strong>):</p>
+            <ul>
+              <li>HDFS splits it into <strong>3 blocks</strong>: Block 1 = 128 MB, Block 2 = 128 MB, Block 3 = 44 MB.</li>
+              <li>Total physical cluster storage used = <code>300 MB × 3 = 900 MB</code> across DataNodes.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 02: MAPREDUCE -->
+        <section class="chapter" id="mapreduce" aria-labelledby="mr-title">
+          <p class="section-label">02 / Parallel Processing Engine (Asked in 2023–24 &amp; 2025–26)</p>
+          <h2 id="mr-title">Working of MapReduce (With Neat Diagram &amp; Example)</h2>
+          <p><strong>MapReduce</strong> processes petabytes of data in parallel across a Hadoop cluster by dividing every job into two developer-defined functions—<code>Map()</code> and <code>Reduce()</code>—connected by Hadoop's automatic <strong>Shuffle &amp; Sort</strong> engine.</p>
+
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 5.2 — MapReduce Execution Pipeline (WordCount Example)</span>
+              <span class="badge">Must-Draw Exam Diagram</span>
+            </div>
+            <svg viewBox="0 0 800 205" role="img" aria-label="MapReduce WordCount pipeline from Input Splits through Map, Shuffle and Sort, Reduce, to HDFS Output">
+              <defs>
+                <marker id="mrArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#165f5b"/>
+                </marker>
+              </defs>
+              <!-- Stage headers -->
+              <text x="72" y="20" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10.5" font-weight="800">1. INPUT SPLITS</text>
+              <text x="234" y="20" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="10.5" font-weight="800">2. MAP PHASE</text>
+              <text x="414" y="20" text-anchor="middle" fill="#6b46c1" font-family="system-ui,sans-serif" font-size="10.5" font-weight="800">3. SHUFFLE &amp; SORT</text>
+              <text x="588" y="20" text-anchor="middle" fill="#276749" font-family="system-ui,sans-serif" font-size="10.5" font-weight="800">4. REDUCE PHASE</text>
+              <text x="732" y="20" text-anchor="middle" fill="#a15d32" font-family="system-ui,sans-serif" font-size="10.5" font-weight="800">5. OUTPUT</text>
+
+              <!-- Splits -->
+              <rect x="12" y="38" width="120" height="58" rx="5" fill="#fffefa" stroke="#133c43" stroke-width="1.5"/>
+              <text x="72" y="60" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9" font-weight="700">Split 1</text>
+              <text x="72" y="79" text-anchor="middle" fill="#133c43" font-family="monospace" font-size="10">"Cloud AWS"</text>
+
+              <rect x="12" y="114" width="120" height="58" rx="5" fill="#fffefa" stroke="#133c43" stroke-width="1.5"/>
+              <text x="72" y="136" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9" font-weight="700">Split 2</text>
+              <text x="72" y="155" text-anchor="middle" fill="#133c43" font-family="monospace" font-size="10">"Cloud GCP"</text>
+
+              <!-- Mappers -->
+              <line x1="132" y1="67" x2="168" y2="67" stroke="#165f5b" stroke-width="1.8" marker-end="url(#mrArr)"/>
+              <line x1="132" y1="143" x2="168" y2="143" stroke="#165f5b" stroke-width="1.8" marker-end="url(#mrArr)"/>
+
+              <rect x="172" y="38" width="124" height="58" rx="5" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.5"/>
+              <text x="234" y="59" text-anchor="middle" fill="#2b6cb0" font-family="monospace" font-size="9.5" font-weight="700">(Cloud, 1)</text>
+              <text x="234" y="79" text-anchor="middle" fill="#2b6cb0" font-family="monospace" font-size="9.5" font-weight="700">(AWS, 1)</text>
+
+              <rect x="172" y="114" width="124" height="58" rx="5" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.5"/>
+              <text x="234" y="135" text-anchor="middle" fill="#2b6cb0" font-family="monospace" font-size="9.5" font-weight="700">(Cloud, 1)</text>
+              <text x="234" y="155" text-anchor="middle" fill="#2b6cb0" font-family="monospace" font-size="9.5" font-weight="700">(GCP, 1)</text>
+
+              <!-- Shuffle & Sort -->
+              <line x1="296" y1="67" x2="340" y2="67" stroke="#6b46c1" stroke-width="1.8" marker-end="url(#mrArr)"/>
+              <line x1="296" y1="143" x2="340" y2="143" stroke="#6b46c1" stroke-width="1.8" marker-end="url(#mrArr)"/>
+              <line x1="296" y1="135" x2="340" y2="95" stroke="#6b46c1" stroke-width="1.4" stroke-dasharray="3 2"/>
+
+              <rect x="344" y="38" width="140" height="134" rx="6" fill="#f5f0ff" stroke="#6b46c1" stroke-width="1.6"/>
+              <text x="414" y="68" text-anchor="middle" fill="#553c9a" font-family="monospace" font-size="10" font-weight="700">(AWS, [1])</text>
+              <text x="414" y="106" text-anchor="middle" fill="#553c9a" font-family="monospace" font-size="10" font-weight="700">(Cloud, [1, 1])</text>
+              <text x="414" y="144" text-anchor="middle" fill="#553c9a" font-family="monospace" font-size="10" font-weight="700">(GCP, [1])</text>
+
+              <!-- Reducers -->
+              <line x1="484" y1="67" x2="520" y2="67" stroke="#276749" stroke-width="1.8" marker-end="url(#mrArr)"/>
+              <line x1="484" y1="143" x2="520" y2="143" stroke="#276749" stroke-width="1.8" marker-end="url(#mrArr)"/>
+
+              <rect x="524" y="38" width="128" height="134" rx="6" fill="#f0fff4" stroke="#276749" stroke-width="1.6"/>
+              <text x="588" y="68" text-anchor="middle" fill="#22543d" font-family="monospace" font-size="10" font-weight="700">(AWS, 1)</text>
+              <text x="588" y="106" text-anchor="middle" fill="#22543d" font-family="monospace" font-size="10" font-weight="700">(Cloud, 2)</text>
+              <text x="588" y="144" text-anchor="middle" fill="#22543d" font-family="monospace" font-size="10" font-weight="700">(GCP, 1)</text>
+
+              <!-- Output -->
+              <line x1="652" y1="105" x2="682" y2="105" stroke="#a15d32" stroke-width="2" marker-end="url(#mrArr)"/>
+              <rect x="686" y="64" width="102" height="82" rx="6" fill="#fdf6ec" stroke="#a15d32" stroke-width="1.8"/>
+              <text x="737" y="96" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="11" font-weight="800">HDFS</text>
+              <text x="737" y="114" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="10" font-weight="700">part-r-00000</text>
+              <text x="737" y="132" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="8.5">Replicated Result</text>
+            </svg>
+            <figcaption>Optional <strong>Combiner</strong> runs locally after Map to pre-sum duplicate keys on the same node, dramatically reducing network shuffle traffic.</figcaption>
+          </figure>
+        </section>
+
+        <!-- 03: VIRTUALBOX -->
+        <section class="chapter" id="virtualbox" aria-labelledby="vb-title">
+          <p class="section-label">03 / Desktop Virtualization (Asked in 2023–24 &amp; 2025–26)</p>
+          <h2 id="vb-title">Oracle VirtualBox in Cloud Development &amp; Testing</h2>
+          <p><strong>Oracle VM VirtualBox</strong> is a free, open-source, cross-platform <strong>Type-2 (Hosted) Hypervisor</strong> running on Windows, Linux, and macOS hosts. It allows engineers to run complete multi-VM cloud topologies locally on a laptop.</p>
+
+          <h3>VirtualBox Networking Modes (Great Exam Detail!)</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>VirtualBox Virtual Networking Modes for Cloud Simulation</caption>
+              <thead>
+                <tr><th scope="col">Mode</th><th scope="col">How It Works</th><th scope="col">Cloud Testing Use Case</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">NAT</th><td>VM shares host's IP to reach the internet; hidden from external network.</td><td>Quick internet access for downloading packages inside a VM.</td></tr>
+                <tr><th scope="row">Bridged Adapter</th><td>VM gets its own LAN IP directly from the Wi-Fi/office router.</td><td>Testing a web server accessible from other laptops on the LAN.</td></tr>
+                <tr><th scope="row">Host-Only</th><td>Private network strictly between Host PC and Guest VMs (no internet).</td><td>Safe isolated security/malware testing and local SSH access.</td></tr>
+                <tr><th scope="row">Internal Network</th><td>Connects VMs only to each other—invisible even to the host OS.</td><td>Simulating private VPC database subnets &amp; multi-node Hadoop clusters.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Five Roles of VirtualBox in Cloud Dev &amp; Testing</h3>
+          <ul>
+            <li><strong>Zero-Cost Local Cloud Sandbox:</strong> Practice Linux administration, Docker, Kubernetes, and OpenStack locally with $0 cloud bills.</li>
+            <li><strong>Snapshots &amp; Instant Rollback:</strong> Capture VM state before applying risky patches or schema migrations; revert in 3 seconds on failure.</li>
+            <li><strong>Environment Parity with Vagrant:</strong> Share a <code>Vagrantfile</code> so every developer boots the exact same OS/library stack used in cloud production.</li>
+            <li><strong>OVF / OVA Cloud Portability:</strong> Export tested VMs as standard <code>.ova</code> images and import them straight into AWS EC2 or Oracle Cloud.</li>
+          </ul>
+        </section>
+
+        <!-- 04: GOOGLE APP ENGINE -->
+        <section class="chapter" id="gae" aria-labelledby="gae-title">
+          <p class="section-label">04 / PaaS Case Study (Asked in 2023–24 &amp; 2025–26)</p>
+          <h2 id="gae-title">Google App Engine (GAE) &amp; Programming Environment</h2>
+          <p><strong>Google App Engine (GAE)</strong> is Google Cloud's fully managed <strong>Platform as a Service (PaaS)</strong> for building and scaling web apps and mobile backends without provisioning VMs or managing OS patches.</p>
+
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 5.3 — Google App Engine (GAE) Architecture &amp; Programming Environment</span>
+              <span class="badge">Exam Diagram</span>
+            </div>
+            <svg viewBox="0 0 780 185" role="img" aria-label="Google App Engine architecture showing Users connecting via Load Balancer and Auto-Scaler to Sandboxed App Instances backed by Datastore, Memcache, Task Queues, and Cloud SQL">
+              <defs>
+                <marker id="gaeArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#165f5b"/>
+                </marker>
+              </defs>
+              <!-- Users -->
+              <rect x="12" y="54" width="112" height="72" rx="6" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.8"/>
+              <text x="68" y="84" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="11" font-weight="800">End Users</text>
+              <text x="68" y="104" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">HTTP / HTTPS</text>
+
+              <line x1="124" y1="90" x2="156" y2="90" stroke="#165f5b" stroke-width="2" marker-end="url(#gaeArr)"/>
+
+              <!-- Frontend LB -->
+              <rect x="160" y="42" width="142" height="96" rx="6" fill="#133c43"/>
+              <text x="231" y="72" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11" font-weight="800">Frontend LB &amp;</text>
+              <text x="231" y="89" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11" font-weight="800">Auto-Scaler</text>
+              <text x="231" y="112" text-anchor="middle" fill="#b5d8cc" font-family="system-ui,sans-serif" font-size="9">Traffic Splitting &amp;</text>
+              <text x="231" y="125" text-anchor="middle" fill="#b5d8cc" font-family="system-ui,sans-serif" font-size="9">Scale-to-Zero</text>
+
+              <line x1="302" y1="90" x2="334" y2="90" stroke="#165f5b" stroke-width="2" marker-end="url(#gaeArr)"/>
+
+              <!-- Runtime Sandbox -->
+              <rect x="338" y="24" width="190" height="132" rx="8" fill="#f5faf8" stroke="#165f5b" stroke-width="2"/>
+              <text x="433" y="46" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11" font-weight="800">GAE App Instances</text>
+              <rect x="354" y="56" width="158" height="40" rx="4" fill="#fffefa" stroke="#2b6cb0"/>
+              <text x="433" y="73" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">Standard Sandbox</text>
+              <text x="433" y="88" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="8.5">Python · Java · Go · Node · PHP</text>
+              <rect x="354" y="104" width="158" height="40" rx="4" fill="#fffefa" stroke="#276749"/>
+              <text x="433" y="121" text-anchor="middle" fill="#276749" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">Flexible Containers</text>
+              <text x="433" y="136" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="8.5">Custom Docker · Any Language</text>
+
+              <line x1="528" y1="90" x2="562" y2="90" stroke="#165f5b" stroke-width="2" marker-end="url(#gaeArr)"/>
+
+              <!-- Managed Services -->
+              <rect x="566" y="20" width="200" height="140" rx="8" fill="#fdf6ec" stroke="#a15d32" stroke-width="1.8"/>
+              <text x="666" y="42" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="11" font-weight="800">Built-In Cloud Services</text>
+              <text x="666" y="66" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9.5">• Cloud Datastore / Firestore</text>
+              <text x="666" y="86" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9.5">• Cloud SQL (MySQL/PG)</text>
+              <text x="666" y="106" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9.5">• Memcache (Fast Cache)</text>
+              <text x="666" y="126" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9.5">• Task Queues &amp; Cron Jobs</text>
+              <text x="666" y="146" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9.5">• Cloud Logging &amp; IAM Auth</text>
+            </svg>
+            <figcaption>Developers configure routing and scaling in a single <code>app.yaml</code> file and deploy globally with one CLI command: <code>gcloud app deploy</code>.</figcaption>
+          </figure>
+        </section>
+
+        <!-- 05: OPENSTACK -->
+        <section class="chapter" id="openstack" aria-labelledby="os-title">
+          <p class="section-label">05 / Open-Source IaaS Cloud (Asked in 2023–24 &amp; 2025–26)</p>
+          <h2 id="os-title">OpenStack Architecture &amp; Core Components</h2>
+          <p><strong>OpenStack</strong> is a modular, open-source <strong>IaaS cloud operating system</strong> enabling enterprises, telecoms, and universities to run private and public clouds on commodity hardware without vendor lock-in.</p>
+
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 5.4 — OpenStack Core Services Architecture</span>
+              <span class="badge">Exam Diagram</span>
+            </div>
+            <svg viewBox="0 0 780 205" role="img" aria-label="OpenStack architecture with Horizon Dashboard and Keystone Identity on top governing Nova Compute, Neutron Networking, Swift Object Storage, Cinder Block Storage, and Glance Image Service">
+              <!-- Horizon + Keystone Top -->
+              <rect x="20" y="14" width="356" height="44" rx="6" fill="#133c43"/>
+              <text x="198" y="34" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11.5" font-weight="800">Horizon (Web Dashboard UI &amp; CLI)</text>
+              <text x="198" y="50" text-anchor="middle" fill="#b5d8cc" font-family="system-ui,sans-serif" font-size="9">Self-Service Portal for Admins &amp; Users</text>
+
+              <rect x="404" y="14" width="356" height="44" rx="6" fill="#a15d32"/>
+              <text x="582" y="34" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11.5" font-weight="800">Keystone (Identity &amp; Auth — IAM)</text>
+              <text x="582" y="50" text-anchor="middle" fill="#feebc8" font-family="system-ui,sans-serif" font-size="9">Authentication · Tokens · Service Catalog</text>
+
+              <!-- 5 Core Modules -->
+              <rect x="20" y="84" width="136" height="96" rx="6" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.8"/>
+              <text x="88" y="110" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="12" font-weight="800">Nova</text>
+              <text x="88" y="128" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10" font-weight="700">Compute</text>
+              <text x="88" y="148" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Launches &amp; manages</text>
+              <text x="88" y="162" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">KVM / Xen VMs</text>
+
+              <rect x="171" y="84" width="136" height="96" rx="6" fill="#f5faf8" stroke="#165f5b" stroke-width="1.8"/>
+              <text x="239" y="110" text-anchor="middle" fill="#165f5b" font-family="system-ui,sans-serif" font-size="12" font-weight="800">Neutron</text>
+              <text x="239" y="128" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10" font-weight="700">Networking</text>
+              <text x="239" y="148" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">SDN Routers, VPCs,</text>
+              <text x="239" y="162" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Floating IPs &amp; FW</text>
+
+              <rect x="322" y="84" width="136" height="96" rx="6" fill="#f0fff4" stroke="#276749" stroke-width="1.8"/>
+              <text x="390" y="110" text-anchor="middle" fill="#276749" font-family="system-ui,sans-serif" font-size="12" font-weight="800">Swift</text>
+              <text x="390" y="128" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10" font-weight="700">Object Storage</text>
+              <text x="390" y="148" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Unstructured files</text>
+              <text x="390" y="162" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">(like Amazon S3)</text>
+
+              <rect x="473" y="84" width="136" height="96" rx="6" fill="#f5f0ff" stroke="#6b46c1" stroke-width="1.8"/>
+              <text x="541" y="110" text-anchor="middle" fill="#6b46c1" font-family="system-ui,sans-serif" font-size="12" font-weight="800">Cinder</text>
+              <text x="541" y="128" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10" font-weight="700">Block Storage</text>
+              <text x="541" y="148" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Persistent VM disks</text>
+              <text x="541" y="162" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">(like AWS EBS)</text>
+
+              <rect x="624" y="84" width="136" height="96" rx="6" fill="#fdf6ec" stroke="#a15d32" stroke-width="1.8"/>
+              <text x="692" y="110" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="12" font-weight="800">Glance</text>
+              <text x="692" y="128" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10" font-weight="700">Image Service</text>
+              <text x="692" y="148" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">Stores OS templates</text>
+              <text x="692" y="162" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">&amp; VM snapshots</text>
+
+              <!-- Connecting bus -->
+              <line x1="88" y1="70" x2="692" y2="70" stroke="#133c43" stroke-width="2"/>
+              <line x1="198" y1="58" x2="198" y2="70" stroke="#133c43" stroke-width="2"/>
+              <line x1="582" y1="58" x2="582" y2="70" stroke="#a15d32" stroke-width="2"/>
+              <line x1="88" y1="70" x2="88" y2="84" stroke="#133c43" stroke-width="1.5"/>
+              <line x1="239" y1="70" x2="239" y2="84" stroke="#133c43" stroke-width="1.5"/>
+              <line x1="390" y1="70" x2="390" y2="84" stroke="#133c43" stroke-width="1.5"/>
+              <line x1="541" y1="70" x2="541" y2="84" stroke="#133c43" stroke-width="1.5"/>
+              <line x1="692" y1="70" x2="692" y2="84" stroke="#133c43" stroke-width="1.5"/>
+            </svg>
+            <figcaption>All OpenStack services communicate via REST APIs and message queues, making it easy to deploy only the components your private cloud needs.</figcaption>
+          </figure>
+        </section>
+
+        <!-- 06: CLOUD FEDERATION -->
+        <section class="chapter" id="federation" aria-labelledby="fed-title">
+          <p class="section-label">06 / Interconnected Clouds</p>
+          <h2 id="fed-title">Cloud Federation &amp; Four Levels of Federation</h2>
+          <p><strong>Cloud Federation</strong> interconnects two or more independent cloud providers so they share compute/storage pools, authenticate users via Single Sign-On (SAML/XMPP), and route workloads seamlessly across boundaries.</p>
+
+          <div class="memory-hook">
+            <strong>Memory Hook — P-V-E-T (Ascending Security):</strong> <strong>P</strong>ermissive → <strong>V</strong>erified → <strong>E</strong>ncrypted → <strong>T</strong>rusted.
+          </div>
+
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 5.5 — The Four Levels of Cloud Federation (Security Progression)</span>
+              <span class="badge">Exam Diagram</span>
+            </div>
+            <svg viewBox="0 0 760 130" role="img" aria-label="Four ascending levels of Cloud Federation: Permissive, Verified, Encrypted, and Trusted">
+              <defs>
+                <marker id="fedArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#165f5b"/>
+                </marker>
+              </defs>
+              <rect x="12" y="26" width="164" height="78" rx="6" fill="#edf2f7" stroke="#718096" stroke-width="1.6"/>
+              <text x="94" y="48" text-anchor="middle" fill="#4a5568" font-family="system-ui,sans-serif" font-size="11" font-weight="800">1. Permissive</text>
+              <text x="94" y="68" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">No identity check;</text>
+              <text x="94" y="83" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9">vulnerable to spoofing</text>
+
+              <line x1="176" y1="65" x2="198" y2="65" stroke="#165f5b" stroke-width="2" marker-end="url(#fedArr)"/>
+
+              <rect x="202" y="26" width="164" height="78" rx="6" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.6"/>
+              <text x="284" y="48" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="11" font-weight="800">2. Verified</text>
+              <text x="284" y="68" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9">DNS / domain identity</text>
+              <text x="284" y="83" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9">checked before peering</text>
+
+              <line x1="366" y1="65" x2="388" y2="65" stroke="#165f5b" stroke-width="2" marker-end="url(#fedArr)"/>
+
+              <rect x="392" y="26" width="164" height="78" rx="6" fill="#fdf6ec" stroke="#a15d32" stroke-width="1.6"/>
+              <text x="474" y="48" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="11" font-weight="800">3. Encrypted</text>
+              <text x="474" y="68" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9">All cross-cloud traffic</text>
+              <text x="474" y="83" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9">encrypted via TLS/SSL</text>
+
+              <line x1="556" y1="65" x2="578" y2="65" stroke="#165f5b" stroke-width="2" marker-end="url(#fedArr)"/>
+
+              <rect x="582" y="26" width="166" height="78" rx="6" fill="#e9f1ee" stroke="#165f5b" stroke-width="2"/>
+              <text x="665" y="48" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11" font-weight="800">4. Trusted (Highest)</text>
+              <text x="665" y="68" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9">Mutual TLS + strict CA</text>
+              <text x="665" y="83" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9">PKI digital certificates</text>
+            </svg>
+            <figcaption>Enterprise and government federated clouds mandate <strong>Trusted Federation</strong> to guarantee both identity authenticity and end-to-end encryption.</figcaption>
+          </figure>
+        </section>
+
+        <!-- 07: AWS, VMWARE & NIMBUS -->
+        <section class="chapter" id="other-platforms" aria-labelledby="other-title">
+          <p class="section-label">07 / Major Exam Platforms (All Asked in 2024–25!)</p>
+          <h2 id="other-title">AWS, VMware, and Nimbus</h2>
+
+          <div class="table-wrap">
+            <table>
+              <caption>Quick Exam Comparison: AWS vs VMware vs Nimbus</caption>
+              <thead>
+                <tr><th scope="col">Platform</th><th scope="col">Category</th><th scope="col">Key Components &amp; Differentiators</th><th scope="col">Primary Use Case</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Amazon Web Services (AWS)</th>
+                  <td>Commercial Public Cloud (IaaS/PaaS/SaaS)</td>
+                  <td><strong>200+ services</strong> (EC2, S3, EBS, RDS, DynamoDB, Lambda, VPC, SageMaker), largest global Regions/AZ footprint, mature marketplace, On-Demand/Reserved/Spot pricing.</td>
+                  <td>Startups to Fortune 500 web apps, AI/ML, enterprise IT.</td>
+                </tr>
+                <tr>
+                  <th scope="row">VMware (vSphere)</th>
+                  <td>Enterprise Virtualization &amp; Private/Hybrid Cloud</td>
+                  <td><strong>ESXi</strong> (Type-1 hypervisor), <strong>vCenter</strong> (central management), <strong>vMotion</strong> (zero-downtime live migration), <strong>HA/DRS</strong> (auto-failover &amp; load balancing), NSX/vSAN.</td>
+                  <td>Enterprise data centers, private clouds, VDI, hybrid clouds.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Nimbus</th>
+                  <td>Open-Source Scientific IaaS Toolkit</td>
+                  <td><strong>Workspace Service</strong> (secure X.509 VM leasing), <strong>Context Broker</strong> (one-click turnkey virtual clusters), <strong>Cumulus</strong> (S3-compatible storage), EC2 API compatibility.</td>
+                  <td>Physics, bioinformatics, climate &amp; university cloud research.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="next-section" aria-label="Next page">
+          <p>Ready to master all 24 two-mark questions?</p>
+          <a href="short-answers.html">Next: Short Answer Questions (24 × 2 Marks) <span aria-hidden="true">→</span></a>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Cloud Computing · Complete 8-Page Academic Study Guide · Unit V</p>
+      <p><a href="short-answers.html">Short Answers (2M)</a> · <a href="long-answers.html">Long Answers (7/10M)</a></p>
+    </div>
+  </footer>
+
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+  <script src="site.js"></script>
+</body>
+</html>

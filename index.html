@@ -3,49 +3,230 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A syllabus-led academic guide to Cloud Computing Units I–III, with short theory, worked examples and previous-year questions from 2023–24 and 2024–25.">
-  <title>Cloud Computing | Units I–III Academic Study Guide</title>
+  <meta name="description" content="Complete Cloud Computing academic study guide covering all 5 units (Units I–V), plus 24 solved 2-mark short answers and 45 solved 7/10-mark long answers from 2023–24, 2024–25, and 2025–26 exams.">
+  <title>Cloud Computing | Complete 5-Unit Exam Study Guide</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="reading-progress-bar" id="reading-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#content">Skip to content</a>
-  <header class="site-header"><div class="container header-inner">
-    <a class="brand" href="index.html" aria-label="Cloud Computing study guide overview"><span class="brand-kicker">ACADEMIC STUDY GUIDE / UNITS 01—03</span><span class="brand-name">Cloud Computing</span></a>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html" aria-current="page">Overview</a><a href="unit1.html">Unit I</a><a href="unit2.html">Unit II</a><a href="unit3.html">Unit III</a><a href="theory.html">Short theory</a><a href="pyqs.html">Past papers</a></nav>
-  </div></header>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Cloud Computing study guide overview">
+        <span class="brand-kicker">ACADEMIC STUDY GUIDE / UNITS 01—05</span>
+        <span class="brand-name">Cloud Computing</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="index.html" aria-current="page">Overview</a>
+        <a href="unit1.html">Unit I</a>
+        <a href="unit2.html">Unit II</a>
+        <a href="unit3.html">Unit III</a>
+        <a href="unit4.html">Unit IV</a>
+        <a href="unit5.html">Unit V</a>
+        <a href="short-answers.html">Short Answers</a>
+        <a href="long-answers.html">Long Answers</a>
+      </nav>
+    </div>
+  </header>
+
   <main id="content">
     <section class="cover" aria-labelledby="cover-title">
-      <div class="container cover-grid"><div>
-        <p class="eyebrow">A syllabus-led reference / Semester V</p>
-        <h1 id="cover-title">Cloud computing, examined carefully.</h1>
-        <p class="cover-lead">Three units, one coherent route from the definition of a cloud to service architectures, virtualization, system design, and storage. Study the mechanism, test the boundaries of each analogy, and practice with the supplied examination papers.</p>
-        <div class="cover-links"><a class="button button-primary" href="unit1.html">Begin with Unit I →</a><a class="button" href="pyqs.html">View past questions</a></div>
-      </div><div class="cover-note"><p class="caps">Reading principle</p><p><strong>Define.</strong><br>Explain how it works.<br>Compare the alternative.<br>State the limitation.</p><p>Each chapter moves from a precise concept to a worked example, distinction or exam-ready framework.</p></div></div>
-      <div class="cover-strip"><div><span>01</span> Foundations and cloud characteristics</div><div><span>02</span> Services and virtualization</div><div><span>03</span> Architecture and storage</div></div>
+      <div class="container cover-grid">
+        <div>
+          <p class="eyebrow">Complete B.Tech Semester V Study Guide · BCAM051 / KML051</p>
+          <h1 id="cover-title">Cloud computing, made clear for exams.</h1>
+          <p class="cover-lead">All five units written in plain, easy-to-remember language—paired with visual diagrams, comparison tables, and 69 solved exam questions from the 2023–24, 2024–25, and 2025–26 university papers.</p>
+          <div class="cover-links">
+            <a class="button button-primary" href="unit1.html">Start with Unit I →</a>
+            <a class="button" href="short-answers.html">2-Mark Short Answers</a>
+            <a class="button" href="long-answers.html">7 &amp; 10-Mark Long Answers</a>
+          </div>
+        </div>
+        <div class="cover-note">
+          <p class="caps">Exam writing formula</p>
+          <p><strong>Define.</strong><br>Draw a neat diagram.<br>Write bullet points.<br>Give one real example.</p>
+          <p>Every chapter and solved answer in this 8-page guide follows this exact structure so you can understand fast and score full marks.</p>
+        </div>
+      </div>
+      <div class="cover-strip">
+        <div><span>01</span> Foundations &amp; Characteristics</div>
+        <div><span>02</span> Services &amp; Virtualization</div>
+        <div><span>03</span> Architecture &amp; Storage</div>
+        <div><span>04</span> Resources &amp; Security</div>
+        <div><span>05</span> Hadoop, GAE &amp; OpenStack</div>
+      </div>
     </section>
-    <section class="overview-section" aria-labelledby="route-title"><div class="container">
-      <div class="overview-heading"><div><p class="section-label">The reading route</p><h2 id="route-title">Read in order, revise by topic.</h2></div><p>Sections are anchored for reference. Comparison tables, static diagrams, calculations, and qualifications are built into the chapters.</p></div>
-      <div class="unit-list">
-        <a class="unit-row" href="unit1.html"><span class="unit-number">UNIT I / 01</span><div><h3>Introduction to cloud computing</h3><p>Definition and evolution; parallel and distributed computing; NIST characteristics; scalability, elasticity, measured use, and on-demand provisioning.</p></div><span class="row-end">8 sections →</span></a>
-        <a class="unit-row" href="unit2.html"><span class="unit-number">UNIT II / 02</span><div><h3>Cloud enabling technologies</h3><p>SOA and REST; systems of systems and web services; publish/subscribe; virtualization structures, levels and mechanisms; CPU, memory, I/O and disaster recovery.</p></div><span class="row-end">10 chapters →</span></a>
-        <a class="unit-row" href="unit3.html"><span class="unit-number">UNIT III / 03</span><div><h3>Architecture, services and storage</h3><p>Layered design and NIST actors; public, private and hybrid clouds; IaaS, PaaS and SaaS; architecture trade-offs; object, file and block storage; Amazon S3.</p></div><span class="row-end">9 chapters →</span></a>
+
+    <section class="overview-section" aria-labelledby="route-title">
+      <div class="container">
+        <div class="overview-heading">
+          <div>
+            <p class="section-label">The 5-unit syllabus route</p>
+            <h2 id="route-title">Read unit by unit, write with confidence.</h2>
+          </div>
+          <p>Each unit breaks tough topics into simple analogies, crisp bullet points, diagrams, and exam-ready tables.</p>
+        </div>
+
+        <div class="unit-list">
+          <a class="unit-row" href="unit1.html">
+            <span class="unit-number">UNIT I / 01</span>
+            <div>
+              <h3>Introduction to Cloud Computing</h3>
+              <p>NIST definition, evolution from mainframes to cloud, parallel vs distributed computing (Flynn's taxonomy, Amdahl's law, CAP theorem), 5 essential characteristics, scalability vs elasticity, on-demand provisioning, benefits and challenges.</p>
+            </div>
+            <span class="row-end">Open Unit I →</span>
+          </a>
+
+          <a class="unit-row" href="unit2.html">
+            <span class="unit-number">UNIT II / 02</span>
+            <div>
+              <h3>Cloud Enabling Technologies</h3>
+              <p>SOA, monolithic vs microservices, REST principles, Systems of Systems (SoS), SOAP vs REST, Publish/Subscribe messaging, virtualization basics, types &amp; levels, hypervisors, CPU/memory/I/O/network virtualization, and disaster recovery (RPO/RTO).</p>
+            </div>
+            <span class="row-end">Open Unit II →</span>
+          </a>
+
+          <a class="unit-row" href="unit3.html">
+            <span class="unit-number">UNIT III / 03</span>
+            <div>
+              <h3>Cloud Architecture, Services &amp; Storage</h3>
+              <p>Layered cloud architecture, NIST 5-actor reference architecture, public/private/hybrid clouds, IaaS/PaaS/SaaS/CaaS/Serverless, cloud CRM &amp; collaboration tools, architectural challenges, block/file/object storage, and Amazon S3.</p>
+            </div>
+            <span class="row-end">Open Unit III →</span>
+          </a>
+
+          <a class="unit-row" href="unit4.html">
+            <span class="unit-number">UNIT IV / 04</span>
+            <div>
+              <h3>Resource Management &amp; Cloud Security</h3>
+              <p>Inter-cloud resource management, Open Cloud Consortium (OCC), resource provisioning methods, global cloud exchange, cloud security challenges, SaaS security issues &amp; protection, firewalls, insider threats, VM security, IAM, and security standards.</p>
+            </div>
+            <span class="row-end">Open Unit IV →</span>
+          </a>
+
+          <a class="unit-row" href="unit5.html">
+            <span class="unit-number">UNIT V / 05</span>
+            <div>
+              <h3>Cloud Technologies &amp; Advancements</h3>
+              <p>Hadoop architecture, HDFS &amp; MapReduce with diagrams, VirtualBox in cloud dev/testing, Google App Engine (GAE) &amp; programming environment, OpenStack architecture, cloud federation levels, plus AWS, VMware, and Nimbus.</p>
+            </div>
+            <span class="row-end">Open Unit V →</span>
+          </a>
+        </div>
       </div>
-    </div></section>
-    <section class="overview-section" aria-labelledby="review-title"><div class="container">
-      <div class="overview-heading"><div><p class="section-label">Revision and evidence</p><h2 id="review-title">Two ways to consolidate.</h2></div><p>Short definitions for rapid recall, then authentic past-paper wording for structured answer practice.</p></div>
-      <div class="study-grid"><article class="study-card"><p class="caps">Reference / 01</p><h3>Short theory</h3><p>Compact definitions, contrasts and formulas organized by unit. Use this after reading the detailed chapters, not as a substitute for understanding the mechanism.</p><a href="theory.html">Open the reference →</a></article><article class="study-card"><p class="caps">Practice / 02</p><h3>Previous-year questions</h3><p>Questions from the supplied 2023–24 and 2024–25 papers, with section, marks, page, syllabus mapping, and concise answer plans. Original PDFs are available locally.</p><a href="pyqs.html">Work through the papers →</a></article></div>
-    </div></section>
-    <section class="overview-section" aria-labelledby="coverage-title"><div class="container">
-      <div class="overview-heading"><div><p class="section-label">Coverage statement</p><h2 id="coverage-title">What the three units contain.</h2></div><p>The unit outline follows the syllabus provided with this guide, not the CO labels printed on the papers.</p></div>
-      <div class="syllabus-grid">
-        <article><span class="unit-number">I / FOUNDATION</span><h3>Cloud principles</h3><ul><li>Definition and evolution</li><li>Parallel and distributed computing</li><li>Essential characteristics</li><li>Elasticity and on-demand provisioning</li></ul></article>
-        <article><span class="unit-number">II / ENABLING SYSTEMS</span><h3>Services and VMs</h3><ul><li>SOA, REST, SoS, web services</li><li>Publish/subscribe</li><li>Virtualization types, levels and structures</li><li>CPU, memory, I/O and disaster recovery</li></ul></article>
-        <article><span class="unit-number">III / DEPLOYMENT</span><h3>Design and data</h3><ul><li>Layered design and NIST reference model</li><li>Deployment and service models</li><li>Architectural challenges</li><li>Cloud storage, providers and S3</li></ul></article>
+    </section>
+
+    <section class="overview-section" aria-labelledby="review-title">
+      <div class="container">
+        <div class="overview-heading">
+          <div>
+            <p class="section-label">Exam question banks (2023–2026)</p>
+            <h2 id="review-title">69 solved previous-year questions.</h2>
+          </div>
+          <p>Every question from 2023–24 (KML051), 2024–25 (BCAM051), and 2025–26 (BCAM051) organized into dedicated short-answer and long-answer pages.</p>
+        </div>
+
+        <div class="study-grid">
+          <article class="study-card">
+            <p class="caps">Page 07 / Section A · 2 Marks</p>
+            <h3>Short Answer Questions</h3>
+            <p>All <strong>24 two-mark questions</strong> across 2023–24 (10 Qs), 2024–25 (7 Qs), and 2025–26 (7 Qs). Written in a crisp 3-to-4 line exam format with bold keywords and one concrete example so you can memorize and write them in 2 minutes.</p>
+            <a href="short-answers.html">Open Short Answers (24 Qs) →</a>
+          </article>
+
+          <article class="study-card">
+            <p class="caps">Page 08 / Sections B &amp; C · 7 &amp; 10 Marks</p>
+            <h3>Long Answer Questions</h3>
+            <p>All <strong>45 long-answer questions</strong> across 2023–24 (15 × 10M), 2024–25 (15 × 7M), and 2025–26 (15 × 7M). Structured with clean headings, diagrams, comparison tables, and exam tips for full-mark answers.</p>
+            <a href="long-answers.html">Open Long Answers (45 Qs) →</a>
+          </article>
+        </div>
       </div>
-    </div></section>
+    </section>
+
+    <section class="overview-section" aria-labelledby="coverage-title">
+      <div class="container">
+        <div class="overview-heading">
+          <div>
+            <p class="section-label">Complete syllabus map</p>
+            <h2 id="coverage-title">What all five units cover.</h2>
+          </div>
+          <p>Aligned with AKTU B.Tech Semester V Cloud Computing (BCAM051 / KML051) across all five course outcomes (CO1–CO5).</p>
+        </div>
+
+        <div class="syllabus-grid">
+          <article>
+            <span class="unit-number">UNIT I / CO1</span>
+            <h3>Foundations</h3>
+            <ul>
+              <li>NIST definition &amp; evolution</li>
+              <li>Parallel &amp; distributed computing</li>
+              <li>5 essential characteristics</li>
+              <li>Elasticity &amp; on-demand provisioning</li>
+              <li>Benefits &amp; challenges</li>
+            </ul>
+          </article>
+
+          <article>
+            <span class="unit-number">UNIT II / CO2</span>
+            <h3>Enabling Tech</h3>
+            <ul>
+              <li>SOA, REST, SoS &amp; Pub/Sub</li>
+              <li>Virtualization types &amp; levels</li>
+              <li>Type-1 &amp; Type-2 hypervisors</li>
+              <li>CPU, memory, I/O &amp; network VM</li>
+              <li>Disaster recovery (RPO/RTO)</li>
+            </ul>
+          </article>
+
+          <article>
+            <span class="unit-number">UNIT III / CO3</span>
+            <h3>Architecture</h3>
+            <ul>
+              <li>Layered cloud architecture</li>
+              <li>NIST 5-actor reference model</li>
+              <li>Public, private &amp; hybrid clouds</li>
+              <li>IaaS, PaaS, SaaS, CaaS, Serverless</li>
+              <li>Cloud storage &amp; Amazon S3</li>
+            </ul>
+          </article>
+
+          <article>
+            <span class="unit-number">UNIT IV / CO4</span>
+            <h3>Resources &amp; Security</h3>
+            <ul>
+              <li>Inter-cloud &amp; OCC</li>
+              <li>Resource provisioning methods</li>
+              <li>SaaS security &amp; cloud firewalls</li>
+              <li>IAM &amp; insider threat mitigation</li>
+              <li>Security standards (ISO, SOC 2)</li>
+            </ul>
+          </article>
+
+          <article>
+            <span class="unit-number">UNIT V / CO5</span>
+            <h3>Technologies</h3>
+            <ul>
+              <li>Hadoop, HDFS &amp; MapReduce</li>
+              <li>VirtualBox for dev &amp; testing</li>
+              <li>Google App Engine (GAE)</li>
+              <li>OpenStack &amp; Cloud Federation</li>
+              <li>AWS, VMware &amp; Nimbus</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer class="site-footer"><div class="container"><p>Cloud Computing · Academic study guide · Units I–III</p><p>Primary definitions: <a href="https://csrc.nist.gov/pubs/sp/800/145/final">NIST SP 800-145</a> · Reference architecture: <a href="https://www.nist.gov/publications/nist-cloud-computing-reference-architecture">NIST SP 500-292</a></p></div></footer>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Cloud Computing · Complete 8-Page Academic Study Guide · Units I–V + Solved PYQs (2023–2026)</p>
+      <p>Primary standards: <a href="https://csrc.nist.gov/pubs/sp/800/145/final">NIST SP 800-145</a> · <a href="https://www.nist.gov/publications/nist-cloud-computing-reference-architecture">NIST SP 500-292</a></p>
+    </div>
+  </footer>
+
   <button id="back-to-top" class="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
   <script src="site.js"></script>
 </body>

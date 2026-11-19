@@ -3,26 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Unit I comprehensive academic study guide to cloud computing: definitions, evolution, parallel and distributed computing, Flynn's taxonomy, Amdahl's law, CAP theorem, NIST characteristics, elasticity, and on-demand provisioning with real-world examples.">
-  <title>Unit I — Foundations of Cloud Computing | Cloud Computing Study Guide</title>
+  <meta name="description" content="Comprehensive, exam-ready Unit I guide for Cloud Computing: NIST definition, evolution, Cluster vs Grid vs Cloud, parallel and distributed computing, Flynn's taxonomy, Amdahl's and Gustafson's laws, CAP theorem, 5 NIST characteristics, elasticity, autoscaling, on-demand provisioning, benefits and challenges.">
+  <title>Unit I — Introduction to Cloud Computing | Cloud Computing Study Guide</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="reading-progress-bar" id="reading-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#content">Skip to content</a>
+
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Cloud Computing study guide overview">
-        <span class="brand-kicker">ACADEMIC STUDY GUIDE / UNITS 01—03</span>
+        <span class="brand-kicker">ACADEMIC STUDY GUIDE / UNITS 01—05</span>
         <span class="brand-name">Cloud Computing</span>
       </a>
-      <nav class="site-nav" aria-label="Main navigation">
+      <nav class="site-nav" aria-label="Primary navigation">
         <a href="index.html">Overview</a>
         <a href="unit1.html" aria-current="page">Unit I</a>
         <a href="unit2.html">Unit II</a>
         <a href="unit3.html">Unit III</a>
-        <a href="theory.html">Short theory</a>
-        <a href="pyqs.html">Past papers</a>
+        <a href="unit4.html">Unit IV</a>
+        <a href="unit5.html">Unit V</a>
+        <a href="short-answers.html">Short Answers</a>
+        <a href="long-answers.html">Long Answers</a>
       </nav>
     </div>
   </header>
@@ -30,12 +33,12 @@
   <main id="content">
     <section class="page-hero" aria-labelledby="page-title">
       <div class="container">
-        <p class="eyebrow">Unit 01 / Foundations</p>
-        <h1 id="page-title">Foundations of cloud computing</h1>
-        <p class="lead">From core definitions and real-world analogies to historical evolution, parallel and distributed systems, Flynn's taxonomy, speedup laws, the CAP theorem, and resource economics.</p>
-        <div class="hero-meta" aria-label="Guide scope">
-          <span>8 comprehensive sections</span>
-          <span>Core concepts · Real-world enterprise examples · Visual diagrams · Exam-ready answers</span>
+        <p class="eyebrow">Unit 01 / Foundations &amp; Computing Principles (CO1)</p>
+        <h1 id="page-title">Introduction to Cloud Computing</h1>
+        <p class="lead">A complete, deep-yet-simple guide to Unit I: core definitions, evolution from mainframes to cloud, parallel &amp; distributed systems, Flynn's taxonomy, speedup laws, CAP theorem, NIST's five essential characteristics, elasticity economics, on-demand provisioning, and cloud benefits vs challenges.</p>
+        <div class="hero-meta" aria-label="Unit scope">
+          <span>8 in-depth chapters</span>
+          <span>5 SVG Architecture Diagrams · Worked Numericals · Enterprise Case Studies</span>
         </div>
       </div>
     </section>
@@ -45,547 +48,603 @@
         <nav aria-label="Unit I chapters">
           <p>On this page</p>
           <ol>
-            <li><a href="#definition">What is cloud computing?</a></li>
-            <li><a href="#evolution">How the cloud evolved</a></li>
-            <li><a href="#parallel-distributed">Parallel and distributed computing</a></li>
-            <li><a href="#characteristics">The five NIST characteristics</a></li>
-            <li><a href="#elasticity">Elasticity, scalability, and cost</a></li>
-            <li><a href="#provisioning">On-demand provisioning</a></li>
-            <li><a href="#exam-preparation">Exam preparation</a></li>
-            <li><a href="#references">References</a></li>
+            <li><a href="#definition">1. What is Cloud Computing?</a></li>
+            <li><a href="#evolution">2. Evolution &amp; Cluster/Grid/Cloud</a></li>
+            <li><a href="#parallel-distributed">3. Parallel &amp; Distributed Computing</a></li>
+            <li><a href="#characteristics">4. Five NIST Characteristics</a></li>
+            <li><a href="#elasticity">5. Elasticity, Scalability &amp; Autoscaling</a></li>
+            <li><a href="#provisioning">6. On-Demand Provisioning &amp; Pricing</a></li>
+            <li><a href="#benefits-challenges">7. Benefits, Challenges &amp; Providers</a></li>
+            <li><a href="#exam-preparation">8. Exam Writing Frameworks</a></li>
           </ol>
         </nav>
       </aside>
 
       <article class="prose" aria-label="Unit I guide">
-        <!-- 01: WHAT IS CLOUD COMPUTING -->
+
+        <!-- 01: DEFINITION -->
         <section class="chapter" id="definition" aria-labelledby="definition-title">
-          <p class="section-label">01 / Core definition</p>
-          <h2 id="definition-title">What is cloud computing?</h2>
-          
+          <p class="section-label">01 / Core Definition &amp; Economics</p>
+          <h2 id="definition-title">What is Cloud Computing?</h2>
+
           <div class="callout">
-            <h3>Core Concept &amp; The Electricity Analogy</h3>
-            <p>To run a refrigerator, an individual does not build a personal hydroelectric dam or buy a diesel generator. Instead, the appliance simply plugs into a wall socket. The power utility generates electricity at massive central stations, routes it through a shared grid, and bills the customer at the end of the month based on the exact kilowatt-hours consumed.</p>
-            <p><strong>Cloud computing delivers computing power through the exact same utility model.</strong> Instead of an organization purchasing expensive physical server racks, configuring switches, and paying air conditioning bills in a private server room, they connect to cloud data centers over the internet. With a few clicks, they rent virtual servers from providers such as Amazon Web Services (AWS), Google Cloud Platform (GCP), or Microsoft Azure, run them for as long as needed, and pay only for the seconds or gigabytes used.</p>
+            <h3>The Electricity Grid Analogy (Instant Intuition)</h3>
+            <p>To power an air conditioner at home, you do not build a private power plant or buy a giant diesel generator. You plug into the city electricity grid, consume power whenever you flip a switch, and receive a monthly bill for the exact kilowatt-hours used.</p>
+            <p><strong>Cloud computing applies this exact utility model to IT infrastructure.</strong> Instead of buying physical servers, storage arrays, switches, and air-conditioned server rooms, organizations rent compute, storage, databases, and software over the internet from hyperscale providers like <strong>Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP)</strong>—paying strictly for what they consume.</p>
           </div>
 
-          <h3>The Formal Academic Definition (NIST SP 800-145)</h3>
-          <p>In university examinations, cite the official standard formulated by the <strong>National Institute of Standards and Technology (NIST)</strong>:</p>
+          <h3>Formal Academic Definition (NIST SP 800-145)</h3>
+          <p>Always start your 2-mark, 7-mark, or 10-mark introductory answer with the official <strong>National Institute of Standards and Technology (NIST)</strong> definition:</p>
           <blockquote>
-            “Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction.” <a href="#ref-nist">[1]</a>
+            “Cloud computing is a model for enabling <strong>ubiquitous, convenient, on-demand network access</strong> to a <strong>shared pool of configurable computing resources</strong> (e.g., networks, servers, storage, applications, and services) that can be <strong>rapidly provisioned and released</strong> with <strong>minimal management effort</strong> or service provider interaction.” — <em>NIST SP 800-145</em>
           </blockquote>
 
-          <h3>Deconstructing the NIST Definition</h3>
-          <p>This definition rests on five technical pillars:</p>
+          <h3>Breaking Down the 5 Pillars of the NIST Definition</h3>
           <ul>
-            <li><strong>Ubiquitous &amp; Convenient:</strong> Accessible from any location globally, across any device (laptop, smartphone, tablet, workstation) via standard web protocols.</li>
-            <li><strong>On-demand Network Access:</strong> Resources are delivered over the network immediately upon request, without waiting days or weeks for manual intervention.</li>
-            <li><strong>Shared Pool of Configurable Resources:</strong> High-density servers and storage arrays in enterprise data centers are pooled together and dynamically sliced among multiple clients.</li>
-            <li><strong>Rapidly Provisioned &amp; Released:</strong> Compute capacity can spin up in under 60 seconds, run an intensive batch job for several hours, and terminate immediately to stop billing.</li>
-            <li><strong>Minimal Management Effort:</strong> Users do not need to call a technician or negotiate separate hardware contracts; resource operations are managed through automated web consoles or APIs.</li>
+            <li><strong>Ubiquitous &amp; Convenient:</strong> Available globally over the internet from any device—laptops, smartphones, tablets, or thin clients—using standard protocols (HTTP/HTTPS, REST, SSH).</li>
+            <li><strong>On-Demand Network Access:</strong> Users allocate servers or storage in seconds via a web dashboard or API without calling a technician or signing manual paperwork.</li>
+            <li><strong>Shared Pool of Configurable Resources:</strong> Cloud providers operate massive data centers where physical CPUs, RAM, and disks are virtualized and shared safely across thousands of tenants (<strong>multi-tenancy</strong>).</li>
+            <li><strong>Rapidly Provisioned &amp; Released:</strong> Capacity scales up in under a minute for peak traffic and terminates immediately when idle to stop billing.</li>
+            <li><strong>Minimal Management Effort:</strong> Automated orchestration replaces manual hardware racking, OS patching, and cable wiring.</li>
           </ul>
 
-          <h3>Real-World Enterprise Examples</h3>
+          <h3>Real-World Enterprise Examples (Cite These in Exams!)</h3>
           <div class="table-wrap">
             <table>
-              <caption>How modern enterprises leverage cloud computing in daily operations</caption>
+              <caption>How Leading Organizations Use Cloud Computing</caption>
               <thead>
-                <tr><th scope="col">Company</th><th scope="col">Operational Scenario</th><th scope="col">Cloud Architecture Value</th></tr>
+                <tr><th scope="col">Organization</th><th scope="col">Challenge</th><th scope="col">How Cloud Solves It</th></tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row"><strong>Netflix</strong></th>
-                  <td>Streams billions of hours of high-definition video to over 260 million global subscribers.</td>
-                  <td>Netflix migrated entirely off physical data centers to AWS. On Friday evenings, when traffic explodes during new show premieres, AWS auto-scaling spins up thousands of extra virtual servers. Late at night, these servers are terminated, eliminating massive idle electricity and hardware maintenance costs.</td>
-                </tr>
-                <tr>
-                  <th scope="row"><strong>Uber / Ola</strong></th>
-                  <td>Processes real-time ride requests, matches drivers, and computes dynamic route pricing across hundreds of cities.</td>
-                  <td>Ride demand fluctuates dramatically during rainstorms or rush hours. Cloud services (AWS and Google Cloud) scale database nodes and geospatial microservices dynamically without system downtime.</td>
-                </tr>
-                <tr>
-                  <th scope="row"><strong>Spotify</strong></th>
-                  <td>Stores and streams over 100 million tracks while computing personalized playlists for 600 million users.</td>
-                  <td>Spotify leverages Google Cloud's distributed BigQuery data engine to analyze billions of song streams overnight and generate personalized "Discover Weekly" recommendations.</td>
-                </tr>
-                <tr>
-                  <th scope="row"><strong>IRCTC (Indian Railways)</strong></th>
-                  <td>Handles massive concurrent surges during morning Tatkal booking windows (10:00 AM – 11:30 AM).</td>
-                  <td>Instead of purchasing physical servers that sit idle for the remaining 22 hours of the day, an elastic cloud architecture scales compute out during booking rushes and scales in afterward.</td>
-                </tr>
+                <tr><th scope="row">Netflix</th><td>Streams HD/4K video to 260M+ global subscribers with huge Friday-night traffic surges.</td><td>Runs fully on <strong>AWS</strong>; autoscaling spins up thousands of EC2 servers during new releases and terminates them overnight.</td></tr>
+                <tr><th scope="row">IRCTC</th><td>Massive concurrent traffic burst during the 10:00–11:30 AM Tatkal booking window.</td><td>Elastic cloud infrastructure expands capacity for 90 minutes instead of buying idle servers that sit empty 22 hours/day.</td></tr>
+                <tr><th scope="row">Uber / Ola</th><td>Real-time driver matching and surge pricing across hundreds of cities.</td><td>Distributed cloud microservices on AWS &amp; GCP scale geospatial databases dynamically during rush hours and rainstorms.</td></tr>
+                <tr><th scope="row">Spotify</th><td>Analyzes billions of streams to compute personalized playlists for 600M+ users.</td><td>Uses <strong>Google Cloud BigQuery</strong> &amp; distributed storage to process petabytes overnight without owning supercomputers.</td></tr>
               </tbody>
             </table>
           </div>
 
-          <h3>Cloud vs Traditional Dedicated Hosting</h3>
-          <ul>
-            <li><strong>Traditional Dedicated Hosting:</strong> An organization emails a hosting provider, signs an annual contract, and a technician manually racks a physical server. Upgrading CPU or RAM requires physical hardware replacement and downtime. <em>This is remote hosting, not cloud computing.</em></li>
-            <li><strong>True Cloud Computing:</strong> An engineer issues an automated API request, and an isolated instance launches in 45 seconds. When workload decreases, automated rules terminate the instance, billing down to the millisecond. <em>This satisfies the 5 NIST essential characteristics.</em></li>
-          </ul>
+          <h3>Traditional On-Premises vs Cloud Computing (CapEx vs OpEx)</h3>
+          <div class="table-wrap">
+            <table>
+              <caption>Traditional On-Premises Hosting vs Cloud Computing</caption>
+              <thead>
+                <tr><th scope="col">Parameter</th><th scope="col">Traditional On-Premises</th><th scope="col">Cloud Computing</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Financial Model</th><td><strong>CapEx (Capital Expenditure):</strong> Heavy upfront purchase of hardware &amp; licenses.</td><td><strong>OpEx (Operational Expenditure):</strong> Pay-as-you-go monthly/per-second billing.</td></tr>
+                <tr><th scope="row">Provisioning Speed</th><td>Weeks to procure, ship, rack, and configure physical servers.</td><td>Seconds to minutes via self-service portal or API.</td></tr>
+                <tr><th scope="row">Scalability</th><td>Fixed peak capacity; over-provisioned during normal hours.</td><td>Rapidly elastic; scales automatically up and down with traffic.</td></tr>
+                <tr><th scope="row">Maintenance &amp; Power</th><td>Customer manages cooling, UPS, hardware failures, and physical security.</td><td>Cloud provider manages physical data centers, redundancy, and hardware.</td></tr>
+                <tr><th scope="row">Global Reach</th><td>Restricted to company's own office/data center city.</td><td>Deploy globally in dozens of AWS/Azure/GCP Regions in minutes.</td></tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
-        <!-- 02: HOW THE CLOUD EVOLVED -->
+        <!-- 02: EVOLUTION -->
         <section class="chapter" id="evolution" aria-labelledby="evolution-title">
-          <p class="section-label">02 / Historical foundations</p>
-          <h2 id="evolution-title">How the cloud evolved</h2>
-          <p>Cloud computing was not invented in isolation. It represents the cumulative synthesis of decades of computing paradigms that gradually resolved the challenges of resource sharing, networking, scaling, and automation.</p>
+          <p class="section-label">02 / Historical Evolution</p>
+          <h2 id="evolution-title">Evolution of Cloud Computing (Mainframes to Cloud)</h2>
+          <p>Cloud computing is the convergence of six decades of computing breakthroughs—combining distributed networking, virtualization, and utility billing into one unified model.</p>
 
-          <!-- SOLID COLORFUL DIAGRAM: EVOLUTION -->
-          <div class="solid-diagram">
-            <div class="solid-diagram-title">
-              <span>Evolutionary Pathway to Cloud Computing</span>
-              <span class="badge">Historical Milestones</span>
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 1.1 — Evolution of Cloud Computing (1950s–Present)</span>
+              <span class="badge">Exam Diagram</span>
             </div>
-            <div class="solid-flow">
-              <div class="solid-node blue">
-                <span class="node-step">Phase 1 · 1960s</span>
-                <span class="node-title">Mainframes &amp; Time-Sharing</span>
-                <p class="node-desc">IBM System/360; central computers shared by dumb terminals using CPU time-slicing.</p>
-              </div>
-              <div class="solid-node purple">
-                <span class="node-step">Phase 2 · 1980s</span>
-                <span class="node-title">Client-Server Model</span>
-                <p class="node-desc">Desktop PCs (clients) querying centralized database and application servers over LANs.</p>
-              </div>
-              <div class="solid-node accent">
-                <span class="node-step">Phase 3 · 1990s</span>
-                <span class="node-title">Cluster &amp; Grid Computing</span>
-                <p class="node-desc">Beowulf commodity clusters and federated research grids (SETI@home) sharing batch computing cycles.</p>
-              </div>
-              <div class="solid-node green">
-                <span class="node-step">Phase 4 · 2000s</span>
-                <span class="node-title">Hardware Virtualization</span>
-                <p class="node-desc">VMware and Xen hypervisors decoupling OS from silicon, turning 1 server into 20 isolated VMs.</p>
-              </div>
-              <div class="solid-node">
-                <span class="node-step">Phase 5 · Present</span>
-                <span class="node-title">Utility &amp; Cloud Platforms</span>
-                <p class="node-desc">AWS (EC2/S3), Azure, and GCP offering on-demand, metered, API-driven global infrastructure.</p>
-              </div>
-            </div>
-          </div>
+            <svg viewBox="0 0 820 190" role="img" aria-label="Timeline showing evolution from Mainframes to Client-Server, Cluster and Grid, Utility Computing, Virtualization, and Cloud Computing">
+              <defs>
+                <marker id="arr1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#165f5b"/>
+                </marker>
+              </defs>
+              <!-- Connectors -->
+              <line x1="126" y1="78" x2="144" y2="78" stroke="#165f5b" stroke-width="2" marker-end="url(#arr1)"/>
+              <line x1="262" y1="78" x2="280" y2="78" stroke="#165f5b" stroke-width="2" marker-end="url(#arr1)"/>
+              <line x1="398" y1="78" x2="416" y2="78" stroke="#165f5b" stroke-width="2" marker-end="url(#arr1)"/>
+              <line x1="534" y1="78" x2="552" y2="78" stroke="#165f5b" stroke-width="2" marker-end="url(#arr1)"/>
+              <line x1="670" y1="78" x2="688" y2="78" stroke="#165f5b" stroke-width="2" marker-end="url(#arr1)"/>
 
+              <!-- Box 1 -->
+              <rect x="8" y="24" width="116" height="114" rx="6" fill="#fffefa" stroke="#133c43" stroke-width="1.5"/>
+              <rect x="8" y="24" width="116" height="24" rx="6" fill="#133c43"/>
+              <text x="66" y="40" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="10" font-weight="700">1950s–60s</text>
+              <text x="66" y="68" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11.5" font-weight="700">Mainframes</text>
+              <text x="66" y="88" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Time-sharing</text>
+              <text x="66" y="102" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">dumb terminals</text>
+              <text x="66" y="116" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">on 1 central CPU</text>
+
+              <!-- Box 2 -->
+              <rect x="146" y="24" width="116" height="114" rx="6" fill="#fffefa" stroke="#2b6cb0" stroke-width="1.5"/>
+              <rect x="146" y="24" width="116" height="24" rx="6" fill="#2b6cb0"/>
+              <text x="204" y="40" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="10" font-weight="700">1980s</text>
+              <text x="204" y="68" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11.5" font-weight="700">Client–Server</text>
+              <text x="204" y="88" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">PCs request data</text>
+              <text x="204" y="102" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">from central LAN</text>
+              <text x="204" y="116" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">servers</text>
+
+              <!-- Box 3 -->
+              <rect x="282" y="24" width="116" height="114" rx="6" fill="#fffefa" stroke="#6b46c1" stroke-width="1.5"/>
+              <rect x="282" y="24" width="116" height="24" rx="6" fill="#6b46c1"/>
+              <text x="340" y="40" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="10" font-weight="700">1990s</text>
+              <text x="340" y="68" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11.5" font-weight="700">Cluster &amp; Grid</text>
+              <text x="340" y="88" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Linked local nodes</text>
+              <text x="340" y="102" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">&amp; cross-org</text>
+              <text x="340" y="116" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">scientific grids</text>
+
+              <!-- Box 4 -->
+              <rect x="418" y="24" width="116" height="114" rx="6" fill="#fffefa" stroke="#276749" stroke-width="1.5"/>
+              <rect x="418" y="24" width="116" height="24" rx="6" fill="#276749"/>
+              <text x="476" y="40" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="10" font-weight="700">Late 1990s</text>
+              <text x="476" y="68" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11.5" font-weight="700">Utility Model</text>
+              <text x="476" y="88" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Metered pay-per-</text>
+              <text x="476" y="102" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">use computing</text>
+              <text x="476" y="116" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">(like electricity)</text>
+
+              <!-- Box 5 -->
+              <rect x="554" y="24" width="116" height="114" rx="6" fill="#fffefa" stroke="#a15d32" stroke-width="1.5"/>
+              <rect x="554" y="24" width="116" height="24" rx="6" fill="#a15d32"/>
+              <text x="612" y="40" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="10" font-weight="700">Early 2000s</text>
+              <text x="612" y="68" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11.5" font-weight="700">Virtualization</text>
+              <text x="612" y="88" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Hypervisors slice</text>
+              <text x="612" y="102" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">1 physical host</text>
+              <text x="612" y="116" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">into isolated VMs</text>
+
+              <!-- Box 6 -->
+              <rect x="690" y="18" width="122" height="126" rx="6" fill="#e9f1ee" stroke="#165f5b" stroke-width="2.2"/>
+              <rect x="690" y="18" width="122" height="26" rx="6" fill="#165f5b"/>
+              <text x="751" y="35" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="10" font-weight="700">2006–Present</text>
+              <text x="751" y="66" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="12" font-weight="800">Cloud Computing</text>
+              <text x="751" y="86" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9.5">Virtualization +</text>
+              <text x="751" y="100" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9.5">Broadband + Utility</text>
+              <text x="751" y="114" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9.5">AWS · Azure · GCP</text>
+
+              <!-- Footer milestone bar -->
+              <text x="410" y="172" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="10" font-style="italic">Key Milestones: 1999 Salesforce (SaaS) · 2006 AWS EC2 &amp; S3 (IaaS) · 2008 Google App Engine (PaaS) · 2014 AWS Lambda (Serverless)</text>
+            </svg>
+            <figcaption>Cloud computing evolved by merging distributed networking (Cluster/Grid), hardware slicing (Virtualization), and metered billing (Utility Computing).</figcaption>
+          </figure>
+
+          <h3>Cluster vs Grid vs Cloud Computing (Frequently Tested Distinction)</h3>
           <div class="table-wrap">
             <table>
-              <caption>Evolutionary stages, technical concepts, and operational trade-offs</caption>
+              <caption>Comparison of Cluster, Grid, and Cloud Computing</caption>
               <thead>
-                <tr><th scope="col">Evolutionary Era</th><th scope="col">Core Technical Mechanism</th><th scope="col">Real-World Analogy</th><th scope="col">Cloud Contribution &amp; Limitation</th></tr>
+                <tr><th scope="col">Criteria</th><th scope="col">Cluster Computing</th><th scope="col">Grid Computing</th><th scope="col">Cloud Computing</th></tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1. Mainframes &amp; Time-Sharing (1960s–70s)</th>
-                  <td>High-cost central computers (IBM System/360) accessed through dumb terminals. Operating systems used CPU time-slicing to share expensive compute cycles.</td>
-                  <td>A communal hostel kitchen with one industrial stove where residents take scheduled 15-minute cooking slots.</td>
-                  <td><strong>Contribution:</strong> Introduced resource sharing and multi-user operating systems.<br><strong>Limitation:</strong> Centralized, rigid, and lacked global self-service access.</td>
-                </tr>
-                <tr>
-                  <th scope="row">2. Client-Server Model (1980s)</th>
-                  <td>Workstations (clients) handled the user interface while centralized servers managed shared relational databases over local networks.</td>
-                  <td>A restaurant counter: customers (clients) place orders, and the kitchen staff (server) prepares the food and returns the dish.</td>
-                  <td><strong>Contribution:</strong> Established the client/server network separation foundational to web applications.<br><strong>Limitation:</strong> Organizations had to buy and maintain their own physical server racks.</td>
-                </tr>
-                <tr>
-                  <th scope="row">3. Cluster &amp; Grid Computing (1990s)</th>
-                  <td><strong>Cluster Computing:</strong> Grouping commodity PCs with high-speed local networking to act as a single supercomputer.<br><strong>Grid Computing:</strong> Connecting geographically dispersed systems across institutions to solve massive scientific batch tasks (e.g., SETI@home, Folding@home).</td>
-                  <td><strong>Cluster:</strong> A team in one room assembling a 1,000-piece puzzle together.<br><strong>Grid:</strong> 10,000 global volunteers analyzing images on home PCs overnight.</td>
-                  <td><strong>Contribution:</strong> Proved that distributed commodity hardware can replace proprietary supercomputers.<br><strong>Limitation:</strong> Grids were designed for batch research, lacking billing transparency, multi-tenant isolation, or instant elasticity.</td>
-                </tr>
-                <tr>
-                  <th scope="row">4. Hardware Virtualization (2000s)</th>
-                  <td>Hypervisors (VMware, Xen, KVM) decouple the operating system from physical silicon, enabling multiple isolated Virtual Machines (VMs) to run on one physical host.</td>
-                  <td>Converting a single-family house into an apartment building: tenants share the foundation and plumbing while living in secure, private apartments.</td>
-                  <td><strong>Contribution:</strong> The architectural core of cloud computing, enabling multi-tenancy, rapid VM provisioning, and hardware consolidation.</td>
-                </tr>
-                <tr>
-                  <th scope="row">5. Utility Computing</th>
-                  <td>Economic model treating computing capacity as a metered municipal utility (like electricity, water, or telephony).</td>
-                  <td>A municipal water tap: opening the tap consumes water, closing it stops consumption, and the meter records exact usage.</td>
-                  <td><strong>Contribution:</strong> Transitioned IT spending from high capital expenditure (CapEx) to flexible operational expenditure (OpEx).</td>
-                </tr>
-                <tr>
-                  <th scope="row">6. Modern Cloud Platforms (2006–Present)</th>
-                  <td>Amazon launched S3 (Simple Storage Service) and EC2 (Elastic Compute Cloud) in 2006, uniting virtualization, utility billing, internet scale, and automated APIs.</td>
-                  <td>Modern ride-hailing: hail a vehicle with an app, use it for the trip, pay automatically, and release it for the next passenger.</td>
-                  <td><strong>Contribution:</strong> Instant self-service, virtually unlimited perceived capacity, global reach, and pay-per-second billing.</td>
-                </tr>
+                <tr><th scope="row">Hardware Type</th><td><strong>Homogeneous</strong> (identical nodes in one room).</td><td><strong>Heterogeneous</strong> (different machines across cities/orgs).</td><td><strong>Virtualized</strong> heterogeneous data center pools.</td></tr>
+                <tr><th scope="row">Ownership</th><td>Single organization / single admin domain.</td><td>Multiple federated organizations sharing spare compute.</td><td>Commercial Cloud Service Provider (or private org).</td></tr>
+                <tr><th scope="row">Allocation</th><td>Fixed local job scheduler.</td><td>Batch job queues for scientific computation.</td><td><strong>On-demand self-service</strong> with rapid elasticity.</td></tr>
+                <tr><th scope="row">Primary Use</th><td>High-availability enterprise servers &amp; HPC.</td><td>Large scientific projects (e.g., CERN LHC Grid).</td><td>Web apps, SaaS, AI/ML, storage, enterprise IT.</td></tr>
               </tbody>
             </table>
           </div>
         </section>
 
-        <!-- 03: PARALLEL AND DISTRIBUTED COMPUTING -->
+        <!-- 03: PARALLEL & DISTRIBUTED COMPUTING -->
         <section class="chapter" id="parallel-distributed" aria-labelledby="parallel-title">
-          <p class="section-label">03 / Computational foundations</p>
-          <h2 id="parallel-title">Parallel and distributed computing</h2>
-          
-          <div class="callout">
-            <h3>The Fundamental Distinction</h3>
-            <p><strong>Parallel Computing</strong> executes parts of a single computation simultaneously using multiple processing units (CPU cores or GPU threads) that typically reside in the <strong>same physical machine and share memory</strong>. The focus is raw execution speed and throughput.</p>
-            <p><strong>Distributed Computing</strong> coordinates independent physical computers located across different physical racks, data centers, or geographies that <strong>do not share memory</strong> and communicate strictly by passing messages over a network. The focus is scalability, geographic distribution, and fault tolerance.</p>
-          </div>
+          <p class="section-label">03 / Underlying Computing Principles (Asked in 2023–24 &amp; 2025–26)</p>
+          <h2 id="parallel-title">Parallel and Distributed Computing</h2>
+          <p>Modern cloud platforms combine <strong>both</strong> parallel computing (inside each multi-core server/GPU) and distributed computing (across thousands of networked servers in global data centers).</p>
 
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 1.2 — Parallel Computing (Shared Memory) vs Distributed Computing (Message Passing)</span>
+              <span class="badge">Exam Diagram</span>
+            </div>
+            <svg viewBox="0 0 800 230" role="img" aria-label="Side by side diagram comparing Parallel Computing with shared memory and Distributed Computing with independent networked nodes">
+              <!-- Left Panel: Parallel -->
+              <rect x="10" y="10" width="375" height="210" rx="6" fill="#f5faf8" stroke="#165f5b" stroke-width="1.5"/>
+              <text x="197" y="34" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="13" font-weight="700">Parallel Computing (Single Machine)</text>
+              <rect x="42" y="52" width="76" height="44" rx="4" fill="#165f5b"/>
+              <text x="80" y="79" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11" font-weight="700">CPU Core 1</text>
+              <rect x="159" y="52" width="76" height="44" rx="4" fill="#165f5b"/>
+              <text x="197" y="79" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11" font-weight="700">CPU Core 2</text>
+              <rect x="276" y="52" width="76" height="44" rx="4" fill="#165f5b"/>
+              <text x="314" y="79" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="11" font-weight="700">CPU Core 3</text>
+              <!-- Bus Lines -->
+              <line x1="80" y1="96" x2="80" y2="142" stroke="#133c43" stroke-width="2"/>
+              <line x1="197" y1="96" x2="197" y2="142" stroke="#133c43" stroke-width="2"/>
+              <line x1="314" y1="96" x2="314" y2="142" stroke="#133c43" stroke-width="2"/>
+              <line x1="60" y1="120" x2="334" y2="120" stroke="#a15d32" stroke-width="3"/>
+              <text x="197" y="114" text-anchor="middle" fill="#a15d32" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">High-Speed Shared Memory Bus</text>
+              <!-- Shared RAM -->
+              <rect x="42" y="142" width="310" height="44" rx="4" fill="#e9f1ee" stroke="#133c43" stroke-width="1.5"/>
+              <text x="197" y="169" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="12" font-weight="700">Shared Global Memory (RAM)</text>
+              <text x="197" y="206" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="10">Tightly coupled · Fastest speed · Single point of failure</text>
+
+              <!-- Right Panel: Distributed -->
+              <rect x="415" y="10" width="375" height="210" rx="6" fill="#fdf8f3" stroke="#a15d32" stroke-width="1.5"/>
+              <text x="602" y="34" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="13" font-weight="700">Distributed Computing (Networked Cluster)</text>
+              <!-- Node 1 -->
+              <rect x="435" y="52" width="96" height="72" rx="4" fill="#fffefa" stroke="#2b6cb0" stroke-width="1.5"/>
+              <text x="483" y="72" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">Node 1</text>
+              <rect x="447" y="80" width="72" height="16" rx="2" fill="#ebf8ff"/>
+              <text x="483" y="92" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9">CPU + OS</text>
+              <rect x="447" y="100" width="72" height="16" rx="2" fill="#e9f1ee"/>
+              <text x="483" y="112" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9">Local RAM</text>
+              <!-- Node 2 -->
+              <rect x="554" y="52" width="96" height="72" rx="4" fill="#fffefa" stroke="#2b6cb0" stroke-width="1.5"/>
+              <text x="602" y="72" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">Node 2</text>
+              <rect x="566" y="80" width="72" height="16" rx="2" fill="#ebf8ff"/>
+              <text x="602" y="92" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9">CPU + OS</text>
+              <rect x="566" y="100" width="72" height="16" rx="2" fill="#e9f1ee"/>
+              <text x="602" y="112" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9">Local RAM</text>
+              <!-- Node 3 -->
+              <rect x="673" y="52" width="96" height="72" rx="4" fill="#fffefa" stroke="#2b6cb0" stroke-width="1.5"/>
+              <text x="721" y="72" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">Node 3</text>
+              <rect x="685" y="80" width="72" height="16" rx="2" fill="#ebf8ff"/>
+              <text x="721" y="92" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9">CPU + OS</text>
+              <rect x="685" y="100" width="72" height="16" rx="2" fill="#e9f1ee"/>
+              <text x="721" y="112" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9">Local RAM</text>
+              <!-- Network Cloud -->
+              <line x1="483" y1="124" x2="483" y2="152" stroke="#a15d32" stroke-width="2" stroke-dasharray="4 3"/>
+              <line x1="602" y1="124" x2="602" y2="152" stroke="#a15d32" stroke-width="2" stroke-dasharray="4 3"/>
+              <line x1="721" y1="124" x2="721" y2="152" stroke="#a15d32" stroke-width="2" stroke-dasharray="4 3"/>
+              <rect x="442" y="152" width="320" height="34" rx="17" fill="#f4e9dc" stroke="#a15d32" stroke-width="1.5"/>
+              <text x="602" y="173" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Network / Message Passing (TCP/IP · RPC · HTTP)</text>
+              <text x="602" y="206" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="10">Loosely coupled · High fault tolerance · Horizontal scale</text>
+            </svg>
+            <figcaption>Parallel systems maximize raw speed via shared memory; distributed systems maximize scalability and fault tolerance via networked independent nodes.</figcaption>
+          </figure>
+
+          <h3>Parallel vs Distributed Computing (Comparison Table)</h3>
           <div class="table-wrap">
             <table>
-              <caption>Parallel vs Distributed Computing Comparison</caption>
+              <caption>Key Differences Between Parallel and Distributed Computing</caption>
               <thead>
-                <tr><th scope="col">Dimension</th><th scope="col">Parallel Computing</th><th scope="col">Distributed Computing</th></tr>
+                <tr><th scope="col">Basis</th><th scope="col">Parallel Computing</th><th scope="col">Distributed Computing</th></tr>
               </thead>
               <tbody>
-                <tr><th scope="row">Primary Objective</th><td>Maximize computation speed and throughput for a specific workload.</td><td>Resource sharing, high availability, and geographic fault tolerance.</td></tr>
-                <tr><th scope="row">Memory Model</th><td>Shared memory: processors read and write across a common physical memory bus.</td><td>Shared-nothing: each node maintains private RAM and local disk storage.</td></tr>
-                <tr><th scope="row">Communication</th><td>High-speed internal bus, shared registers, or cache coherency protocols.</td><td>Network packets (TCP/IP, HTTP REST, gRPC) over Ethernet or optical links.</td></tr>
-                <tr><th scope="row">Failure Domain</th><td>Single failure domain: a motherboard or power fault halts the entire system.</td><td>Independent failure domains: a failure of 5 nodes out of 100 leaves 95 operational.</td></tr>
-                <tr><th scope="row">Real-World Cloud Example</th><td>A deep learning model training a neural network across 8 GPUs on an AWS `p4d` instance.</td><td>Google Search distributing queries across thousands of indexing servers globally.</td></tr>
+                <tr><th scope="row">Architecture</th><td>Multiple CPU cores inside a <strong>single computer</strong>.</td><td>Multiple autonomous computers connected over a <strong>network</strong>.</td></tr>
+                <tr><th scope="row">Memory</th><td><strong>Shared memory</strong> accessible by all cores.</td><td><strong>Distributed private memory</strong> (each node has its own RAM).</td></tr>
+                <tr><th scope="row">Communication</th><td>Ultra-fast shared memory bus / cache coherence.</td><td>Message passing over network (TCP/IP, HTTP, RPC, Kafka).</td></tr>
+                <tr><th scope="row">Clock &amp; Sync</th><td>Single shared system clock.</td><td>No global clock (must use logical clocks / NTP).</td></tr>
+                <tr><th scope="row">Fault Tolerance</th><td>Low — host failure halts the entire job.</td><td><strong>High</strong> — surviving nodes continue if one node crashes.</td></tr>
+                <tr><th scope="row">Cloud Examples</th><td>Multi-core EC2 VMs, NVIDIA GPU AI training.</td><td>Hadoop/HDFS, Amazon S3, Kubernetes clusters, CDNs.</td></tr>
               </tbody>
             </table>
           </div>
 
-          <h3>Task Parallelism vs Data Parallelism</h3>
+          <h3>Underlying Principles of Parallel Computing</h3>
           <ul>
-            <li><strong>Task Parallelism:</strong> Multiple workers simultaneously execute <em>different operations</em> concurrently.
-              <br><em>Enterprise example:</em> During checkout on an e-commerce platform, one thread verifies credit card authorization, a second updates warehouse inventory, and a third triggers an order confirmation notification.
-            </li>
-            <li><strong>Data Parallelism:</strong> The exact same operation is applied simultaneously across <em>different partitions of a massive dataset</em>.
-              <br><em>Enterprise example:</em> Transcoding a 4K movie into 1080p. The movie is split into 120 one-minute chunks, and 120 cloud worker nodes execute the exact same transcoding algorithm in parallel.
-            </li>
+            <li><strong>Task Decomposition:</strong> Breaking a big computation into independent chunks. <em>Data Parallelism</em> runs the same function on different data slices (e.g., applying a filter to 10,000 photos); <em>Task Parallelism</em> runs different functions simultaneously (e.g., Thread 1 reads disk, Thread 2 compresses, Thread 3 uploads).</li>
+            <li><strong>Synchronization &amp; Mutual Exclusion:</strong> Locks, semaphores, and barriers prevent threads from corrupting shared variables (race conditions).</li>
+            <li><strong>Load Balancing:</strong> Evenly distributing tasks across cores so one overloaded core does not slow down the entire program.</li>
           </ul>
 
-          <h3 id="flynns-taxonomy">Architectural Models of Parallelism: Flynn's Taxonomy</h3>
-          <p>In 1966, Michael J. Flynn classified computer architectures based on the multiplicity of <strong>Instruction Streams</strong> and <strong>Data Streams</strong>:</p>
-
-          <!-- SOLID COLORFUL DIAGRAM: FLYNN'S TAXONOMY 2X2 MATRIX -->
+          <h3>Flynn's Taxonomy (4 Parallel Computer Architectures)</h3>
           <div class="solid-diagram">
             <div class="solid-diagram-title">
-              <span>Flynn's Classification Matrix</span>
-              <span class="badge">Architecture Taxonomy</span>
+              <span>Flynn's Classification by Instruction &amp; Data Streams</span>
+              <span class="badge">2 × 2 Matrix</span>
             </div>
             <div class="matrix-2x2">
               <div class="matrix-quadrant sisd">
-                <span class="matrix-tag">1 Instruction · 1 Data</span>
-                <h4>SISD (Single Instruction, Single Data)</h4>
-                <p>Pure sequential execution. A single processor executes one instruction at a time on a single data stream.</p>
-                <div class="app-example"><strong>Example:</strong> Traditional single-core CPUs executing sequential scripts and cron routines.</div>
+                <span class="matrix-tag">SISD</span>
+                <h4>Single Instruction, Single Data</h4>
+                <p>Classic sequential uniprocessor executing one instruction on one data element at a time.</p>
+                <div class="app-example"><strong>Example:</strong> Traditional single-core desktop CPU.</div>
               </div>
               <div class="matrix-quadrant simd">
-                <span class="matrix-tag">1 Instruction · Multiple Data</span>
-                <h4>SIMD (Single Instruction, Multiple Data)</h4>
-                <p>A single control unit broadcasts the same instruction to thousands of processing units operating on distinct data elements.</p>
-                <div class="app-example"><strong>Example:</strong> Modern GPUs (Nvidia A100) running matrix multiplication for AI (ChatGPT) and 3D graphics.</div>
+                <span class="matrix-tag">SIMD</span>
+                <h4>Single Instruction, Multiple Data</h4>
+                <p>One instruction executes simultaneously across an array of data values in lockstep.</p>
+                <div class="app-example"><strong>Example:</strong> GPUs, AI matrix multiplication, video rendering.</div>
               </div>
               <div class="matrix-quadrant misd">
-                <span class="matrix-tag">Multiple Instructions · 1 Data</span>
-                <h4>MISD (Multiple Instruction, Single Data)</h4>
-                <p>Multiple independent processing units execute different instructions on the exact same input stream concurrently.</p>
-                <div class="app-example"><strong>Example:</strong> Specialized aerospace fault-tolerant systems (e.g., Space Shuttle redundant flight controllers).</div>
+                <span class="matrix-tag">MISD</span>
+                <h4>Multiple Instruction, Single Data</h4>
+                <p>Multiple instructions process the exact same data stream (rare; used for triple-redundant safety).</p>
+                <div class="app-example"><strong>Example:</strong> Space shuttle / aviation fault-tolerant flight control.</div>
               </div>
               <div class="matrix-quadrant mimd">
-                <span class="matrix-tag">Multiple Instructions · Multiple Data</span>
-                <h4>MIMD (Multiple Instruction, Multiple Data)</h4>
-                <p>Multiple autonomous processors concurrently execute different instruction sets on different data streams.</p>
-                <div class="app-example"><strong>Example:</strong> Cloud data center clusters, Kubernetes pods, and distributed microservices.</div>
+                <span class="matrix-tag">MIMD</span>
+                <h4>Multiple Instruction, Multiple Data</h4>
+                <p>Multiple autonomous processors independently execute different instructions on different data.</p>
+                <div class="app-example"><strong>Example:</strong> Multi-core cloud servers, distributed Hadoop clusters.</div>
               </div>
             </div>
           </div>
 
-          <h3 id="scaling-laws">Understanding Speedup: Amdahl's Law vs Gustafson's Law</h3>
-          <p>The speedup obtained by adding processors is governed by two fundamental laws:</p>
+          <h3>Speedup Laws: Amdahl's Law vs Gustafson's Law</h3>
+          <p><strong>Amdahl's Law</strong> proves that for a <em>fixed problem size</em>, adding infinite processors cannot give infinite speedup because the <strong>sequential (non-parallel) fraction</strong> <code>(1 − p)</code> creates an upper ceiling.</p>
 
-          <div class="callout">
-            <h3>Amdahl's Law (Fixed Workload / Strong Scaling)</h3>
-            <p>Formulated by Gene Amdahl in 1967: Every program contains an inherently serial portion that cannot be parallelized. This serial bottleneck imposes a strict upper limit on speedup, regardless of the number of processors added.</p>
-          </div>
-
-          <div class="formula" role="group" aria-label="Amdahl's law formula and worked numerical example">
-            <p><strong>Amdahl's Speedup Formula:</strong></p>
-            <p style="font-size: 1.2rem; font-weight: bold; text-align: center; margin: 0.8rem 0; color: var(--deep);">
-              <var>S</var>(<var>N</var>) = 1 / [ (1 − <var>p</var>) + (<var>p</var> / <var>N</var>) ]
-            </p>
-            <p>Where:
-              <br>• <var>p</var> = fraction of code that can be parallelized (0 ≤ <var>p</var> ≤ 1).
-              <br>• (1 − <var>p</var>) = strictly serial portion of the code.
-              <br>• <var>N</var> = number of parallel processors / cores.
-            </p>
-            <p><strong>Worked Examination Problem:</strong>
-              <br><em>Question:</em> A program executes in 100 seconds on a single CPU. 80% of the program is parallelizable, and 20% is strictly sequential. Calculate the speedup and total execution time on 4 processors. What is the theoretical maximum speedup with unlimited processors?
-            </p>
-            <p><em>Step-by-Step Solution:</em>
-              <br>1. Given: <var>p</var> = 0.80, (1 − <var>p</var>) = 0.20, <var>N</var> = 4.
-              <br>2. Substitute into Amdahl's formula:
-              <br>&nbsp;&nbsp;&nbsp;&nbsp;<var>S</var>(4) = 1 / [ 0.20 + (0.80 / 4) ] = 1 / [ 0.20 + 0.20 ] = 1 / 0.40 = <strong>2.5× Speedup</strong>.
-              <br>3. Execution time on 4 cores = 100 s / 2.5 = <strong>40 seconds</strong> (20 s serial + 20 s parallel).
-              <br>4. As <var>N</var> approaches infinity (∞), the term (<var>p</var> / <var>N</var>) tends to 0:
-              <br>&nbsp;&nbsp;&nbsp;&nbsp;Max Speedup = 1 / (1 − <var>p</var>) = 1 / 0.20 = <strong>5.0× Maximum Theoretical Speedup</strong>.
-              <br><em>Conclusion:</em> Even with 1,000,000 cloud cores, this program can never finish faster than 20 seconds.
-            </p>
-          </div>
-
-          <div class="callout">
-            <h3>Gustafson's Law (Scaled Speedup / Weak Scaling)</h3>
-            <p>John Gustafson demonstrated that in cloud computing, problem sizes are rarely fixed: as computing capacity increases, engineers expand the dataset size to produce higher precision outputs.</p>
-            <p><em>Example:</em> When meteorologists gain access to 10,000 cloud cores, they do not simply compute tomorrow's coarse weather forecast faster; they refine the spatial simulation grid from 100 kilometers down to 1 kilometer to detect localized storms.</p>
-            <p><strong>Gustafson's Formula:</strong> <var>S</var>(<var>N</var>) = <var>N</var> + (1 − <var>N</var>)(1 − <var>p</var>) = <var>s</var> + <var>p</var> · <var>N</var>. Speedup scales linearly when the problem size expands proportionally with cluster capacity.</p>
-          </div>
-
-          <h3 id="cap-theorem">Distributed Systems Realities &amp; The CAP Theorem</h3>
-          <p>Because physical routers, switches, and fiber cables fail, distributed systems operate under the <strong>8 Fallacies of Distributed Computing</strong> (the network is reliable, latency is zero, bandwidth is infinite, topology is static, etc.).</p>
-
-          <p>Eric Brewer formulated the <strong>CAP Theorem</strong> for distributed data stores:</p>
-
-          <!-- SOLID COLORFUL DIAGRAM: CAP THEOREM 3-PILLARS -->
-          <div class="solid-diagram">
-            <div class="solid-diagram-title">
-              <span>The CAP Theorem Trilemma</span>
-              <span class="badge">Brewer's Theorem</span>
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 1.3 — Amdahl's Law Speedup Ceiling Curve</span>
+              <span class="badge">Quantitative Insight</span>
             </div>
-            <div class="cap-pillars">
-              <div class="cap-pillar c">
-                <div class="cap-letter">C</div>
-                <div class="cap-name">Consistency</div>
-                <div class="cap-desc">Every read receives the most recent write or returns an error. All nodes see identical data simultaneously.</div>
-              </div>
-              <div class="cap-pillar a">
-                <div class="cap-letter">A</div>
-                <div class="cap-name">Availability</div>
-                <div class="cap-desc">Every non-failing node returns a successful response without guaranteed data freshness. The system never drops requests.</div>
-              </div>
-              <div class="cap-pillar p">
-                <div class="cap-letter">P</div>
-                <div class="cap-name">Partition Tolerance</div>
-                <div class="cap-desc">The system continues operating despite dropped or delayed network messages between server nodes.</div>
-              </div>
-            </div>
-          </div>
+            <svg viewBox="0 0 760 220" role="img" aria-label="Graph showing Amdahl's Law speedup curves flattening at 10x for 90 percent parallel and 5x for 80 percent parallel">
+              <!-- Axes -->
+              <line x1="70" y1="180" x2="710" y2="180" stroke="#133c43" stroke-width="2"/>
+              <line x1="70" y1="20" x2="70" y2="180" stroke="#133c43" stroke-width="2"/>
+              <!-- Gridlines -->
+              <line x1="70" y1="140" x2="710" y2="140" stroke="#d9dfda" stroke-dasharray="4 4"/>
+              <line x1="70" y1="100" x2="710" y2="100" stroke="#d9dfda" stroke-dasharray="4 4"/>
+              <line x1="70" y1="60" x2="710" y2="60" stroke="#d9dfda" stroke-dasharray="4 4"/>
+              <!-- Y Labels -->
+              <text x="58" y="184" text-anchor="end" fill="#50636a" font-family="system-ui,sans-serif" font-size="10">0×</text>
+              <text x="58" y="144" text-anchor="end" fill="#50636a" font-family="system-ui,sans-serif" font-size="10">4×</text>
+              <text x="58" y="104" text-anchor="end" fill="#50636a" font-family="system-ui,sans-serif" font-size="10">8×</text>
+              <text x="58" y="64" text-anchor="end" fill="#50636a" font-family="system-ui,sans-serif" font-size="10">12×</text>
+              <text x="22" y="105" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11" font-weight="700" transform="rotate(-90 22 105)">Speedup S(N)</text>
+              <!-- X Labels -->
+              <text x="90" y="198" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="10">1</text>
+              <text x="210" y="198" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="10">4</text>
+              <text x="360" y="198" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="10">16</text>
+              <text x="520" y="198" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="10">64</text>
+              <text x="680" y="198" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="10">256</text>
+              <text x="390" y="214" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Number of Processors (N)</text>
 
-          <div class="callout">
-            <h3>Trade-off Under Network Partitions: CP vs AP</h3>
-            <p>Because physical networks cannot eliminate the possibility of partitions (P), distributed architectures must choose between:</p>
+              <!-- 95% parallel (max 20x, reaches ~12x+ at 64) -->
+              <path d="M 90 170 Q 210 144 360 88 T 680 34" fill="none" stroke="#276749" stroke-width="2.5"/>
+              <text x="555" y="42" fill="#276749" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">p = 95% (Max 20×)</text>
+
+              <!-- 90% parallel (max 10x -> y=80) -->
+              <path d="M 90 170 Q 210 149 360 116 T 680 82" fill="none" stroke="#2b6cb0" stroke-width="2.5"/>
+              <text x="555" y="76" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">p = 90% (Max 10×)</text>
+
+              <!-- 80% parallel (max 5x -> y=130) -->
+              <path d="M 90 170 Q 210 155 360 140 T 680 131" fill="none" stroke="#a15d32" stroke-width="2.5"/>
+              <text x="555" y="125" fill="#a15d32" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">p = 80% (Max 5×)</text>
+            </svg>
+            <figcaption>Even with 256 processors, a program that is 20% sequential (p = 0.80) can never exceed 5× speedup.</figcaption>
+          </figure>
+
+          <div class="worked-example">
+            <h4>Worked Numerical Example (Write This in 10-Mark Answers!)</h4>
+            <p><strong>Formula:</strong> <code>S(N) = 1 / [ (1 − p) + (p / N) ]</code></p>
             <ul>
-              <li><strong>CP (Consistency + Partition Tolerance):</strong> Rejects requests if nodes cannot confirm the latest write, ensuring data integrity at the cost of availability.
-                <br><em>Bank ATM Example:</em> If an ATM in Bangalore loses connection to the central ledger in Mumbai, it declines transactions to prevent double-spending.
-                <br><em>Databases:</em> Google Cloud Spanner, Apache HBase, MongoDB (majority write concern).
-              </li>
-              <li><strong>AP (Availability + Partition Tolerance):</strong> Continues accepting reads and writes on all available nodes, allowing replicas to converge asynchronously over time (Eventual Consistency).
-                <br><em>Social Media Example:</em> Users can continue posting comments and liking photos even if transatlantic sync links are delayed.
-                <br><em>Databases:</em> Amazon DynamoDB, Apache Cassandra, Couchbase.
-              </li>
+              <li><strong>Given:</strong> Parallel fraction <code>p = 0.80</code> (so sequential fraction <code>1 − p = 0.20</code>), and <code>N = 4</code> cores.</li>
+              <li><strong>Calculation:</strong> <code>S(4) = 1 / [ 0.20 + (0.80 / 4) ] = 1 / (0.20 + 0.20) = 1 / 0.40 = 2.5× speedup</code>.</li>
+              <li><strong>Maximum Possible Speedup (N → ∞):</strong> <code>S(∞) = 1 / (1 − p) = 1 / 0.20 = 5×</code>.</li>
+              <li><strong>Gustafson's Law (Scaled Workload):</strong> Notes that in cloud big data, as we add more nodes we also process <em>larger</em> datasets, giving scaled speedup <code>S(N) = N − (1 − p)(N − 1)</code>.</li>
             </ul>
           </div>
+
+          <h3>CAP Theorem (Brewer's Theorem) for Distributed Cloud Systems</h3>
+          <p>Eric Brewer proved that in any distributed data store where network failures (partitions) can occur, a system can simultaneously guarantee <strong>at most two</strong> of three properties: <strong>Consistency (C)</strong>, <strong>Availability (A)</strong>, and <strong>Partition Tolerance (P)</strong>.</p>
+
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 1.4 — The CAP Theorem Triangle &amp; Real-World Cloud Databases</span>
+              <span class="badge">Exam Diagram</span>
+            </div>
+            <svg viewBox="0 0 760 250" role="img" aria-label="CAP Theorem Triangle showing Consistency, Availability, and Partition Tolerance with CP and AP database examples">
+              <!-- Triangle edges -->
+              <polygon points="380,35 160,210 600,210" fill="#f5faf8" stroke="#133c43" stroke-width="2.5"/>
+              <!-- Vertex C -->
+              <circle cx="380" cy="35" r="24" fill="#2b6cb0"/>
+              <text x="380" y="42" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="18" font-weight="800">C</text>
+              <text x="380" y="14" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="12" font-weight="700">Consistency (Same Latest Data)</text>
+              <!-- Vertex A -->
+              <circle cx="160" cy="210" r="24" fill="#276749"/>
+              <text x="160" y="217" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="18" font-weight="800">A</text>
+              <text x="160" y="246" text-anchor="middle" fill="#276749" font-family="system-ui,sans-serif" font-size="11.5" font-weight="700">Availability (Always Responds)</text>
+              <!-- Vertex P -->
+              <circle cx="600" cy="210" r="24" fill="#c53030"/>
+              <text x="600" y="217" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="18" font-weight="800">P</text>
+              <text x="600" y="246" text-anchor="middle" fill="#c53030" font-family="system-ui,sans-serif" font-size="11.5" font-weight="700">Partition Tolerance (Survives Net Split)</text>
+
+              <!-- Edge labels -->
+              <rect x="135" y="92" width="142" height="44" rx="5" fill="#fffefa" stroke="#718096"/>
+              <text x="206" y="110" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11" font-weight="700">CA (Single-Node)</text>
+              <text x="206" y="126" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Traditional RDBMS (MySQL)</text>
+
+              <rect x="485" y="92" width="166" height="44" rx="5" fill="#ebf8ff" stroke="#2b6cb0"/>
+              <text x="568" y="110" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="11" font-weight="700">CP (Strong Consistency)</text>
+              <text x="568" y="126" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9.5">MongoDB · HBase · Banking</text>
+
+              <rect x="292" y="188" width="176" height="44" rx="5" fill="#f0fff4" stroke="#276749"/>
+              <text x="380" y="206" text-anchor="middle" fill="#276749" font-family="system-ui,sans-serif" font-size="11" font-weight="700">AP (Eventual Consistency)</text>
+              <text x="380" y="222" text-anchor="middle" fill="#1d3036" font-family="system-ui,sans-serif" font-size="9.5">Cassandra · DynamoDB · Cart</text>
+
+              <!-- Center note -->
+              <text x="380" y="148" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700">Pick Any 2</text>
+              <text x="380" y="163" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">(P is mandatory in Cloud)</text>
+            </svg>
+            <figcaption>Because network partitions (P) are unavoidable across cloud data centers, real cloud databases choose either CP (sacrifice availability during a split to keep data exact) or AP (stay online with eventual consistency).</figcaption>
+          </figure>
         </section>
 
-        <!-- 04: THE FIVE NIST CHARACTERISTICS -->
+        <!-- 04: FIVE NIST CHARACTERISTICS -->
         <section class="chapter" id="characteristics" aria-labelledby="characteristics-title">
-          <p class="section-label">04 / NIST cloud model</p>
-          <h2 id="characteristics-title">The five essential characteristics</h2>
-          <p>Under NIST SP 800-145, a service <strong>must exhibit all five</strong> characteristics to qualify as cloud computing:</p>
+          <p class="section-label">04 / NIST SP 800-145 Essential Traits</p>
+          <h2 id="characteristics-title">The Five Essential Characteristics of Cloud Computing</h2>
+
+          <div class="memory-hook">
+            <strong>Memory Hook — O-B-R-R-M:</strong> <strong>O</strong>n-demand self-service · <strong>B</strong>road network access · <strong>R</strong>esource pooling · <strong>R</strong>apid elasticity · <strong>M</strong>easured service.
+          </div>
 
           <div class="table-wrap">
             <table>
-              <caption>The 5 NIST Essential Characteristics</caption>
+              <caption>Detailed Breakdown of NIST's Five Essential Cloud Characteristics</caption>
               <thead>
-                <tr><th scope="col">Characteristic</th><th scope="col">NIST Standard Definition</th><th scope="col">Operational Mechanism</th><th scope="col">Enterprise Cloud Example</th></tr>
+                <tr><th scope="col">Characteristic</th><th scope="col">Technical Meaning</th><th scope="col">Real-World Example</th></tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row"><strong>1. On-Demand Self-Service</strong></th>
-                  <td>A consumer can unilaterally provision computing capabilities, such as server time and network storage, automatically as needed, without human interaction with each service provider.</td>
-                  <td>Users provision resources via automated web portals, CLIs, or APIs without manual approval tickets or phone calls.</td>
-                  <td>Launching an Ubuntu Linux virtual machine in 30 seconds via the AWS EC2 Management Console at 2:00 AM.</td>
+                  <th scope="row">1. On-Demand Self-Service</th>
+                  <td>Consumers automatically provision server time, storage, or databases via console/API without human interaction with the provider.</td>
+                  <td>Launching an AWS EC2 Linux VM in 45 seconds without emailing AWS support.</td>
                 </tr>
                 <tr>
-                  <th scope="row"><strong>2. Broad Network Access</strong></th>
-                  <td>Capabilities are available over the network and accessed through standard mechanisms that promote use by heterogeneous thin or thick client platforms.</td>
-                  <td>Services are accessible over standard internet protocols from any device form factor.</td>
-                  <td>Editing documents in Google Docs or Microsoft 365 from an iPhone, an Android tablet, a Mac, or a Linux workstation.</td>
+                  <th scope="row">2. Broad Network Access</th>
+                  <td>Capabilities are available over the network via standard mechanisms supporting heterogeneous thin or thick clients (phones, laptops, workstations).</td>
+                  <td>Accessing the same Google Workspace document from a college desktop and a mobile phone.</td>
                 </tr>
                 <tr>
-                  <th scope="row"><strong>3. Resource Pooling</strong></th>
-                  <td>The provider's computing resources are pooled to serve multiple consumers using a multi-tenant model, with different physical and virtual resources dynamically assigned and reassigned according to demand.</td>
-                  <td>A single high-density server hosts multiple isolated virtual machines belonging to different organizations, sharing hardware securely.</td>
-                  <td>An AWS physical host with 128 cores running isolated VMs for an airline, a bank, and an e-commerce retailer simultaneously.</td>
+                  <th scope="row">3. Resource Pooling</th>
+                  <td>Provider's physical and virtual resources are pooled to serve multiple consumers (<strong>multi-tenancy</strong>) dynamically, with <em>location independence</em>.</td>
+                  <td>AWS hosting VMs from 30 different companies safely on the same physical server blade.</td>
                 </tr>
                 <tr>
-                  <th scope="row"><strong>4. Rapid Elasticity</strong></th>
-                  <td>Capabilities can be elastically provisioned and released, in some cases automatically, to scale rapidly outward and inward commensurate with demand.</td>
-                  <td>Infrastructure scales up during traffic surges and contracts when demand subsides to prevent idle billing.</td>
-                  <td>Amazon Prime Day adding 500 extra web application instances for peak traffic and terminating them at midnight.</td>
+                  <th scope="row">4. Rapid Elasticity</th>
+                  <td>Resources can be provisioned and released rapidly—often automatically—scaling outward and inward with demand so capacity appears unlimited.</td>
+                  <td>Flipkart/Amazon auto-scaling web servers 10× during Diwali sales and releasing them afterward.</td>
                 </tr>
                 <tr>
-                  <th scope="row"><strong>5. Measured Service</strong></th>
-                  <td>Cloud systems automatically control and optimize resource use by leveraging a metering capability at some level of abstraction appropriate to the type of service.</td>
-                  <td>Transparent logging and itemized billing based on exact metrics consumed (gigabyte-months, vCPU seconds, network egress).</td>
-                  <td>AWS CloudWatch logging exact Lambda function invocation milliseconds and S3 storage volume consumed each month.</td>
+                  <th scope="row">5. Measured Service</th>
+                  <td>Cloud systems automatically monitor, meter, and report usage (vCPU seconds, GB stored, API requests) for transparent pay-per-use billing.</td>
+                  <td>Monthly AWS Cost Explorer bill breaking down exact EC2 hours and S3 gigabytes used.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </section>
 
-        <!-- 05: ELASTICITY, SCALABILITY, AND COST -->
+        <!-- 05: ELASTICITY, SCALABILITY & AUTOSCALING -->
         <section class="chapter" id="elasticity" aria-labelledby="elasticity-title">
-          <p class="section-label">05 / Capacity and economics</p>
-          <h2 id="elasticity-title">Elasticity, scalability, and cost</h2>
-          
-          <div class="callout">
-            <h3>Scalability vs Elasticity</h3>
-            <ul>
-              <li><strong>Scalability</strong> is the <em>architectural capacity</em> of a system to handle increased load when resources are added (typically a planned, one-way expansion).</li>
-              <li><strong>Elasticity</strong> is the <em>automated runtime behavior</em> that adapts allocated capacity <strong>both upward and downward</strong> in real time to match fluctuating demand.</li>
-            </ul>
-          </div>
+          <p class="section-label">05 / Capacity &amp; Cost Optimization</p>
+          <h2 id="elasticity-title">Elasticity, Scalability, and Autoscaling</h2>
 
-          <h3>Vertical vs Horizontal Scaling</h3>
+          <h3>Scalability vs Elasticity (Classic Exam Trap!)</h3>
+          <ul>
+            <li><strong>Scalability</strong> is a system's ability to handle <em>growing</em> load over time by adding hardware (planned expansion, e.g., growing from 10K to 1M users over a year).</li>
+            <li><strong>Elasticity</strong> is a system's ability to dynamically scale resources <strong>both UP and DOWN</strong> automatically in real time to match sudden spikes and drops. <em>Every elastic system is scalable, but not every scalable system is elastic.</em></li>
+          </ul>
+
+          <h3>Vertical Scaling (Scale-Up) vs Horizontal Scaling (Scale-Out)</h3>
           <div class="table-wrap">
             <table>
-              <caption>Vertical Scaling (Scale Up) vs Horizontal Scaling (Scale Out)</caption>
+              <caption>Vertical Scaling vs Horizontal Scaling</caption>
               <thead>
-                <tr><th scope="col">Dimension</th><th scope="col">Vertical Scaling (Scale Up)</th><th scope="col">Horizontal Scaling (Scale Out)</th></tr>
+                <tr><th scope="col">Dimension</th><th scope="col">Vertical Scaling (Scale-Up)</th><th scope="col">Horizontal Scaling (Scale-Out)</th></tr>
               </thead>
               <tbody>
-                <tr><th scope="row">Mechanism</th><td>Add more CPU, RAM, or faster NVMe storage to a single existing server.</td><td>Add more server instances into a distributed pool behind a load balancer.</td></tr>
-                <tr><th scope="row">Analogy</th><td>Replacing a 2-ton pickup truck with a 10-ton commercial semi-truck.</td><td>Deploying a fleet of 5 pickup trucks driving in parallel.</td></tr>
-                <tr><th scope="row">Capacity Limit</th><td>Hard hardware ceiling imposed by motherboard sockets and RAM slots.</td><td>Virtually limitless: cloud fleets can expand to thousands of nodes.</td></tr>
-                <tr><th scope="row">Downtime</th><td>Usually requires taking the server offline for hardware upgrades or VM resizing.</td><td>Zero downtime: new instances dynamically register with load balancers.</td></tr>
-                <tr><th scope="row">Fault Tolerance</th><td>Low: single point of failure if the central machine fails.</td><td>High: traffic automatically redirects if any individual node crashes.</td></tr>
+                <tr><th scope="row">Mechanism</th><td>Upgrade a <strong>single server</strong> with faster CPU, more RAM, or SSD.</td><td>Add <strong>more servers/nodes</strong> behind a load balancer.</td></tr>
+                <tr><th scope="row">Upper Limit</th><td>Hard physical limit of one motherboard.</td><td>Virtually unlimited—keep adding commodity nodes.</td></tr>
+                <tr><th scope="row">Downtime</th><td>Usually requires stopping/restarting the VM.</td><td><strong>Zero downtime</strong>—new instances join seamlessly.</td></tr>
+                <tr><th scope="row">Fault Tolerance</th><td>Single point of failure remains.</td><td>High—if 1 of 10 web servers dies, 9 keep serving traffic.</td></tr>
+                <tr><th scope="row">Ideal Workloads</th><td>Monolithic SQL databases (Oracle, PostgreSQL).</td><td>Stateless web apps, REST APIs, microservices, Hadoop.</td></tr>
               </tbody>
             </table>
           </div>
 
-          <h3>Cloud Economics: CapEx vs OpEx</h3>
-          <ul>
-            <li><strong>CapEx (Capital Expenditure):</strong> Upfront capital invested in constructing private data centers, purchasing server hardware, and acquiring multi-year software licenses before serving a single customer.</li>
-            <li><strong>OpEx (Operational Expenditure):</strong> Pay-as-you-go operating costs. Startups launch with zero upfront capital and pay monthly bills strictly for resources consumed.</li>
-          </ul>
-
-          <div class="callout">
-            <h3>Cost Optimization Example: Why Elasticity Saves Money</h3>
-            <p>Consider an application requiring <strong>2 instances during regular hours (23 hours/day)</strong> and <strong>10 instances during a 1-hour peak window</strong>. Assuming $0.10/instance-hour:</p>
-            <ul>
-              <li><strong>Fixed Provisioning (Traditional IT):</strong> 10 instances × 24 hours × $0.10 = <strong>$24.00 per day</strong>.</li>
-              <li><strong>Elastic Auto-Scaling:</strong> (2 instances × 24 hrs × $0.10) + (8 instances × 1 hr × $0.10) = $4.80 + $0.80 = <strong>$5.60 per day</strong>.</li>
-            </ul>
-            <p><strong>Result:</strong> Elasticity delivers a <strong>76.7% cost reduction</strong> while maintaining full performance during peak load.</p>
-          </div>
+          <h3>How Autoscaling Works &amp; Optimizes Cost</h3>
+          <p><strong>Autoscaling</strong> uses a closed feedback loop: a monitoring agent (e.g., AWS CloudWatch) watches live metrics (CPU &gt; 75%, high latency, or queue depth). When a threshold is crossed, the Auto-Scaling Group automatically launches new instances and registers them with the Load Balancer; when traffic subsides (CPU &lt; 25%), excess instances are gracefully drained and terminated—eliminating both <strong>over-provisioning waste</strong> and <strong>under-provisioning outages</strong>.</p>
         </section>
 
-        <!-- 06: ON-DEMAND RESOURCE PROVISIONING -->
+        <!-- 06: ON-DEMAND PROVISIONING -->
         <section class="chapter" id="provisioning" aria-labelledby="provisioning-title">
-          <p class="section-label">06 / Operational mechanism</p>
-          <h2 id="provisioning-title">On-demand provisioning</h2>
-          <p><strong>Resource Provisioning</strong> is the automated process of selecting, allocating, and configuring physical and virtual computing resources to prepare them for workloads. <strong>Deprovisioning (Release)</strong> returns resources to the shared pool to stop billing.</p>
+          <p class="section-label">06 / Resource Allocation &amp; Pricing</p>
+          <h2 id="provisioning-title">On-Demand Provisioning &amp; Pricing Models</h2>
+          <p><strong>On-Demand Provisioning</strong> is the automated workflow that turns a user's self-service request into a running, billed cloud resource in seconds—and reclaims it immediately upon termination.</p>
 
-          <!-- SOLID COLORFUL DIAGRAM: PROVISIONING LIFECYCLE -->
-          <div class="solid-diagram">
-            <div class="solid-diagram-title">
-              <span>Cloud Resource Provisioning Workflow</span>
-              <span class="badge">Operational Lifecycle</span>
+          <figure class="svg-figure">
+            <div class="svg-figure-header">
+              <span>Figure 1.5 — On-Demand Provisioning &amp; Autoscaling Pipeline</span>
+              <span class="badge">Exam Diagram</span>
             </div>
-            <div class="solid-flow">
-              <div class="solid-node blue">
-                <span class="node-step">Step 1</span>
-                <span class="node-title">Request Submission</span>
-                <p class="node-desc">Client specifies instance type, image, region, and security group via API or console.</p>
-              </div>
-              <div class="solid-node purple">
-                <span class="node-step">Step 2</span>
-                <span class="node-title">Policy &amp; Quota Check</span>
-                <p class="node-desc">IAM verifies credentials, role permissions, and organizational account quotas.</p>
-              </div>
-              <div class="solid-node accent">
-                <span class="node-step">Step 3</span>
-                <span class="node-title">Placement Scheduling</span>
-                <p class="node-desc">Cloud scheduler identifies physical server hosts with adequate unallocated CPU and RAM.</p>
-              </div>
-              <div class="solid-node green">
-                <span class="node-step">Step 4</span>
-                <span class="node-title">Hypervisor Spin-up</span>
-                <p class="node-desc">Host creates VM, maps virtual storage, binds network interfaces, and boots OS.</p>
-              </div>
-              <div class="solid-node">
-                <span class="node-step">Step 5</span>
-                <span class="node-title">Telemetry &amp; Release</span>
-                <p class="node-desc">CloudWatch logs usage seconds; deprovisioning releases capacity back to the pool.</p>
-              </div>
-            </div>
-          </div>
+            <svg viewBox="0 0 800 165" role="img" aria-label="5-step on-demand provisioning pipeline from user request to IAM check, orchestrator scheduling, hypervisor VM launch, and metered telemetry">
+              <defs>
+                <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#165f5b"/>
+                </marker>
+              </defs>
+              <!-- Steps -->
+              <rect x="10" y="25" width="135" height="95" rx="6" fill="#fffefa" stroke="#165f5b" stroke-width="1.8"/>
+              <text x="77" y="45" text-anchor="middle" fill="#165f5b" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">STEP 1</text>
+              <text x="77" y="65" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11.5" font-weight="700">Self-Service API</text>
+              <text x="77" y="85" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">User / Auto-Scaler</text>
+              <text x="77" y="99" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">requests 4 vCPU VM</text>
 
-          <h3>Compute Provisioning Models: On-Demand, Reserved, and Spot</h3>
+              <line x1="145" y1="72" x2="168" y2="72" stroke="#165f5b" stroke-width="2" marker-end="url(#arr2)"/>
+
+              <rect x="171" y="25" width="135" height="95" rx="6" fill="#fffefa" stroke="#2b6cb0" stroke-width="1.8"/>
+              <text x="238" y="45" text-anchor="middle" fill="#2b6cb0" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">STEP 2</text>
+              <text x="238" y="65" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11.5" font-weight="700">IAM &amp; Quotas</text>
+              <text x="238" y="85" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Verifies identity,</text>
+              <text x="238" y="99" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">policy &amp; account limit</text>
+
+              <line x1="306" y1="72" x2="329" y2="72" stroke="#165f5b" stroke-width="2" marker-end="url(#arr2)"/>
+
+              <rect x="332" y="25" width="135" height="95" rx="6" fill="#fffefa" stroke="#6b46c1" stroke-width="1.8"/>
+              <text x="399" y="45" text-anchor="middle" fill="#6b46c1" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">STEP 3</text>
+              <text x="399" y="65" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11.5" font-weight="700">Orchestrator</text>
+              <text x="399" y="85" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Scheduler selects host</text>
+              <text x="399" y="99" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">with free RAM/CPU</text>
+
+              <line x1="467" y1="72" x2="490" y2="72" stroke="#165f5b" stroke-width="2" marker-end="url(#arr2)"/>
+
+              <rect x="493" y="25" width="135" height="95" rx="6" fill="#fffefa" stroke="#276749" stroke-width="1.8"/>
+              <text x="560" y="45" text-anchor="middle" fill="#276749" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">STEP 4</text>
+              <text x="560" y="65" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11.5" font-weight="700">Hypervisor Boot</text>
+              <text x="560" y="85" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Creates VM, attaches</text>
+              <text x="560" y="99" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">virtual disk &amp; VPC IP</text>
+
+              <line x1="628" y1="72" x2="651" y2="72" stroke="#165f5b" stroke-width="2" marker-end="url(#arr2)"/>
+
+              <rect x="654" y="25" width="136" height="95" rx="6" fill="#fdf6ec" stroke="#a15d32" stroke-width="1.8"/>
+              <text x="722" y="45" text-anchor="middle" fill="#a15d32" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">STEP 5</text>
+              <text x="722" y="65" text-anchor="middle" fill="#133c43" font-family="system-ui,sans-serif" font-size="11.5" font-weight="700">Meter &amp; Release</text>
+              <text x="722" y="85" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">Bills per second; frees</text>
+              <text x="722" y="99" text-anchor="middle" fill="#50636a" font-family="system-ui,sans-serif" font-size="9.5">host on termination</text>
+
+              <!-- Feedback loop -->
+              <path d="M 722 120 L 722 146 L 77 146 L 77 124" fill="none" stroke="#a15d32" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arr2)"/>
+              <text x="400" y="142" text-anchor="middle" fill="#7b341e" font-family="system-ui,sans-serif" font-size="9.5" font-weight="700">Telemetry Feedback Loop (CloudWatch triggers Scale-Out / Scale-In)</text>
+            </svg>
+            <figcaption>End-to-end automated provisioning eliminates manual hardware wait times and directly powers rapid elasticity.</figcaption>
+          </figure>
+
+          <h3>Cloud Compute Pricing Models: On-Demand vs Reserved vs Spot</h3>
           <div class="table-wrap">
             <table>
-              <caption>Comparison of Cloud Compute Provisioning Models</caption>
+              <caption>Comparison of Cloud Instance Provisioning &amp; Pricing Models</caption>
               <thead>
-                <tr><th scope="col">Model</th><th scope="col">Commitment &amp; Availability</th><th scope="col">Pricing Structure</th><th scope="col">Real-World Analogy</th><th scope="col">Target Workload</th></tr>
+                <tr><th scope="col">Model</th><th scope="col">Commitment</th><th scope="col">Discount</th><th scope="col">Analogy &amp; Best Use Case</th></tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row"><strong>On-Demand</strong></th>
-                  <td>Zero long-term commitment. Provisioned in seconds, terminated at will. 99.99% availability SLA.</td>
-                  <td>Highest baseline hourly rate; billed per second with zero upfront cost.</td>
-                  <td>Hailing an Uber: standard metered rate, exit whenever you choose.</td>
-                  <td>Unpredictable traffic, new product launches, prototyping, and short-term testing.</td>
-                </tr>
-                <tr>
-                  <th scope="row"><strong>Reserved (Savings Plans)</strong></th>
-                  <td>1-year or 3-year commitment to a specific instance family, region, or hourly spend.</td>
-                  <td>Discounts between <strong>40% and 72%</strong> compared to on-demand rates.</td>
-                  <td>Annual commuter transit pass: upfront commitment in exchange for discounted per-ride rates.</td>
-                  <td>Steady-state, 24/7 baseline production workloads (core databases, ERP systems).</td>
-                </tr>
-                <tr>
-                  <th scope="row"><strong>Spot / Preemptible</strong></th>
-                  <td>Allocation of unused data center capacity. <strong>Subject to reclamation on 2-minute notice.</strong></td>
-                  <td>Steepest discount (<strong>70% to 90% off</strong> on-demand rates); fluctuating market pricing.</td>
-                  <td>Standby airline tickets: steep discount, but passengers are bumped if full-fare travelers arrive.</td>
-                  <td>Fault-tolerant batch jobs: Big Data MapReduce/Hadoop, video rendering, ML model training.</td>
-                </tr>
+                <tr><th scope="row">On-Demand</th><td>Zero commitment; start/stop anytime.</td><td>Base rate (0%).</td><td><em>Uber ride:</em> Unpredictable traffic, prototypes, dev/test.</td></tr>
+                <tr><th scope="row">Reserved / Savings Plans</th><td>1-year or 3-year contract.</td><td><strong>40%–72% off</strong>.</td><td><em>Annual metro pass:</em> Steady 24/7 production databases &amp; ERP.</td></tr>
+                <tr><th scope="row">Spot / Preemptible</th><td>Uses spare capacity; 2-min eviction notice.</td><td><strong>70%–90% off</strong>.</td><td><em>Standby flight ticket:</em> Fault-tolerant Hadoop, ML training, rendering.</td></tr>
               </tbody>
             </table>
           </div>
         </section>
 
-        <!-- 07: EXAM PREPARATION -->
+        <!-- 07: BENEFITS, CHALLENGES & PROVIDERS -->
+        <section class="chapter" id="benefits-challenges" aria-labelledby="bc-title">
+          <p class="section-label">07 / Trade-Offs &amp; Ecosystem (Asked in 2025–26)</p>
+          <h2 id="bc-title">Benefits, Challenges &amp; Leading Cloud Providers</h2>
+          <div class="table-wrap">
+            <table>
+              <caption>Comprehensive Benefits vs Challenges of Cloud Computing</caption>
+              <thead>
+                <tr><th scope="col">Benefits of Cloud Computing</th><th scope="col">Challenges of Cloud Computing</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>1. Cost Efficiency (CapEx → OpEx):</strong> Zero upfront server purchases; pay only for actual usage.</td><td><strong>1. Security &amp; Privacy:</strong> Multi-tenant shared infrastructure, data breaches, and misconfigured buckets.</td></tr>
+                <tr><td><strong>2. Rapid Elasticity &amp; Scalability:</strong> Handle sudden 10× traffic spikes automatically without crashes.</td><td><strong>2. Vendor Lock-In:</strong> Proprietary APIs and egress fees make migrating between AWS/Azure/GCP costly.</td></tr>
+                <tr><td><strong>3. Global Accessibility:</strong> Teams and customers access apps from anywhere on any device.</td><td><strong>3. Internet Dependency &amp; Outages:</strong> Slow/broken internet blocks access; rare provider outages impact uptime.</td></tr>
+                <tr><td><strong>4. Built-in Disaster Recovery:</strong> Automated multi-region replication and backups at low cost.</td><td><strong>4. Compliance &amp; Data Sovereignty:</strong> Laws (GDPR, RBI/DPDP) restrict storing citizen data in foreign regions.</td></tr>
+                <tr><td><strong>5. Faster Time-to-Market:</strong> Launch apps in hours instead of waiting weeks for physical hardware.</td><td><strong>5. Cost Overruns ("Bill Shock"):</strong> Unmonitored autoscaling or forgotten GPU instances inflate bills fast.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>Major Cloud Service Providers (CSPs):</strong> <strong>Amazon Web Services (AWS)</strong> (market leader, 200+ services), <strong>Microsoft Azure</strong> (deep enterprise Windows/Active Directory integration), <strong>Google Cloud Platform (GCP)</strong> (AI, BigQuery, Kubernetes leader), <strong>IBM Cloud</strong>, and <strong>Oracle Cloud Infrastructure (OCI)</strong>.</p>
+        </section>
+
+        <!-- 08: EXAM PREPARATION -->
         <section class="chapter" id="exam-preparation" aria-labelledby="exam-title">
-          <p class="section-label">07 / Assessment practice</p>
-          <h2 id="exam-title">Exam answer frameworks and misconceptions</h2>
-          
-          <h3>Structuring Answers by Marks Available</h3>
-          <ul>
-            <li><strong>2 Marks:</strong> Write the formal NIST definition or crisp core principle in 2–3 sentences. Add one concrete real-world example (e.g., AWS EC2 or Netflix).</li>
-            <li><strong>7 Marks:</strong> State the NIST definition, list the 5 essential characteristics with clear headings, and write two sentences explaining each with a real-world scenario. Include a diagram of on-demand provisioning or client-server architecture.</li>
-            <li><strong>10 Marks:</strong> Structure your answer into clear sections:
-              <br>1. Formal Definition &amp; Core Analogy.
-              <br>2. Historical Evolution (Mainframes $\to$ Client-Server $\to$ Clusters/Grids $\to$ Virtualization $\to$ Cloud).
-              <br>3. Parallel vs Distributed Computing, Flynn's Taxonomy, and Speedup Laws (with Amdahl formula and worked numerical example).
-              <br>4. The 5 NIST Essential Characteristics with enterprise examples.
-              <br>5. Economic Trade-offs (CapEx vs OpEx, Scalability vs Elasticity, On-Demand vs Reserved vs Spot).
-            </li>
-          </ul>
-
-          <div class="table-wrap">
-            <table>
-              <caption>Common Exam Misconceptions and Technical Corrections</caption>
-              <thead>
-                <tr><th scope="col">Student Misconception</th><th scope="col">Accurate Technical Correction</th></tr>
-              </thead>
-              <tbody>
-                <tr><th scope="row">Cloud simply means online file storage.</th><td>Storage (S3) is only one component; cloud computing encompasses on-demand compute, software-defined networking, and serverless runtimes.</td></tr>
-                <tr><th scope="row">Confusing Elasticity with Scalability.</th><td>Scalability is the capacity to expand; elasticity is the dynamic automated scaling both up and down based on real-time demand.</td></tr>
-                <tr><th scope="row">Adding 10 processors speeds up execution 10×.</th><td>Amdahl's Law demonstrates that the sequential portion of code imposes an upper ceiling on speedup regardless of processor count.</td></tr>
-                <tr><th scope="row">Cloud is always cheaper for every workload.</th><td>For steady 24/7 workloads with high constant throughput and network egress, dedicated hardware can sometimes be more cost-effective than public cloud on-demand pricing.</td></tr>
-              </tbody>
-            </table>
+          <p class="section-label">08 / Exam Strategy</p>
+          <h2 id="exam-title">Unit I Exam Writing Checklist</h2>
+          <div class="callout callout-warm">
+            <h3>Most Frequently Asked Unit I Questions</h3>
+            <p>• Explain underlying principles of parallel &amp; distributed computing and their importance in cloud (7/10M).<br>
+            • List and explain NIST's five essential characteristics of cloud computing with examples (7/10M).<br>
+            • Describe on-demand provisioning and how it enhances scalability (7/10M).<br>
+            • Discuss benefits and challenges of cloud computing (7M).</p>
           </div>
-        </section>
-
-        <!-- 08: REFERENCES -->
-        <section class="chapter" id="references" aria-labelledby="references-title">
-          <p class="section-label">08 / Further reading</p>
-          <h2 id="references-title">References</h2>
-          <ol>
-            <li id="ref-nist">Mell, P., and Grance, T. <cite>The NIST Definition of Cloud Computing</cite>. NIST Special Publication 800-145, 2011. <a href="https://doi.org/10.6028/NIST.SP.800-145">Official publication and DOI</a>. Primary standard source.</li>
-            <li>NIST. <cite>Cloud Computing Synopsis and Recommendations</cite>. NIST Special Publication 800-146, 2012. <a href="https://doi.org/10.6028/NIST.SP.800-146">Official publication and DOI</a>. Comprehensive architectural guidelines.</li>
-            <li id="ref-amdahl">Amdahl, G. M. “Validity of the Single Processor Approach to Achieving Large Scale Computing Capabilities.” <cite>AFIPS Spring Joint Computer Conference</cite>, 1967. <a href="https://doi.org/10.1145/1465482.1465560">Original paper (DOI)</a>. Speedup bounds.</li>
-            <li id="ref-berkeley">Armbrust, M., et al. <cite>Above the Clouds: A Berkeley View of Cloud Computing</cite>. UC Berkeley Technical Report UCB/EECS-2009-28, 2009. <a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2009/EECS-2009-28.html">University report</a>. Utility computing economics.</li>
-          </ol>
+          <ul>
+            <li><strong>Never confuse Scalability with Elasticity:</strong> Always state that elasticity scales <em>both up and down automatically</em>.</li>
+            <li><strong>Include Amdahl's Formula + 1 Numerical:</strong> For any parallel computing question, showing <code>S(4) = 2.5×</code> for <code>p = 0.8</code> immediately proves mastery.</li>
+            <li><strong>Draw at least 1 neat diagram:</strong> Even a 4-box Evolution timeline or the CAP Triangle boosts a 7-mark answer from 5/7 to 7/7.</li>
+          </ul>
         </section>
 
         <section class="next-section" aria-label="Next unit">
@@ -598,7 +657,8 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>Cloud Computing · Academic study guide · Unit I</p>
+      <p>Cloud Computing · Complete 8-Page Academic Study Guide · Unit I</p>
+      <p><a href="short-answers.html">Short Answers (2M)</a> · <a href="long-answers.html">Long Answers (7/10M)</a></p>
     </div>
   </footer>
 
